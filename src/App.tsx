@@ -4,19 +4,22 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import { Home, Team, Event, About } from "./pages";
+import { Home, Team, Event, About, Join } from "./pages";
+import NavBar from "./components/layout/NavBar";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/about", element: <About /> },
   { path: "/team", element: <Team /> },
-  { path: "/event", element: <Event /> },
+  { path: "/events", element: <Event /> },
+  { path: "/join", element: <Join /> },
   { path: "*", element: <Navigate to="/" /> },
 ]);
 
 export default function App() {
   return (
     <>
+      <NavBar />
       <RouterProvider router={router} />
     </>
   );
