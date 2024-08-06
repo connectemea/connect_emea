@@ -1,48 +1,94 @@
-import { Afeef, Aseel } from '../../assets/images/founders'
-import { Shamil } from '../../assets/images/interns'
+import { Afeef, Aseel, Nahyan, Salman } from '../../assets/images/founders'
+import { Fabin, Saleel, Shamil } from '../../assets/images/interns'
 
 
-const Founder = [
+const FoundersData = [
     {
         id: 1,
-        name: 'Mohammed Afeef',
+        name: 'Salman Faris',
         role: 'Co-Founder',
-        image: Afeef,
+        image: Salman,
         social: {
-            linkedin: 'https://www.linkedin.com/in/mohammed-afeef/',
-            github: 'https://www.github.com/mohammedafeef',
-            instagram: 'https://www.instagram.com/mohammedafeef'
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
         },
 
     },
     {
         id: 2,
-        name: 'Aseel Alzahrani',
+        name: 'Mohammed Afeef',
+        role: 'Co-Founder',
+        image: Afeef,
+        social: {
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
+        },
+    },
+    {
+        id: 3,
+        name: 'Nahyan Sharvin',
+        role: 'Co-Founder',
+        image: Nahyan,
+        social: {
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
+        },
+    },
+    {
+        id: 4,
+        name: 'Aseel KP',
         role: 'Co-Founder',
         image: Aseel,
         social: {
-            linkedin: 'https://www.linkedin.com/in/aseel-alzahrani/',
-            github: 'https://www.github.com/aseelalzahrani',
-            instagram: 'https://www.instagram.com/aseelalzahrani'
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
         },
     }
 
 ]
 
 
-const Interns = [
+const InternsData = [
     {
         id: 1,
-        name: 'Shamil Almubarak',
-        role: 'Intern',
+        name: 'Saleel',
+        role: 'Graphic Designer',
+        image: Saleel,
+        social: {
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
+        },
+    },
+    {
+        id: 2,
+        name: 'Muhammed Shamil',
+        role: 'Developer',
         image: Shamil,
         social: {
-            linkedin: 'https://www.linkedin.com/in/shamil-almubarak/',
-            github: 'https://www.github.com/shamilalmubarak',
-            instagram: 'https://www.instagram.com/shamilalmubarak'
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
         },
+    },
+    {
+        id: 3,
+        name: 'Fabin',
+        role: 'Community Manager',
+        image: Fabin,
+        social: {
+            linkedin: 'https://www.linkedin.com/',
+            github: 'https://www.github.com/',
+            instagram: 'https://www.instagram.com/'
+        }
     }
 ]
 
 
-export const Teams = { Founder, Interns }
+const TeamsData = { FoundersData, InternsData }
+
+export default TeamsData;
