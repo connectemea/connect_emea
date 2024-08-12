@@ -6,15 +6,15 @@ const Cards = [
         name: 'Riyad Almubarak',
         role: 'Faculty Advisor',
         image: Riyad,
-        content: 'Riyad is a faculty advisor for the Connect EMEA team. He is a professor at the University of Central Florida and has been a mentor for the team since its inception. Riyad has been instrumental in guiding the team and providing valuable insights to the team members.'
+        content: 'Riyad is a faculty advisor for the Connect EMEA team. He is a professor at the University '
     },
     {
         id: 2,
         name: 'Rasheed Hussain',
         role: 'Faculty Advisor',
         image: Rasheed,
-        content: 'Rasheed is a faculty advisor for the Connect EMEA team. He is a professor at the University of Central Florida and has been a mentor for the team since its inception. Rasheed has been instrumental in guiding the team and providing valuable insights to the team members.'
+        content: 'Rasheed is a faculty advisor for the Connect EMEA team. He is a professor at the University  '
     }
 ]
 
-export { Cards }
+export default Cards;
