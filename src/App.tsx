@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { Home, Team, Event, About, Join } from "./pages";
 import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -21,6 +22,7 @@ export default function App() {
     <>
       <NavBar />
       <RouterProvider router={router} />
+      <Footer />
     </>
   );
 }
