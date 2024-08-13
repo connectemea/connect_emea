@@ -5,7 +5,7 @@ import PointCard from './pointCard';
 
 function Points() {
     return (
-        <div className="container mx-auto px-4">
+        <div className=" mx-auto px-4">
             <h1 className='text-2xl font-semibold text-center my-8'>
                 Your journey of growth right at your campus!
             </h1>

@@ -15,7 +15,7 @@ const UpcomingEvents = [
 
 const RecentEvents = [
     {
-        id: 1,
+        id: 2,
         title: 'Connect EMEA Hackathon',
         date: 'February 15, 2022',
         time: '9:00 AM - 5:00 PM',
@@ -28,7 +28,7 @@ const RecentEvents = [
 
 const PastEvents = [
     {
-        id: 1,
+        id: 3,
         title: 'Connect EMEA Networking Event',
         date: 'January 20, 2022',
         time: '6:00 PM - 8:00 PM',

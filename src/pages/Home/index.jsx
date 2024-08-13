@@ -2,21 +2,21 @@ import Events from './components/Events';
 import Points from './components/Points';
 import About from './components/about';
 import Contact from './components/contact';
-import Section1 from './components/section1';
-import Section2 from './components/section2';
-import Section3 from './components/section3';
+import Content from './components/Content';
+import Chapter from './components/chapter';
+import Journey from './components/Journey';
 import Welcome from './components/welcome';
 
 
 const Home = () => {
   return (
-    <div className='min-h-[70vh]'>
+    <div className='min-h-[70vh] max-w-[1000px] mx-auto'>
       <Welcome />
-      <Section1 />
+      <Content />
       <Points />
-      <Section2 />
+      <Chapter />
       <Events />
-      <Section3 />
+      <Journey />
       <About />
       <Contact />
     </div>

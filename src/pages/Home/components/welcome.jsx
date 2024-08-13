@@ -15,7 +15,7 @@ function Welcome() {
             <button className='px-14 py-1.5 bg-orange-500 text-white rounded-full w-fit mx-auto font-semibold'>
                 Join Us
             </button>
-            <img src={Icon} alt='avatar' className='w-[600px] h-auto mx-auto'/>
+            <img src={Icon} alt='avatar' className='w-auto max-w-[600px] h-auto mx-auto'/>
         </section>
     )
 }

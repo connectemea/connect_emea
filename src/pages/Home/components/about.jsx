@@ -24,9 +24,9 @@ function About() {
             <p className='text-center max-w-[700px]  mx-auto'>
                 orem ipsum dolor sit amet, consectetur adipiscing elit,
             </p>
-            <div className='flex gap-4 mx-auto m-4'>
+            <div className='flex gap-4 mx-auto m-4 flex-wrap '>
                 {cards.map((card, index) => (
-                    <div className='border rounded-xl p-4 bg-slate-200' key={index} >
+                    <div className='border rounded-xl p-4 bg-slate-200 mx-auto max-w-[300px]' key={index} >
                         <h1 className='text-center font-semibold text-xl'>{card.title}</h1>
                         <p>{card.content}</p>
                     </div>

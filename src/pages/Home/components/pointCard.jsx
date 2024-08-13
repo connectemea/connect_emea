@@ -2,7 +2,7 @@ import React from 'react';
 import QouteUp from '../../../assets/avatars/QouteUp.png';
 import QouteDown from '../../../assets/avatars/QuoteDown.png';
 
-function PointCard({ card, key }) {
+function PointCard({ card }) {
   console.log(card.id)
   return (
     <div className={`bg-slate-100 rounded-lg m-4 flex items-center ${card.id % 2 !== 0 ? ' mr-4 ' : 'flex flex-row-reverse'}`}>
