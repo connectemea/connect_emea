@@ -29,7 +29,7 @@ function NavBar() {
   };
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-white text-black max-w-[1000px] mx-auto py-6  md:py-10">
+    <nav className="flex justify-between items-center p-4 bg-white text-black w-limit py-6  md:py-10">
       <div>
         <img src={Logo} alt="logo" className="h-8" />
       </div>
