@@ -10,7 +10,7 @@ import Welcome from './components/Welcome';
 
 const Home = () => {
   return (
-    <div className='min-h-[70vh] max-w-[1000px] mx-auto '>
+    <div className='min-h-[70vh] w-limit bg-white'>
       <Welcome />
       <Content />
       <Testimonials />

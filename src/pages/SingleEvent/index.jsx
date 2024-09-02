@@ -16,16 +16,18 @@ function SingleEvent() {
     console.log(event);
 
     return (
-        <div className='h-[80vh]'>
+        <div className='h-[80vh] w-limit'>
 
             {event ? (
-                <div className=' flex  flex-col mx-auto'>
+                <div className=' flex  flex-col mx-auto  mt-10'>
                     <div  className='flex justify-between'>
-                        <div className=''>
+                        <div className='w-1/2'>
                             <h2 className='font-semibold text-2xl'>{event.title}</h2>
                             <p>{event.description}</p>
                         </div>
-                        <div className='bg-slate-300 w-80 h-96 rounded-lg '></div>
+                        <div className='w-1/2 mx-auto'>
+                        <div className='bg-slate-300 w-80 h-80 rounded-lg mx-auto'></div>
+                        </div>
                     </div>
                     <div>
                         <h2 className='font-semibold text-xl text-left'>About</h2>
@@ -33,10 +35,11 @@ function SingleEvent() {
                     </div>
 
                 </div>
-            ) : (
-                <p>Event not found</p>
-            )}
-        </div>
+    ) : (
+        <p>Event not found</p>
+    )
+}
+        </div >
     );
 }
 
