@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 
 function GuestLayout() {
     return (
-        <div className='relative'>
+        <div className='relative '>
             <NavBar />
             <Outlet />
             <Footer />
