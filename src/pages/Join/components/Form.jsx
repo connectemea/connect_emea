@@ -1,8 +1,7 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm} from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -11,8 +10,8 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
     Select,
     SelectContent,
@@ -21,95 +20,263 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
+import department from "@/const/departmentList";
 
 const formSchema = z.object({
-    username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
-    }),
-})
+    name: z.string().nonempty("Name is required"),
+    phone_number: z.string().nonempty("Phone number is required"),
+    department: z.string().nonempty("Department is required"),
+    hobby: z.string().nonempty("Hobby is required"),
+    talent: z.string().nonempty("Talent is required"),
+    how_did_you_hear: z.string().nonempty("How did you hear about Connect is required"),
+    expectations: z.string().nonempty("Expectations from Connect is required"),
+    preferred_role: z.enum([
+        "Graphic designer",
+        "Tech intern",
+        "Community manager",
+        "Video editor/photographer",
+        "Content writer",
+        "Other",
+    ]),
+    reason: z.string().nonempty("Why do you want to be a part of this community is required"),
+    other_communities: z.string().nonempty("Are you part of any other community, club, or organization?"),
+    interesting_fact: z.string().nonempty("Tell us something interesting about yourself is required"),
+});
+
+const communities = [
+    "IEDC",
+    "NSS",
+    "NCC",
+    "SIP",
+    "Union",
+    "Other",
+];
 
 export function JoinForm() {
-
-    // 1. Define your form.
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            username: "",
-            email: "",
+            name: "",
+            phone_number: "",
+            department: "",
+            hobby: "",
+            talent: "",
+            how_did_you_hear: "",
+            expectations: "",
+            preferred_role: "",
+            reason: "",
+            other_communities: "",
+            interesting_fact: "",
         },
-    })
+    });
 
-    // 2. Define a submit handler.
-    function onSubmit(values) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
-    }
-
+    const onSubmit = (values) => {
+        console.log(values);
+    };
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <Form {...form} className="min-w-full">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="John Doe" {...field} />
                             </FormControl>
-                            <FormDescription>
-                                This is your public display name.
-                            </FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="phone_number"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>Phone number</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input placeholder="123-456-7890" {...field} />
                             </FormControl>
-                            <FormDescription>
-                                This is your public display name.
-                            </FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="department"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
+                            <FormLabel>Department</FormLabel>
+                            <FormControl>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select a verified email to display" />
+                                        <SelectValue placeholder="Select a department" />
                                     </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                                    <SelectItem value="m@support.com">m@support.com</SelectItem>
-                                </SelectContent>
-                            </Select>
-                            <FormDescription>
-                                You can manage email addresses in your{" "}
-                            </FormDescription>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel>Departments</SelectLabel>
+                                            {department.map((dept,index) => (
+                                                <SelectItem key={index} value={dept.value}>
+                                                    {dept.value}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <FormField
+                    control={form.control}
+                    name="hobby"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>What is your hobby?</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Your hobby" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="talent"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>What is your talent?</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Your talent" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="how_did_you_hear"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>How did you hear about Connect?</FormLabel>
+                            <FormControl>
+                                <Input placeholder="How did you hear about Connect?" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="expectations"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>What are your expectations from Connect?</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Your expectations" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="preferred_role"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Preferred role in Connect</FormLabel>
+                            <FormControl>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a role" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel>Roles</SelectLabel>
+                                            <SelectItem value="Graphic designer">Graphic designer</SelectItem>
+                                            <SelectItem value="Tech intern">Tech intern</SelectItem>
+                                            <SelectItem value="Community manager">Community manager</SelectItem>
+                                            <SelectItem value="Video editor/photographer">Video editor/photographer</SelectItem>
+                                            <SelectItem value="Content writer">Content writer</SelectItem>
+                                            <SelectItem value="Other">Other</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="reason"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Why do you want to be a part of this community?</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Your reason" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="other_communities"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Are you part of any other community, club, or organization?</FormLabel>
+                            <FormControl>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a community or club" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel>Clubs</SelectLabel>
+                                            {communities.map((club) => (
+                                                <SelectItem key={club} value={club}>
+                                                    {club}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="interesting_fact"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Tell us something interesting about yourself</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Interesting fact" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <div className="w-full flex justify-end">
+                <Button type="submit" className="px-10 font-semibold">Join</Button>
+                </div>
             </form>
         </Form>
-    )
+    );
 }

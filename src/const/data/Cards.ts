@@ -1,6 +1,14 @@
 import { Riyad, Rasheed } from '../../assets/images/faculties'
 
-const Cards = [
+interface Card {
+    id: number,
+    name: string,
+    role: string,
+    image: string,
+    content: string
+}
+
+const Cards: Card[] = [
     {
         id: 1,
         name: 'Riyad Almubarak',

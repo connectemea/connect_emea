@@ -1,6 +1,5 @@
-import React from 'react'
-import EmblaCarousel from './Carousal/EmblaCarousal'
-import '../../../assets/styles/embla.css'
+import EmblaCarousel from '../Carousal/EmblaCarousal'
+import '@/assets/styles/embla.css'
 
 const OPTIONS = { loop: true }
 const SLIDE_COUNT = 5

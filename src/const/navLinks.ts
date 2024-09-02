@@ -1,23 +1,19 @@
 const navLinks = [
   {
     label: "Home",
-    href:"/home"
-  },
-  {
-    label: "About",
-    href:"/about"
+    href: "/"
   },
   {
     label: "Events",
-    href:"/events"
+    href: "/events"
   },
   {
     label: "Team",
-    href:"/team"
+    href: "/team"
   },
   {
-    label: "Join",
-    href:"/join"
+    label: "About",
+    href: "/about"
   },
 ];
 

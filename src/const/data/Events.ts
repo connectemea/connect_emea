@@ -1,6 +1,6 @@
+import { Event } from '@/types/eventsTypes';
 
-
-const UpcomingEvents = [
+const UpcomingEvents: Event[] = [
     {
         id: 1,
         title: 'Connect EMEA Launch Event',
@@ -13,7 +13,7 @@ const UpcomingEvents = [
     },
 ]
 
-const RecentEvents = [
+const RecentEvents: Event[] = [
     {
         id: 2,
         title: 'Connect EMEA Hackathon',
@@ -26,7 +26,7 @@ const RecentEvents = [
     },
 ]
 
-const PastEvents = [
+const PastEvents: Event[] = [
     {
         id: 3,
         title: 'Connect EMEA Networking Event',
