@@ -5,6 +5,7 @@ import {
   PrevButton,
   usePrevNextButtons
 } from './EmblaArrowBtn'
+import { ArrowUpRight } from 'lucide-react'
 // import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 
 const TWEEN_FACTOR_BASE = 0.84
@@ -17,8 +18,8 @@ const EmblaCarousel = (props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const tweenFactor = useRef(0)
 
-//   const { selectedIndex, scrollSnaps, onDotButtonClick } =
-//     useDotButton(emblaApi)
+  //   const { selectedIndex, scrollSnaps, onDotButtonClick } =
+  //     useDotButton(emblaApi)
 
   const {
     prevBtnDisabled,
@@ -80,17 +81,37 @@ const EmblaCarousel = (props) => {
       .on('slideFocus', tweenOpacity)
   }, [emblaApi, tweenOpacity])
 
+
+  const handleClick = () => {
+    console.log('clicked')
+  }
+
   return (
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((index) => (
-            <div className="embla__slide" key={index}>
+            <div className="embla__slide relative overflow-hidden" key={index}>
               <img
                 className="embla__slide__img"
                 src={`https://picsum.photos/600/350?v=${index}`}
                 alt="Your alt text"
               />
+              {/* card */}
+              <div className="absolute z-30 bottom-4 w-[95%]  p-2 ">
+                <div className='bg-gray-200 rounded-xl p-2'>
+                  <h1 className='text-md font-semibold text-center'>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do</h1>
+                  <div className='flex justify-around'>
+                    <p className='text-sm'>Date: 01-2-3030</p>
+                    <p className='text-sm'>Time: 9:30pm</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* arrow */}
+              <div className='absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full' onClick={handleClick}>
+                <ArrowUpRight />
+              </div>
             </div>
           ))}
         </div>
@@ -102,6 +123,9 @@ const EmblaCarousel = (props) => {
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
 
+        <a href='/events' className='text-sm mx-auto font-semibold z-30 -mt-6 cursor-pointer hover:underline'>
+          show more
+        </a>
         {/* <div className="embla__dots">
           {scrollSnaps.map((_, index) => (
             <DotButton

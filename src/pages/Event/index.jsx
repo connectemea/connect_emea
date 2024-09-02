@@ -1,4 +1,4 @@
-import { Events } from "../../const/data/Events";
+import { Events } from "@/const/data/Events";
 import { Normal, Special } from "./components/EventCard";
 
 const Event = () => {

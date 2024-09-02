@@ -1,6 +1,6 @@
 import Founders from "./components/Founders";
 import Interns from "./components/Interns";
-import TeamsData from '../../const/data/Teams';
+import TeamsData from '@/const/data/Teams';
 
 const Team = () => {
   console.log(TeamsData)

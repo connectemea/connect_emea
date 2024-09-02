@@ -4,7 +4,7 @@ import Vision from "./components/Vision";
 
 const About = () => {
   return (
-    <div>
+    <div className="max-w-[1000px] mx-auto">
       <h1 className='font-bold py-10 flex justify-center text-2xl w-full'>About </h1>
       <Mission />
       <Vision />

@@ -12,9 +12,9 @@ const TeamCard = ({ data, id, size }) => {
                 <p className="font-bold">{data?.name}</p>
                 <span className="font-light text-sm">{data?.role}</span>
                 <div className="flex items-center justify-center gap-4">
-                    <div><a href={data?.social.github}><Github className="w-4 h-4"/></a></div>
-                    <div><a href={data?.social.linkedin} ><Linkedin className="w-4 h-4"/></a></div>
-                    <div><a href={data?.social.instagram}><Instagram className="w-4 h-4"/></a></div>
+                    {data?.social.github && <div><a href={data?.social.github}><Github className="w-4 h-4" /></a></div>}
+                    {data?.social.linkedin &&  <div><a href={data?.social.linkedin} ><Linkedin className="w-4 h-4" /></a></div>}
+                    {data?.social.instagram &&  <div><a href={data?.social.instagram}><Instagram className="w-4 h-4" /></a></div>}
                 </div>
             </div>
         </section>
