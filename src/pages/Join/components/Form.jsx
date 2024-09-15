@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +12,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
     Select,
     SelectContent,
@@ -78,6 +79,7 @@ export function JoinForm() {
     return (
         <Form {...form} className="min-w-full">
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+            <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
                 <FormField
                     control={form.control}
                     name="name"
@@ -91,49 +93,52 @@ export function JoinForm() {
                         </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="phone_number"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Phone number</FormLabel>
-                            <FormControl>
-                                <Input placeholder="123-456-7890" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="department"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Department</FormLabel>
-                            <FormControl>
-                                <Select
-                                    onValueChange={field.onChange}
-                                    value={field.value}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select a department" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectLabel>Departments</SelectLabel>
-                                            {department.map((dept,index) => (
-                                                <SelectItem key={index} value={dept.value}>
-                                                    {dept.value}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                    <FormField
+                        control={form.control}
+                        name="phone_number"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Phone number</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="123-456-7890" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    </div>
+            <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+                    
+                    <FormField
+                        control={form.control}
+                        name="department"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Department</FormLabel>
+                                <FormControl>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select a department" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel>Departments</SelectLabel>
+                                                {department.map((dept, index) => (
+                                                    <SelectItem key={index} value={dept.value}>
+                                                        {dept.value}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                 <FormField
                     control={form.control}
                     name="hobby"
@@ -147,6 +152,9 @@ export function JoinForm() {
                         </FormItem>
                     )}
                 />
+                </div>
+                <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+
                 <FormField
                     control={form.control}
                     name="talent"
@@ -167,12 +175,15 @@ export function JoinForm() {
                         <FormItem>
                             <FormLabel>How did you hear about Connect?</FormLabel>
                             <FormControl>
-                                <Input placeholder="How did you hear about Connect?" {...field} />
+                                <Textarea placeholder="How did you hear about Connect?" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
+                </div>
+                <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+
                 <FormField
                     control={form.control}
                     name="expectations"
@@ -180,7 +191,7 @@ export function JoinForm() {
                         <FormItem>
                             <FormLabel>What are your expectations from Connect?</FormLabel>
                             <FormControl>
-                                <Input placeholder="Your expectations" {...field} />
+                                <Textarea placeholder="Your expectations" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -217,6 +228,8 @@ export function JoinForm() {
                         </FormItem>
                     )}
                 />
+                </div>
+                <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
                 <FormField
                     control={form.control}
                     name="reason"
@@ -224,7 +237,7 @@ export function JoinForm() {
                         <FormItem>
                             <FormLabel>Why do you want to be a part of this community?</FormLabel>
                             <FormControl>
-                                <Input placeholder="Your reason" {...field} />
+                                <Textarea placeholder="Your reason" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -260,6 +273,7 @@ export function JoinForm() {
                         </FormItem>
                     )}
                 />
+                </div>
                 <FormField
                     control={form.control}
                     name="interesting_fact"
@@ -267,14 +281,14 @@ export function JoinForm() {
                         <FormItem>
                             <FormLabel>Tell us something interesting about yourself</FormLabel>
                             <FormControl>
-                                <Input placeholder="Interesting fact" {...field} />
+                                <Textarea placeholder="Interesting fact" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
                 <div className="w-full flex justify-end">
-                <Button type="submit" className="px-10 font-semibold">Join</Button>
+                    <Button type="submit" className="px-10 font-semibold">Join</Button>
                 </div>
             </form>
         </Form>
