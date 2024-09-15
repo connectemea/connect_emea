@@ -2,10 +2,11 @@ import { useState } from "react";
 import navLinks from "@/const/navLinks";
 import Logo from "@/assets/icons/connect.svg";
 import { LayoutPanelTop, X } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function NavBar() {
   const [navOpen, setNavOpen] = useState(false);
+  const location = useLocation();
 
   const underlineStyle: React.CSSProperties = {
     position: "relative",
@@ -27,6 +28,12 @@ function NavBar() {
   const toggleNav = () => {
     setNavOpen(!navOpen);
   };
+
+    // Function to get the label of the current route from navLinks
+    const getCurrentRouteLabel = () => {
+      const currentLink = navLinks.find((link) => link.href === location.pathname);
+      return currentLink ? currentLink.label : "Home"; // Default to "Home" if no match
+    };
 
   return (
     <nav className="flex justify-between items-center p-4 bg-white text-black w-limit py-6  md:py-10">
@@ -64,7 +71,7 @@ function NavBar() {
         <button onClick={toggleNav} className="focus:outline-none">
           <div className="border flex items-center justify-center gap-1 rounded-lg bg-black p-[5px] transition-transform duration-300">
             <p className="bg-orange-500 text-sm font-semibold p-[3px] px-[10px] rounded-md text-white">
-              Menu
+            {getCurrentRouteLabel()}
             </p>
             <div
               className={`transform transition-transform duration-300 ${
