@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react' 
 
 function Content() {
     return (
-        <div className='flex justify-between w-limit'>
-            <div className='w-1/2 flex items-center justify-center'>
+        <div className='flex flex-col md:flex-row justify-between w-limit '>
+            <div className='my-6 md:my-0 md:w-1/2 flex items-center justify-center mx-auto'>
                     <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
                         <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px]" />
                         <div className="bg-slate-400 rounded-xl absolute w-[300px] h-[300px]" />
                     </div>
             </div>
-            <div className='w-1/2 text-white'>
+            <div className='md:w-1/2 text-white mx-auto'>
                 <p>
                     Four years ago, in the halls of EMEA College, four passionate students—Salman CC, Afeef, Aseel, and Nahyan—shared a common dream. They wanted to create something meaningful for their fellow students. Driven by their determination, they proposed developing a college software application to our college principal.
                 </p>

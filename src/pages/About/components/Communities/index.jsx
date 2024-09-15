@@ -6,7 +6,7 @@ function Communities() {
   return (
     <div className='flex flex-col'>
       <h1 className='text-3xl font-semibold text-center my-10'>Communities for joy</h1>
-      <section className='flex  items-center justify-center gap-16 m-10'>
+      <section className='flex flex-col sm:flex-row items-center justify-center gap-16 m-10'>
         <div className='flex items-center flex-col'>
           <img src={TinkerHubLogo} alt='about' className='w-auto h-auto max-w-[120px] mb-4' />
           <div className='flex flex-col items-center justify-start rounded-3xl p-4 border text-center max-w-[280px] h-full min-h-[300px] border-gray-500 shadow-xl shadow-black/25'>
