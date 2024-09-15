@@ -7,7 +7,7 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 function Events() {
   return (
-    <div>
+    <div className='p-2'>
         <h1 className='mx-auto font-semibold text-2xl text-center my-10'>Upcoming Events</h1>
         <div>
         <EmblaCarousel slides={SLIDES} options={OPTIONS} />
