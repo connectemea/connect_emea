@@ -16,7 +16,7 @@ const Event = () => {
             <h2 className="text-[20px]">Upcoming</h2>
             <h1 className="text-[36px]">Events</h1>
           </div>
-          <div className="flex-1 flex gap-4">
+          <div className="flex-1 flex gap-4 overflow-auto">
             {UpcomingEvents.map((event, index) => (
               <div key={index}>
                 <Special data={event} />
@@ -32,7 +32,7 @@ const Event = () => {
           <h2 className="text-[20px]">Recent</h2>
           <h1 className="text-[36px]">Events</h1>
         </div>
-        <div className="flex-1 flex gap-4">
+        <div className="flex-1 flex gap-4 overflow-auto">
           {RecentEvents.map((event, index) => (
             <div key={index}>
               <Special data={event} />
@@ -41,13 +41,12 @@ const Event = () => {
         </div>
 
       </section>
-
       <section className="flex p-4 gap-4 w-limit">
         <div className="flex flex-col items-start font-bold py-6">
           <h2 className="text-[20px]">All</h2>
           <h1 className="text-[36px]">Events</h1>
         </div>
-        <div className="flex-1 flex gap-4">
+        <div className="flex-1 flex gap-4 overflow-auto">
           {PastEvents.map((event, index) => (
             <div key={index}>
               <Normal data={event} />
@@ -56,7 +55,6 @@ const Event = () => {
         </div>
 
       </section>
-
     </div>
   );
 };
