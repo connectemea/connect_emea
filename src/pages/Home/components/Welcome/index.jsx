@@ -13,10 +13,10 @@ function Welcome() {
 
     return (
         <section className='text-center flex flex-col gap-4 my-4'>
-            <div className='text-center flex flex-col max-w-[500px] mx-auto'>
-                <h1 className='text-[20px] md:text-[28px] font-semibold uppercase'>
-                    WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>TURN&nbsp; THEORY&nbsp;
-                    <br />INTO&nbsp; PRACTICE&nbsp;
+            <div className='text-center flex flex-col max-w-[600px] mx-auto'>
+                <h1 className='text-[20px] md:text-[32px] font-semibold uppercase'>
+                    WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; peers,&nbsp;
+                    <br />purpose&nbsp;and&nbsp;passion&nbsp;
                 </h1>
                 <p className='text-sm sm:text-lg'>For students, by students.</p>
             </div>

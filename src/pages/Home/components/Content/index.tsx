@@ -1,32 +1,59 @@
 interface Point {
   title: string;
-  content: string;
+  content: JSX.Element;
 }
 function Content() {
   const points: Point[] = [
     {
-      title: "Ancient educational syllabus",
-      content:
-        "It’s the loophole in our education system. As humans, we bought development on everything except in our college education syllabus.",
+      title: "Beyond the Classroom",
+      content: (
+        <>
+          True learning happens outside textbooks and lectures. While academic
+          knowledge is vital,{" "}
+          <span className="font-bold">community and hands-on experience</span>{" "}
+          are where students truly grow.
+        </>
+      ),
     },
     {
-      title: "Theory will take you so far.",
-      content: `Theoretical knowledge might help us pass exams, but it’s not enough for real-world
-      success. To thrive, we need to apply what we learned.`,
+      title: "Bridging the Gap",
+      content: (
+        <>
+          The traditional education system often lacks real-world application.{" "}
+          <span className="font-bold">Connect steps in</span> to fill that gap,
+          offering opportunities for students to apply what they’ve learned.
+        </>
+      ),
     },
     {
-      title: "Wrong exposure.",
-      content:
-        "The wrong crowd will drown our dreams, lose our way, lose our purpose. Your life depends on the environment you choose to fit in.",
+      title: "Supportive Environment",
+      content: (
+        <>
+          We create a space where students can{" "}
+          <span className="font-bold">turn theory into practice</span>,
+          surrounded by like-minded peers who share their drive for success.
+        </>
+      ),
+    },
+    {
+      title: "Collaborative Growth",
+      content: (
+        <>
+          At Connect, we{" "}
+          <span className="font-bold">challenge, inspire, and support</span>{" "}
+          each other, achieving more together than we could alone.
+        </>
+      ),
     },
   ];
+
   return (
     <section className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4 my-8">
-        <h1 className="font-semibold text-3xl text-center mx-auto">
-          What we are
+        <h1 className="font-semibold heading-text text-center mx-auto">
+          What is connect
         </h1>
-        <p className="text-center max-w-[900px] mx-auto text-xl font-normal">
+        <p className="text-center max-w-[900px] mx-auto paragraph-text font-normal">
           Connect is a vibrant, student-driven community that bridges the gap
           between academia and industry. Through collaborative learning,
           real-world experiences, and expert guidance, we provide the resources
@@ -53,24 +80,23 @@ function Content() {
             </div>
           </div>
         </div>
-        <div className="flex items-start flex-col gap-4">
-          <h1 className="font-bold text-3xl  md:indent-10 mx-auto md:mx-0 my-4 md:my-0">
+        <div className="flex items-start flex-col gap-8 ">
+          <h1 className="font-bold heading-text  md:indent-10 mx-auto md:mx-0 my-4 md:my-0 ">
             Why we exist
           </h1>
           {points.map((item, index) => (
-            <div key={index} className="flex gap-2 md:gap-0">
+            <div key={index} className="flex gap-4 md:gap-0">
               <div className="px-2">
                 <div className="w-6 h-6 flex items-center justify-center bg-white border-4 border-orange-500 rounded-full">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                 </div>
               </div>
-              <div>
-                <h1 className="font-semibold text-xl">
+              <div className="md:px-2 space-y-1">
+                <h1 className="font-semibold text-xl -mt-1">
                   {/* bullet */}
-                  <div className=""></div>
                   {item.title}
                 </h1>
-                <p className="">{item.content}</p>
+                <p className="text-md md:text-lg">{item.content}</p>
               </div>
             </div>
           ))}

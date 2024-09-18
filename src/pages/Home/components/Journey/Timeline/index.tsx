@@ -15,7 +15,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
       {/* Line */}
       <div className="absolute lg:h-1 h-full lg:w-full w-1 bg-gray-300 left-1/2 lg:left-0 transform lg:translate-x-0 translate-x-[-50%]"></div>
 
-      <div className="flex gap-10 lg:gap-20 flex-col lg:flex-row w-full lg:mt-16">
+      <div className="flex gap-16 lg:gap-24 flex-col lg:flex-row w-full lg:mt-16">
         {events.map((event, index) => (
           <div
             key={index}
@@ -24,7 +24,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
             }`}
           >
             {/* Bullet */}
-            <div className="absolute top-0 lg:-top-2  left-1/2 lg:transform-none transform -translate-x-1/2">
+            <div className="absolute top-0 lg:-top-2 left-1/2 lg:transform-none transform -translate-x-1/2">
               <div className="w-6 h-6 flex items-center justify-center bg-white border-4 border-orange-500 rounded-full">
                 <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
               </div>

@@ -5,7 +5,7 @@ import Card from './Card';
 function Points() {
     return (
         <div className="mx-auto px-4 my-4">
-            <h1 className='text-xl sm:text-2xl md:text-3xl font-semibold text-center my-8'>
+            <h1 className='heading-text font-semibold text-center my-8'>
                 Your journey of growth right <br />
                 at your campus!
             </h1>

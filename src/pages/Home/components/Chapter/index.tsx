@@ -1,47 +1,47 @@
 function Chapter() {
   return (
     <section className="flex flex-col gap-4 p-4 my-10">
-      <h1 className=" font-semibold text-xl sm:text-2xl md:text-3xl text-center my-4">
+      <h1 className=" font-semibold heading-text text-center my-4">
         Why you should join{" "}
         <span className="text-orange-500 block">Connect</span>
       </h1>
       <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-10 mx-auto">
         <div className="">
-          <ul className="space-y-4 list-disc list-inside px-4">
+          <ul className="space-y-4 list-disc list-inside px-4 ">
             <li className="">
-              <strong>Work on Real Projects:</strong>
-              <span className="ml-4 block">
+              <strong className="font-semibold text-xl">Work on Real Projects:</strong>
+              <span className="ml-5 block text-md md:text-lg">
                 Get hands-on experience with collaborative projects that solve
                 real-world problems. Perfect for rebels who want to make an
                 impact now.
               </span>
             </li>
             <li>
-              <strong>Free Skill Development:</strong>
-              <span className="ml-4 block">
+              <strong className="font-semibold text-xl">Free Skill Development:</strong>
+              <span className="ml-5 block text-md md:text-lg">
                 Access a wide range of resources to build new skills across
                 different fields—completely free. Because your passion shouldn't
                 come with a price tag.
               </span>
             </li>
             <li>
-              <strong>Network with Peers:</strong>{" "}
-              <span className="ml-4 block">
+              <strong className="font-semibold text-xl">Network with Peers:</strong>{" "}
+              <span className="ml-5 block text-md md:text-lg">
                 Connect with supportive, like-minded friends who share your
                 drive and ambition. Build a community that fuels your passion.
               </span>
             </li>
             <li>
-              <strong>Free Mentorship:</strong>
-              <span className="ml-4 block">
+              <strong className="font-semibold text-xl">Free Mentorship:</strong>
+              <span className="ml-5 block text-md md:text-lg">
                 {" "}
                 Learn directly from industry pros who’ve been where you want to
                 go. Gain insights, advice, and guidance without spending a dime.
               </span>
             </li>
             <li>
-              <strong>Leadership Opportunities:</strong>
-              <span className="ml-4 block">
+              <strong className="font-semibold text-xl">Leadership Opportunities:</strong>
+              <span className="ml-5 block text-md md:text-lg">
                 {" "}
                 Step up and take on leadership roles to sharpen your management
                 and organizational skills. Show the world what you’re capable

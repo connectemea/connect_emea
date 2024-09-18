@@ -24,23 +24,27 @@ function About() {
   return (
     <div className="space-y-10">
       <div className="my-6">
-        <h1 className="font-bold text-xl sm:text-2xl md:text-3xl text-center my-4">
-          Knowing more about Connect
+        <h1 className="font-bold mx-auto max-w-[600px] heading-text text-center my-4 px-2">
+          You’re Just One Step Away From Joining Our Community
         </h1>
-        <p className="text-center max-w-[700px] px-2 mx-auto">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim
+        <p className="text-center max-w-[900px] px-4 mx-auto text-md sm:text-xl">
+          At Connect, your journey isn’t just about your career, it’s about
+          growing together as a community. Join us and be part of something
+          bigger, where students unite to create opportunities, share knowledge,
+          and pursue their dreams together.
         </p>
+        <h2 className="font-bold text-xl sm:text-xl md:text-2xl text-center my-4 px-2">
+          Your future, with friends by your side.
+        </h2>
       </div>
-      <div className="flex gap-4 mx-auto m-4 flex-col lg:flex-row my-6">
+      <div className="flex gap-4 mx-auto m-4 flex-col lg:flex-row my-6 p-2">
         {cards.map((card, index) => (
           <div
             className="border rounded-xl p-4 bg-stone-200 mx-auto max-w-[360px] border-gray-700"
             key={index}
           >
-            <h1 className="text-center font-semibold text-2xl">{card.title}</h1>
-            <p>{card.content}</p>
+            <h1 className="text-center font-semibold text-3xl">{card.title}</h1>
+            <p className="text-lg">{card.content}</p>
           </div>
         ))}
       </div>
