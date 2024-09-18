@@ -18,7 +18,7 @@ function SpecialCard({ data }) {
                 <p>Date: {data.date}</p>
                 <p>Time: {data.time}</p>
             </div>
-            <h1>{data.title}</h1>
+            <h1 className='font-semibold'>{data.title}</h1>
             <div className='flex justify-end w-full'>
                 <button onClick={handleClick} className=' bg-orange-500 rounded-md px-2 uppercase flex gap-2 items-center text-[12px] justify-center font-semibold text-white'>open <ChevronsRight className='w-4' /></button>
             </div>
