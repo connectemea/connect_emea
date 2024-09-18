@@ -2,7 +2,7 @@ import React from 'react'
 
 function Content() {
     return (
-        <div className='flex flex-col md:flex-row justify-between w-limit '>
+        <div className='flex flex-col md:flex-row justify-between w-limit gap-4 md:gap-0'>
             <div className='my-6 md:my-0 md:w-1/2 flex items-center justify-center mx-auto'>
                 <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
                     <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-white overflow-hidden" >
