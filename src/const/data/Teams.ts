@@ -1,5 +1,5 @@
 import { Intern } from '@/types/internTypes';
-import { Afeef, Aseel, Nahyan, Salman } from '../../assets/images/founders'
+import { Afeef, Aseel, Nahyan, Salman } from '@/assets/images/founders'
 import {
     Amjad,
     Athif,
@@ -18,7 +18,7 @@ import {
     Shifna,
     Sibna,
     Sunain
-} from '../../assets/images/interns'
+} from '@/assets/images/interns'
 
 const roles: { [key: number]: string } = {
     1: 'Co-Founder',
