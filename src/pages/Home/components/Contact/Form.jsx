@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Rocket } from "lucide-react";
 import { createRecord } from "@/utils/airtableService";
 import StatusModal from "@/components/common/Modal";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const formSchema = z.object({
   email: z.string().email({
@@ -32,6 +33,7 @@ export function QueriesForm() {
   const [modalStatus, setModalStatus] = useState(null); // 'success' | 'error' | null
   const [isModalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -64,7 +66,7 @@ export function QueriesForm() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
+              <FormItem ref={parent}>
                 <FormLabel className="flex">Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter Your Email" {...field} />
@@ -78,7 +80,7 @@ export function QueriesForm() {
             control={form.control}
             name="queries"
             render={({ field }) => (
-              <FormItem>
+              <FormItem ref={parent}>
                 <FormLabel className="flex">Quesries</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter Your Queries" {...field} />

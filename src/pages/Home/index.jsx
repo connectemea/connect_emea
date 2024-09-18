@@ -1,4 +1,4 @@
-import Events from './components/Events';
+import EventSection from './components/Events';
 import Testimonials from './components/Testimonials';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -10,12 +10,12 @@ import Welcome from './components/Welcome';
 
 const Home = () => {
   return (
-    <div className='min-h-[70vh] w-limit bg-white'>
+    <div className='w-limit bg-white'>
       <Welcome />
       <Content />
       <Testimonials />
       <Chapter />
-      <Events />
+      <EventSection />
       <Journey />
       <About />
       <Contact />

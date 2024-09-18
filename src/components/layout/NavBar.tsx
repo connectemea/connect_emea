@@ -36,7 +36,7 @@ function NavBar() {
     };
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-white text-black w-limit py-6  md:py-10">
+    <nav className="flex justify-between items-center p-4 bg-white text-black w-limit py-6  md:py-10 w-full z-50">
       <div>
         <img src={Logo} alt="logo" className="h-8" />
       </div>
@@ -90,7 +90,7 @@ function NavBar() {
 
       {/* Mobile Navigation Links */}
       <div
-        className={`absolute top-16 right-4 w-36 bg-white text-black rounded-lg shadow-lg flex flex-col items-start p-4 transition-all duration-300 transform ${
+        className={`absolute top-16 right-4 z-50 w-36 bg-white text-black rounded-lg shadow-lg flex flex-col items-start p-4 transition-all duration-300 transform ${
           navOpen
             ? "scale-100 opacity-100"
             : "scale-95 opacity-0 pointer-events-none"

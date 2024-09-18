@@ -13,7 +13,11 @@ const EmblaCarousel = (props) => {
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 
   return (
-    <section className="embla">
+    <section className="embla relative">
+      <div className='relative w-full z-20 '>
+        {!prevBtnDisabled && (<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} className="z-20 absolute top-32 -left-10 max-h-40 max-w-40 cursor-pointer" />)}
+        {!nextBtnDisabled && (<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} className="z-20 absolute top-32 -right-10 max-h-40 max-w-40 cursor-pointer" />)}
+      </div>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((event, index) => (
@@ -24,25 +28,7 @@ const EmblaCarousel = (props) => {
         </div>
       </div>
 
-      <div className="embla__controls">
-        {/* Uncomment if you use arrow buttons */}
-        {/* 
-        <div className="embla__buttons">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-        */}
 
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(index === selectedIndex ? ' embla__dot--selected' : '')}
-            />
-          ))}
-        </div>
-      </div>
     </section>
   );
 };

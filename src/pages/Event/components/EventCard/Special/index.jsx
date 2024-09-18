@@ -12,6 +12,7 @@ function SpecialCard({ data }) {
     return (
         <div className='p-4 min-w-[280px] max-w-[280px] space-y-2'>
             <div className='h-60 w-full bg-gray-300'>
+                <img src={`https://picsum.photos/600/350?v=${data.id}`} alt={data.title} className='w-full h-full object-cover' />
             </div>
             <div className='text-[12px] flex justify-between'>
                 <p>Date: {data.date}</p>

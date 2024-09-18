@@ -1,13 +1,25 @@
-import React from 'react' 
+import React from 'react'
 
 function Content() {
     return (
         <div className='flex flex-col md:flex-row justify-between w-limit '>
             <div className='my-6 md:my-0 md:w-1/2 flex items-center justify-center mx-auto'>
-                    <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
-                        <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px]" />
-                        <div className="bg-slate-400 rounded-xl absolute w-[300px] h-[300px]" />
+                <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
+                    <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-white overflow-hidden" >
+                        <img
+                            src={`https://picsum.photos/600/350?v=2`}
+                            alt=""
+                            className="absolute inset-0 object-cover w-full h-full "
+                        />
                     </div>
+                    <div className="bg-slate-400 rounded-xl absolute w-[300px] h-[300px] border-2 border-white overflow-hidden" >
+                        <img
+                            src={`https://picsum.photos/600/350?v=5`}
+                            alt=""
+                            className="absolute inset-0 object-cover w-full h-full "
+                        />
+                    </div>
+                </div>
             </div>
             <div className='md:w-1/2 text-white mx-auto'>
                 <p>

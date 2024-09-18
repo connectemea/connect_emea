@@ -12,7 +12,7 @@ function Card({ item }) {
       </div>
       <div className="flex-1 p-4 mt-10 ">
         {/* <img src={QouteUp} alt='Quote Up' className="h-16 w-16 mb-2" /> */}
-        <img src={QouteDown} alt='Quote Down' className={`top-0 absolute h-14 w-14 mb-4 ${item.id % 2 !== 0 ? 'left-28' : 'right-36'} `} />
+        <img src={QouteDown} alt='Quote Down' className={`top-0 absolute h-14 w-16 mb-4 ${item.id % 2 !== 0 ? 'left-28' : 'right-36'} `} />
         <p className="text-gray-600 mb-2 ">
           <span className=''>
             {/* <span className='font-bold text-black -ml-1'>"</span> */}

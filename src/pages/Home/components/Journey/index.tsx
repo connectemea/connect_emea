@@ -5,14 +5,16 @@ interface Event {
 }
 function Journey() {
   const eventsData: Event[] = [
-    { title: "Start" },
-    { title: "In Progress" },
-    { title: "Milestone 1" },
-    { title: "In Progress" },
-    { title: "Milestone 2" },
-    { title: "In Progress" },
-    { title: "End" },
+    { title: "Welcome" },
+    { title: "Explore" },   // Milestone 1
+    { title: "Build" },     // Milestone 2
+    { title: "Learn" },     // In Progress
+    { title: "Refine" },    // Milestone 3
+    { title: "Lead" },      // Milestone 4
+    { title: "Graduate" },
   ];
+  
+  
 
   return (
     <section className="flex flex-col gap-4 p-4 mx-auto my-4">

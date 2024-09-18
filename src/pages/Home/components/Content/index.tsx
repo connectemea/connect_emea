@@ -36,8 +36,21 @@ function Content() {
       <div className="grid md:grid-cols-2 w-full gap-10">
         <div className="flex items-center justify-center">
           <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
-            <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px]" />
-            <div className="bg-slate-400 rounded-xl absolute w-[300px] h-[300px]" />
+            <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-black overflow-hidden">
+              <img
+                src={`https://picsum.photos/600/350?v=5`}
+                alt=""
+                className="absolute inset-0 object-cover w-full h-full "
+              />
+            </div>
+
+            <div className="bg-slate-400 rounded-xl absolute w-[300px] h-[300px] border-2 border-black overflow-hidden">
+              <img
+                src={`https://picsum.photos/600/350?v=2`}
+                alt=""
+                className="absolute inset-0 object-cover w-full h-full "
+              />
+            </div>
           </div>
         </div>
         <div className="flex items-start flex-col gap-4">

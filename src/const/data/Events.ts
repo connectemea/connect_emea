@@ -1,132 +1,151 @@
 import { Event } from '@/types/eventsTypes';
 
-const UpcomingEvents: Event[] = [
-    {
-        id: 1,
-        title: 'Connect EMEA Launch Event',
-        date: '10/10/2024',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the launch event of Connect EMEA. Meet the team, learn about our mission, and network with industry professionals. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-launch-event-tickets-1234567890'
-    },
-    {
-        id: 2,
-        title: 'Connect EMEA Launch Event',
-        date: '10/10/2024',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the launch event of Connect EMEA. Meet the team, learn about our mission, and network with industry professionals. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-launch-event-tickets-1234567890'
-    },
-    {
-        id: 3,
-        title: 'Connect EMEA Launch Event',
-        date: '10/10/2024',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the launch event of Connect EMEA. Meet the team, learn about our mission, and network with industry professionals. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-launch-event-tickets-1234567890'
-    },
-    {
-        id: 4,
-        title: 'Connect EMEA Launch Event',
-        date: '10/10/2024',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the launch event of Connect EMEA. Meet the team, learn about our mission, and network with industry professionals. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-launch-event-tickets-1234567890'
-    },
-]
+const Events: Event[] = [
+  // Upcoming events (future)
+  {
+    id: 1,
+    title: 'Connect EMEA Workshop',
+    date: '10/15/2024',
+    time: '2:00 PM',
+    location: 'University of Central Florida',
+    description: 'An engaging workshop on digital marketing trends for 2024.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-workshop-tickets-1234567890',
+  },
+  {
+    id: 2,
+    title: 'Connect EMEA Networking Event',
+    date: '11/05/2024',
+    time: '3:00 PM',
+    location: 'University of Central Florida',
+    description: 'An event to connect with industry leaders and like-minded professionals.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890',
+  },
+  {
+    id: 3,
+    title: 'Connect EMEA Panel Discussion',
+    date: '12/01/2024',
+    time: '1:00 PM',
+    location: 'University of Central Florida',
+    description: 'Panel discussion with tech pioneers about the future of AI.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-panel-discussion-tickets-1234567890',
+  },
+  {
+    id: 4,
+    title: 'Connect EMEA Job Fair',
+    date: '12/10/2024',
+    time: '10:00 AM',
+    location: 'University of Central Florida',
+    description: 'Meet top recruiters at the Connect EMEA Job Fair.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-job-fair-tickets-1234567890',
+  },
+  {
+    id: 5,
+    title: 'Connect EMEA Coding Challenge',
+    date: '01/20/2025',
+    time: '11:00 AM',
+    location: 'University of Central Florida',
+    description: 'Join a competitive coding challenge for a chance to win exciting prizes.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-coding-challenge-tickets-1234567890',
+  },
 
-const RecentEvents: Event[] = [
-    {
-        id: 2,
-        title: 'Connect EMEA Hackathon',
-        date: '15/02/2023',
-        time: '9:00 AM ',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Hackathon. Work in teams to solve real-world problems and compete for prizes. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890'
-    },
-    {
-        id: 3,
-        title: 'Connect EMEA Hackathon',
-        date: '15/02/2023',
-        time: '9:00 AM ',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Hackathon. Work in teams to solve real-world problems and compete for prizes. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890'
-    },
-    {
-        id: 4,
-        title: 'Connect EMEA Hackathon',
-        date: '15/02/2023',
-        time: '9:00 AM ',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Hackathon. Work in teams to solve real-world problems and compete for prizes. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890'
-    },
-    {
-        id: 5,
-        title: 'Connect EMEA Hackathon',
-        date: '15/02/2023',
-        time: '9:00 AM ',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Hackathon. Work in teams to solve real-world problems and compete for prizes. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890'
-    },
-]
+  // Recent events (past)
+  {
+    id: 6,
+    title: 'Connect EMEA Hackathon',
+    date: '15/02/2023',
+    time: '9:00 AM',
+    location: 'University of Central Florida',
+    description: 'Work in teams to solve real-world problems and compete for prizes.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890',
+  },
+  {
+    id: 7,
+    title: 'Connect EMEA Networking Event',
+    date: '20/02/2022',
+    time: '6:00 PM',
+    location: 'University of Central Florida',
+    description: 'Network with industry professionals and learn about internship opportunities.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890',
+  },
+  {
+    id: 8,
+    title: 'Connect EMEA Hackathon',
+    date: '15/02/2023',
+    time: '9:00 AM',
+    location: 'University of Central Florida',
+    description: 'Work in teams to solve real-world problems and compete for prizes.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890',
+  },
+  {
+    id: 9,
+    title: 'Connect EMEA Networking Event',
+    date: '20/02/2022',
+    time: '6:00 PM',
+    location: 'University of Central Florida',
+    description: 'Network with industry professionals, learn about internship opportunities.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890',
+  },
+  {
+    id: 10,
+    title: 'Connect EMEA Hackathon',
+    date: '15/02/2022',
+    time: '9:00 AM',
+    location: 'University of Central Florida',
+    description: 'Work in teams to solve real-world problems and compete for prizes.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890',
+  },
 
-const PastEvents: Event[] = [
-    {
-        id: 3,
-        title: 'Connect EMEA Networking Event',
-        date: '20/02/2022',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Networking Event. Network with industry professionals, learn about internship opportunities, and enjoy free food and drinks.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890'
-    },
-    {
-        id: 2,
-        title: 'Connect EMEA Networking Event',
-        date: '20/02/2022',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Networking Event. Network with industry professionals, learn about internship opportunities, and enjoy free food and drinks.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890'
-    },
-    {
-        id: 4,
-        title: 'Connect EMEA Networking Event',
-        date: '20/02/2022',
-        time: '6:00 PM',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Networking Event. Network with industry professionals, learn about internship opportunities, and enjoy free food and drinks.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890'
-    },
-    {
-        id: 6,
-        title: 'Connect EMEA Hackathon',
-        date: '15/02/2023',
-        time: '9:00 AM ',
-        location: 'University of Central Florida',
-        description: 'Join us for the Connect EMEA Hackathon. Work in teams to solve real-world problems and compete for prizes. Food and drinks will be provided.',
-        image: 'https://via.placeholder.com/150',
-        link: 'https://www.eventbrite.com/e/connect-emea-hackathon-tickets-1234567890'
-    },
-]
 
-export const Events = { UpcomingEvents, RecentEvents, PastEvents }
+  {
+    id: 12,
+    title: 'Connect EMEA Networking Event',
+    date: '11/05/2022',
+    time: '3:00 PM',
+    location: 'University of Central Florida',
+    description: 'An event to connect with industry leaders and like-minded professionals.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890',
+  },
+  {
+    id: 13,
+    title: 'Connect EMEA Panel Discussion',
+    date: '12/01/2022',
+    time: '1:00 PM',
+    location: 'University of Central Florida',
+    description: 'Panel discussion with tech pioneers about the future of AI.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-panel-discussion-tickets-1234567890',
+  },
+  {
+    id: 14,
+    title: 'Connect EMEA Job Fair',
+    date: '12/10/2022',
+    time: '10:00 AM',
+    location: 'University of Central Florida',
+    description: 'Meet top recruiters at the Connect EMEA Job Fair.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-job-fair-tickets-1234567890',
+  },
+  {
+    id: 15,
+    title: 'Connect EMEA Coding Challenge',
+    date: '01/20/2022',
+    time: '11:00 AM',
+    location: 'University of Central Florida',
+    description: 'Join a competitive coding challenge for a chance to win exciting prizes.',
+    image: 'https://via.placeholder.com/150',
+    link: 'https://www.eventbrite.com/e/connect-emea-coding-challenge-tickets-1234567890',
+  },
+];
+
+export default Events;
