@@ -123,8 +123,8 @@ const EmblaCarousel = (props) => {
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
 
-        <a href='/events' className='text-sm mx-auto font-semibold z-30 -mt-6 cursor-pointer hover:underline'>
-          show more
+        <a href='/events' className='text-sm mx-auto font-semibold z-30 -mt-4 cursor-pointer hover:text-orange-500 transition-all ease-in-out'>
+          Show more
         </a>
         {/* <div className="embla__dots">
           {scrollSnaps.map((_, index) => (
