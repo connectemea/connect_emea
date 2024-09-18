@@ -23,7 +23,7 @@ const STATUS_COLORS = {
 
 const StatusModal = ({ open, onClose, status, title, description, formType }) => {
     const { background, text, button } = STATUS_COLORS[status] || STATUS_COLORS.success;
-
+    // console.log(status);
     return (
         <Dialog open={open} onOpenChange={onClose}>
             <DialogContent className={`${background} ${text} p-4 rounded-lg`}>

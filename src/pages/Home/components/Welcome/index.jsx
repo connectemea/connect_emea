@@ -20,7 +20,7 @@ function Welcome() {
             </div>
 
             <button className='px-10 sm:px-14 py-1 sm:py-1.5 bg-orange-600 text-white rounded-full w-fit mx-auto font-black tracking-normal transition-all hover:bg-orange-500' onClick={handleClick}>
-                Join Us
+               Intens Register 
             </button>
             <img src={Icon} alt='avatar' className='w-full max-w-[700px] h-auto mx-auto mt-6' />
         </section>

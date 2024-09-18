@@ -3,7 +3,7 @@ import Interns from "./components/Interns";
 import TeamsData from '@/const/data/Teams';
 
 const Team = () => {
-  console.log(TeamsData)
+  // console.log(TeamsData)
   return (
     <div className="py-4 w-limit">
       <h1 className="font-semibold text-2xl flex items-center justify-center">Our Team</h1>

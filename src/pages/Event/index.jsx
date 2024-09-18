@@ -10,7 +10,7 @@ const Event = () => {
   const RecentEvents = Events.RecentEvents;
   const UpcomingEvents = Events.UpcomingEvents;
 
-  console.log(PastEvents, RecentEvents, UpcomingEvents)
+  // console.log(PastEvents, RecentEvents, UpcomingEvents)
   return (
     <div>
       <h1 className='font-bold py-10 flex justify-center text-2xl w-full space-y-2'>Event page</h1>
