@@ -1,4 +1,5 @@
 import { Event } from '@/types/eventsTypes';
+import { LearningStation ,  } from '@/assets/images/Events';
 
 const Events: Event[] = [
   // Upcoming events (future)
@@ -9,7 +10,7 @@ const Events: Event[] = [
     time: '2:00 PM',
     location: 'University of Central Florida',
     description: 'An engaging workshop on digital marketing trends for 2024.',
-    image: 'https://via.placeholder.com/150',
+    image: LearningStation,
     link: 'https://www.eventbrite.com/e/connect-emea-workshop-tickets-1234567890',
   },
   {
