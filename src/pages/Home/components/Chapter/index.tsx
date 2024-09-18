@@ -7,7 +7,7 @@ function Chapter() {
       </h1>
       <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-10 mx-auto">
         <div className="">
-          <ul className="space-y-4 list-disc list-inside">
+          <ul className="space-y-4 list-disc list-inside px-4">
             <li className="">
               <strong>Work on Real Projects:</strong>
               <span className="ml-4 block">
@@ -51,26 +51,48 @@ function Chapter() {
           </ul>
         </div>
 
-        <div className="relative flex h-full items-center justify-center ">
+        <div className="relative flex h-full items-center justify-center">
           <div className="flex relative items-end gap-6 md:-mt-20 mb-24 md:mb-0">
-            <div className="min-h-64 w-40 bg-gray-400 border border-black rounded-full flex items-center justify-center">
-              <span className=" text-white mx-auto text-center p-2">
+            <div className="min-h-64 w-40 bg-gray-400 border border-black rounded-full flex items-center justify-center overflow-hidden relative">
+              <img
+                src={`https://picsum.photos/600/350?v=10`}
+                alt=""
+                className="absolute inset-0 object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+              <span className="relative text-white mx-auto text-center p-2">
                 <h1 className="text-3xl font-black">100+</h1>
                 <p className="font-semibold text-xl">Members</p>
               </span>
             </div>
-            <div className="min-h-52 w-36 bg-gray-400 border border-black rounded-full flex items-center justify-center">
-              <span className=" text-white mx-auto text-center p-2">
+            <div className="min-h-52 w-36 bg-gray-400 border border-black rounded-full flex items-center justify-center overflow-hidden relative">
+              <img
+                src={`https://picsum.photos/600/350?v=2`}
+                alt=""
+                className="absolute inset-0 object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+              <span className="relative text-white mx-auto text-center p-2">
                 <h1 className="text-3xl font-black">40+</h1>
                 <p className="font-semibold text-xl">Events</p>
               </span>
             </div>
-            <div className="min-h-52 w-36 bg-gray-400 border border-black rounded-full flex items-center justify-center absolute -bottom-32 left-24">
-              
-            <span className=" text-white mx-auto text-center p-2">
-              <h1 className="text-3xl font-black">20+</h1>
-              <p className="font-semibold text-xl" style={{ overflowWrap: "anywhere" }}>Placements</p>
-            </span>
+            <div className="min-h-52 w-36 bg-gray-400 border border-black rounded-full flex items-center justify-center absolute -bottom-32 left-24 overflow-hidden">
+              <img
+                src={`https://picsum.photos/600/350?v=3`}
+                alt=""
+                className="absolute inset-0 object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+              <span className="relative text-white mx-auto text-center p-2">
+                <h1 className="text-3xl font-black">20+</h1>
+                <p
+                  className="font-semibold text-xl"
+                  style={{ overflowWrap: "anywhere" }}
+                >
+                  Placements
+                </p>
+              </span>
             </div>
           </div>
         </div>

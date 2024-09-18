@@ -35,7 +35,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
               className={`px-8 lg:px-0 rounded-lg absolute lg:relative lg:mt-10 `}
             >
               <h2
-                className={`text-xl font-bold whitespace-nowrap ${
+                className={`text-lg font-semibold whitespace-nowrap ${
                   index % 2 === 0 ? "lg:absolute lg:-top-20" : "relative"
                 }`}
               >

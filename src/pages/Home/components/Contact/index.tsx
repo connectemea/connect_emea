@@ -1,4 +1,4 @@
-import ContactImg from "@/assets/avatars/Queries.png";
+import ContactImg from "@/assets/avatars/Queries2.png";
 import { QueriesForm } from "./Form";
 
 function Contact() {
