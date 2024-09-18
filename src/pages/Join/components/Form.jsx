@@ -27,6 +27,7 @@ import { createRecord } from "@/utils/airtableService";
 import StatusModal from "@/components/common/Modal";
 import { Loader } from "lucide-react";
 import { useState } from "react";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const formSchema = z.object({
     Name: z.string().min(1, 'Name is required'),
@@ -34,13 +35,23 @@ const formSchema = z.object({
     department: z.string().min(1, 'Department is required'),
     email: z.string().email('Invalid email format'),
     Admission_No: z.string().min(1, 'Admission number is required'),
+    preferred_role: z.string().min(1, 'Preferred role is required'),
+    custom_role: z.string().optional(),
     hobby: z.string().min(1, 'Hobby is required'),
     how_did_you_hear: z.string().min(1, 'Please let us know how you heard about Connect'),
     expectations: z.string().min(1, 'Expectations are required'),
-    preferred_role: z.string().min(1, 'Preferred role is required'),
     reason: z.string().min(1, 'Reason for joining is required'),
-    other_communities: z.string().optional(),
     interesting_fact: z.string().min(1, 'Tell us something interesting about yourself'),
+    other_communities: z.string().nonempty('Please select a community'),
+}).refine((data) => {
+    // If preferred_role is "Other", then custom_role should not be empty
+    if (data.preferred_role === 'Other') {
+        return data.custom_role && data.custom_role.trim().length > 0;
+    }
+    return true;
+}, {
+    message: 'Please specify your preferred role',
+    path: ['custom_role'],
 });
 
 const communities = [
@@ -56,6 +67,8 @@ export function JoinForm() {
     const [isModalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isOtherRole, setIsOtherRole] = useState(false);
+    const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -67,6 +80,7 @@ export function JoinForm() {
             email: "",
             how_did_you_hear: "",
             preferred_role: "",
+            custom_role: "",
             hobby: "",
             expectations: "",
             reason: "",
@@ -109,7 +123,7 @@ export function JoinForm() {
                             control={form.control}
                             name="Name"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Your Name</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Salman CC" {...field} />
@@ -122,7 +136,7 @@ export function JoinForm() {
                             control={form.control}
                             name="Admission_No"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Your Admission No</FormLabel>
                                     <FormControl>
                                         <Input placeholder="23BSCA110" {...field} />
@@ -131,11 +145,12 @@ export function JoinForm() {
                                 </FormItem>
                             )}
                         />
+
                         <FormField
                             control={form.control}
                             name="department"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Your Department</FormLabel>
                                     <FormControl>
                                         <Select
@@ -148,16 +163,16 @@ export function JoinForm() {
                                             <SelectContent>
                                                 <SelectGroup>
                                                     <SelectLabel>
+                                                        {/* Search Input */}
                                                         <input
                                                             type="search"
                                                             placeholder="Search departments"
                                                             value={searchQuery}
                                                             onChange={(e) => setSearchQuery(e.target.value)}
                                                             className="w-[90%] mx-auto py-2 outline-none" // Add your styling here
-                                                            clear
+                                                            clear={'true'}
                                                         />
                                                     </SelectLabel>
-                                                    {/* Search Input */}
 
                                                     {/* Filtered Department Options */}
                                                     {filteredDepartments.map((dept, index) => (
@@ -166,7 +181,7 @@ export function JoinForm() {
                                                         </SelectItem>
                                                     ))}
                                                     {filteredDepartments.length === 0 && (
-                                                        <SelectItem disabled>
+                                                        <SelectItem disabled key={111}>
                                                             No departments found
                                                         </SelectItem>
                                                     )}
@@ -182,7 +197,7 @@ export function JoinForm() {
                             control={form.control}
                             name="email"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Your email</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Email" {...field} />
@@ -191,29 +206,30 @@ export function JoinForm() {
                                 </FormItem>
                             )}
                         />
+
+                    </div>
+                    <FormField
+                        control={form.control}
+                        name="how_did_you_hear"
+                        render={({ field }) => (
+                            <FormItem ref={parent}>
+                                <FormLabel>How did you hear about Connect?</FormLabel>
+                                <FormControl>
+                                    <Textarea placeholder="How did you hear about Connect?" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <div className="space-y-4 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2" ref={parent}>
                         <FormField
                             control={form.control}
                             name="Phone_number"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem >
                                     <FormLabel>Phone number</FormLabel>
                                     <FormControl>
                                         <Input placeholder="your number" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <div className="space-y-4 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
-                        <FormField
-                            control={form.control}
-                            name="how_did_you_hear"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>How did you hear about Connect?</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="How did you hear about Connect?" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -223,11 +239,14 @@ export function JoinForm() {
                             control={form.control}
                             name="preferred_role"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Preferred role in Connect</FormLabel>
                                     <FormControl>
                                         <Select
-                                            onValueChange={field.onChange}
+                                            onValueChange={(value) => {
+                                                field.onChange(value);
+                                                setIsOtherRole(value === "Other");
+                                            }}
                                             value={field.value}
                                         >
                                             <SelectTrigger>
@@ -251,31 +270,48 @@ export function JoinForm() {
                             )}
                         />
 
-                    </div>
-                    <div className="space-y-8 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
+                        {isOtherRole && (
+                            <>
+                                <div className="hidden md:block w-full h-[1px]">
+                                </div>
+                                <FormField
+                                    control={form.control}
+                                    name="custom_role"
+                                    render={({ field }) => (
+                                        <FormItem ref={parent}>
+                                            <FormLabel>Please specify your preferred role</FormLabel>
+                                            <FormControl>
+                                                <Textarea placeholder="Tell us what role you're interested in" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </>
+                        )}
 
-                        <FormField
-                            control={form.control}
-                            name="hobby"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>What is your hobby?</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Your hobby" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
                     </div>
+                    <FormField
+                        control={form.control}
+                        name="hobby"
+                        render={({ field }) => (
+                            <FormItem ref={parent}>
+                                <FormLabel>What is your hobby?</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Your hobby" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
                     <div className="space-y-2 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
 
                         <FormField
                             control={form.control}
                             name="expectations"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>What are your expectations from Connect?</FormLabel>
                                     <FormControl>
                                         <Textarea placeholder="Your expectations" {...field} />
@@ -288,7 +324,7 @@ export function JoinForm() {
                             control={form.control}
                             name="reason"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Why do you want to be a part of this community?</FormLabel>
                                     <FormControl>
                                         <Textarea placeholder="Your reason" {...field} />
@@ -306,7 +342,7 @@ export function JoinForm() {
                             control={form.control}
                             name="interesting_fact"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Tell us something interesting about yourself</FormLabel>
                                     <FormControl>
                                         <Textarea placeholder="Interesting fact" {...field} />
@@ -319,7 +355,7 @@ export function JoinForm() {
                             control={form.control}
                             name="other_communities"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem ref={parent}>
                                     <FormLabel>Are you part of any other community, club, or organization?</FormLabel>
                                     <FormControl>
                                         <Select
