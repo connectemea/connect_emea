@@ -11,7 +11,7 @@ function NormalCard({ data }) {
     }
     return (
 
-        <div className='p-4 min-w-[260px] space-y-2'>
+        <div className='p-4 min-w-[260px] max-w-[260px] space-y-2'>
             <div className='h-80 w-full bg-gray-300 relative flex flex-col justify-end p-3'>
                 <div className='absolute top-2 right-2' onClick={handleClick}>
                     <ArrowUpRight className='w-6' />
