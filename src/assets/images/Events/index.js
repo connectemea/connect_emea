@@ -1,1 +1,1 @@
-export { default as LearningStation } from "./Rasheed.png";
+export { default as LearningStation } from "./LearningStation.png";

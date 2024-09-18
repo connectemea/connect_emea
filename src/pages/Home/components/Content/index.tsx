@@ -24,7 +24,7 @@ function Content() {
     <section className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4 my-8">
         <h1 className="font-semibold text-3xl text-center mx-auto">
-          What we are?
+          What we are
         </h1>
         <p className="text-center max-w-[900px] mx-auto text-xl font-normal">
           Connect is a vibrant, student-driven community that bridges the gap
@@ -55,7 +55,7 @@ function Content() {
         </div>
         <div className="flex items-start flex-col gap-4">
           <h1 className="font-bold text-3xl  md:indent-10 mx-auto md:mx-0 my-4 md:my-0">
-            Why we exist?
+            Why we exist
           </h1>
           {points.map((item, index) => (
             <div key={index} className="flex gap-2 md:gap-0">

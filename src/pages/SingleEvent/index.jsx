@@ -43,7 +43,13 @@ function SingleEvent() {
                                 <p>{event.description}</p>
                             </div>
                             <div className='sm:w-1/2 mx-auto my-4 sm:my-0'>
-                                <div className='bg-slate-300 w-80 h-80 rounded-lg mx-auto'></div>
+                                <div className='bg-slate-300 w-80 h-80 rounded-lg mx-auto relative overflow-hidden'>
+                                    <img
+                                        src={`https://picsum.photos/600/350?v=5`}
+                                        alt=""
+                                        className="absolute inset-0 object-cover w-full h-full "
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div>

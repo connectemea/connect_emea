@@ -14,10 +14,10 @@ const Event = () => {
     const [monthA, dayA, yearA] = a.date.split("/").map(Number);
     const [monthB, dayB, yearB] = b.date.split("/").map(Number);
 
-    const dateA = new Date(yearA, monthA - 1, dayA); 
+    const dateA = new Date(yearA, monthA - 1, dayA);
     const dateB = new Date(yearB, monthB - 1, dayB);
 
-    return dateB.getTime() - dateA.getTime(); 
+    return dateB.getTime() - dateA.getTime();
   });
 
   // Separate events into categories
@@ -78,9 +78,9 @@ const Event = () => {
           <EmblaCarousel2 slides={PastEvents} options={OPTIONS} />
         </div> */}
 
-          <div className="grid flex-gorw w-full mx-auto" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+          <div className="grid flex-gorw w-full mx-0 md:mx-auto overflow-auto" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
             {PastEvents.map((event, index) => (
-              <div className="mx-auto" key={index}>
+              <div className="mx-0 md:mx-auto" key={index}>
                 <NormalCard data={event} />
               </div>
             ))}
