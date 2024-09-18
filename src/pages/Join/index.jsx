@@ -1,6 +1,6 @@
 import React from 'react'
 import { JoinForm } from './components/Form'
-import img from '../../assets/avatars/JoinNow.png'
+import img from '@/assets/avatars/JoinNow.png'
 
 function Join() {
   return (
