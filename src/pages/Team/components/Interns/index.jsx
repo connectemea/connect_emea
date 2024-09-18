@@ -1,6 +1,6 @@
 import React from 'react';
 import TeamCard from '../TeamCard';
-import  TeamsData  from '../../../../const/data/Teams';
+import  TeamsData  from '@/const/data/Teams';
 
 function Interns({}) {
   
