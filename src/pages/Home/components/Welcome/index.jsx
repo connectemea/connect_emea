@@ -14,11 +14,11 @@ function Welcome() {
     return (
         <section className='text-center flex flex-col gap-4 my-4'>
             <div className='text-center flex flex-col max-w-[600px] mx-auto'>
-                <h1 className='heading-text font-semibold uppercase'>
+                <h1 className='text-[22px] sm:text-[34px] font-semibold uppercase'>
                     WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; peers,&nbsp;
                     <br />purpose&nbsp;and&nbsp;passion&nbsp;
                 </h1>
-                <p className='text-md sm:text-xl font-semibold'>For Students, by Students</p>
+                <p className='text-lg sm:text-xl font-semibold'>For Students, by Students</p>
             </div>
 
             <button
