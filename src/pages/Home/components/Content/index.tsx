@@ -50,10 +50,10 @@ function Content() {
   return (
     <section className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4 my-8">
-        <h1 className="font-semibold heading-text text-center mx-auto">
+        <h1 className="font-semibold  text-center mx-auto text-[26px] sm:text-[42px]">
           What is connect
         </h1>
-        <p className="text-center max-w-[900px] mx-auto paragraph-text font-normal">
+        <p className="text-center max-w-[900px] mx-auto text-[20px] sm:text-[25px] font-normal">
           Connect is a vibrant, student-driven community that bridges the gap
           between academia and industry. Through collaborative learning,
           real-world experiences, and expert guidance, we provide the resources
@@ -81,7 +81,7 @@ function Content() {
           </div>
         </div>
         <div className="flex items-start flex-col gap-8 ">
-          <h1 className="font-bold heading-text  md:indent-10 mx-auto md:mx-0 my-4 md:my-0 ">
+          <h1 className="font-bold   md:indent-10 mx-auto md:mx-0 my-4 md:my-0 text-[28px] sm:text-[42px]">
             Why we exist
           </h1>
           {points.map((item, index) => (
@@ -92,11 +92,11 @@ function Content() {
                 </div>
               </div>
               <div className="md:px-2 space-y-1">
-                <h1 className="font-semibold text-xl -mt-1">
+                <h1 className="font-semibold text-xl md:text-2xl -mt-1">
                   {/* bullet */}
                   {item.title}
                 </h1>
-                <p className="text-md md:text-lg">{item.content}</p>
+                <p className="text-lg md:text-xl">{item.content}</p>
               </div>
             </div>
           ))}

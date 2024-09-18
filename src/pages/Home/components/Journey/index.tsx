@@ -18,7 +18,7 @@ function Journey() {
 
   return (
     <section className="flex flex-col gap-4 p-4 mx-auto my-4">
-      <h1 className="max-w-[600px] font-semibold heading-text text-center  mx-auto my-4">
+      <h1 className="max-w-[600px] font-semibold text-[25px] sm:text-[42px] text-center  mx-auto my-4">
         Your journey of growth right
         <br /> at your campus!
       </h1>

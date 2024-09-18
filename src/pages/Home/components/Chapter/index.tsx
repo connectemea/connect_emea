@@ -1,47 +1,47 @@
 function Chapter() {
   return (
     <section className="flex flex-col gap-4 p-4 my-10">
-      <h1 className=" font-semibold heading-text text-center my-4">
+      <h1 className=" font-semibold text-center my-4 text-[26px] sm:text-[42px]">
         Why you should join{" "}
         <span className="text-orange-500 block">Connect</span>
       </h1>
-      <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-10 mx-auto">
+      <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-20 md:gap-10 mx-auto">
         <div className="">
           <ul className="space-y-4 list-disc list-inside px-4 ">
             <li className="">
-              <strong className="font-semibold text-xl">Work on Real Projects:</strong>
-              <span className="ml-5 block text-md md:text-lg">
+              <strong className="font-semibold text-xl md:text-2xl">Work on Real Projects:</strong>
+              <span className="ml-5 block text-lg md:text-xl">
                 Get hands-on experience with collaborative projects that solve
                 real-world problems. Perfect for rebels who want to make an
                 impact now.
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl">Free Skill Development:</strong>
-              <span className="ml-5 block text-md md:text-lg">
+              <strong className="font-semibold text-xl md:text-2xl">Free Skill Development:</strong>
+              <span className="ml-5 block text-lg md:text-xl">
                 Access a wide range of resources to build new skills across
                 different fields—completely free. Because your passion shouldn't
                 come with a price tag.
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl">Network with Peers:</strong>{" "}
-              <span className="ml-5 block text-md md:text-lg">
+              <strong className="font-semibold text-xl md:text-2xl">Network with Peers:</strong>{" "}
+              <span className="ml-5 block text-lg md:text-xl">
                 Connect with supportive, like-minded friends who share your
                 drive and ambition. Build a community that fuels your passion.
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl">Free Mentorship:</strong>
-              <span className="ml-5 block text-md md:text-lg">
+              <strong className="font-semibold text-xl md:text-2xl">Free Mentorship:</strong>
+              <span className="ml-5 block text-lg md:text-xl">
                 {" "}
                 Learn directly from industry pros who’ve been where you want to
                 go. Gain insights, advice, and guidance without spending a dime.
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl">Leadership Opportunities:</strong>
-              <span className="ml-5 block text-md md:text-lg">
+              <strong className="font-semibold text-xl md:text-2xl">Leadership Opportunities:</strong>
+              <span className="ml-5 block text-lg md:text-xl">
                 {" "}
                 Step up and take on leadership roles to sharpen your management
                 and organizational skills. Show the world what you’re capable

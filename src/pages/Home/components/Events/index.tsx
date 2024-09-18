@@ -26,7 +26,7 @@ function EventSection() {
 
   return (
     <div className="p-2">
-      <h1 className="mx-auto font-semibold heading-text text-center my-10">
+      <h1 className="mx-auto font-semibold text-center my-10 text-[26px] sm:text-[42px]">
         Recent Events
       </h1>
       <div>

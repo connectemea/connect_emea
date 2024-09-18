@@ -24,7 +24,7 @@ function About() {
   return (
     <div className="space-y-10">
       <div className="my-6">
-        <h1 className="font-bold mx-auto max-w-[600px] heading-text text-center my-4 px-2">
+        <h1 className="font-bold mx-auto max-w-[600px] text-[25px] sm:text-[42px] text-center my-4 px-2">
           You’re Just One Step Away From Joining Our Community
         </h1>
         <p className="text-center max-w-[900px] px-4 mx-auto text-md sm:text-xl">

@@ -14,18 +14,18 @@ function Welcome() {
     return (
         <section className='text-center flex flex-col gap-4 my-4'>
             <div className='text-center flex flex-col max-w-[600px] mx-auto'>
-                <h1 className='text-[20px] md:text-[32px] font-semibold uppercase'>
+                <h1 className='heading-text font-semibold uppercase'>
                     WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; peers,&nbsp;
                     <br />purpose&nbsp;and&nbsp;passion&nbsp;
                 </h1>
-                <p className='text-sm sm:text-lg'>For students, by students.</p>
+                <p className='text-md sm:text-xl font-semibold'>For Students, by Students</p>
             </div>
 
             <button
-                className='px-10 sm:px-14 py-1 sm:py-1.5 bg-orange-600 text-white rounded-full w-fit mx-auto font-bold tracking-normal transition-all hover:bg-orange-500'
+                className='px-6 sm:px-8 py-1 sm:py-1.5 bg-orange-600 text-white rounded-full w-fit mx-auto font-bold tracking-normal transition-all hover:bg-orange-500'
                 onClick={handleClick}
             >
-                Intens Register
+                Intern registration
             </button>
 
             {!loaded && (
