@@ -15,7 +15,7 @@
 }
 
 .heading-text {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
 }
 
@@ -24,12 +24,12 @@
     font-weight: 400;
 }
 
-@media (max-width: 5620px) {
+@media (max-width: 620px) {
     .heading-text {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
 
     .paragraph-text {
-        font-size: 1rem;
+        font-size: 0.6rem;
     }
 }
