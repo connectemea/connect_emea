@@ -1,12 +1,12 @@
-import Logo from "../../assets/icons/FooterLogo.png";
-import socialLink from "../../const/socialLinks";
-import navLinks from "../../const/navLinks";
+import Logo from "@/assets/icons/FooterLogo.png";
+import socialLink from "@/const/socialLinks";
+import navLinks from "@/const/navLinks";
 
 function Footer() {
   return (
     <footer className="bg-black text-white  p-8 rounded-t-[50px] bottom-0">
       <section className="flex flex-col gap-10 w-limit">
-        <h1 className="mx-auto text-2xl font-semibold">
+        <h1 className="mx-auto text-2xl md:text-4xl font-semibold">
           <span className="text-orange-500 mr-1">Join us</span>
           to start your journey.
         </h1>
