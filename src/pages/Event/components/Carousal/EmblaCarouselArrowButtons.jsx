@@ -38,7 +38,7 @@ export const PrevButton = (props) => {
   const { children, ...restProps } = props
 
   return (
-    <button
+    <div
       className="embla__button embla__button--prev"
       type="button"
       {...restProps}
@@ -50,7 +50,7 @@ export const PrevButton = (props) => {
         />
       </svg>
       {children}
-    </button>
+    </div>
   )
 }
 
@@ -58,7 +58,7 @@ export const NextButton = (props) => {
   const { children, ...restProps } = props
 
   return (
-    <button
+    <div
       className="embla__button embla__button--next"
       type="button"
       {...restProps}
@@ -70,6 +70,6 @@ export const NextButton = (props) => {
         />
       </svg>
       {children}
-    </button>
+    </div>
   )
 }

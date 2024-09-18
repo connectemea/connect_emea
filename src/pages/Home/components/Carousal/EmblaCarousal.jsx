@@ -6,6 +6,7 @@ import {
   usePrevNextButtons
 } from './EmblaArrowBtn'
 import { ArrowUpRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 // import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 
 const TWEEN_FACTOR_BASE = 0.84
@@ -17,9 +18,11 @@ const EmblaCarousel = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const tweenFactor = useRef(0)
+  const navigate = useNavigate();
 
   //   const { selectedIndex, scrollSnaps, onDotButtonClick } =
   //     useDotButton(emblaApi)
+  console.log('slides', slides)
 
   const {
     prevBtnDisabled,
@@ -82,15 +85,16 @@ const EmblaCarousel = (props) => {
   }, [emblaApi, tweenOpacity])
 
 
-  const handleClick = () => {
+  const handleClick = (id) => {
     // console.log('clicked')
+    navigate('/event/' + id)
   }
 
   return (
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((event, index) => (
             <div className="embla__slide relative overflow-hidden" key={index}>
               <img
                 className="embla__slide__img"
@@ -98,18 +102,18 @@ const EmblaCarousel = (props) => {
                 alt="Your alt text"
               />
               {/* card */}
-              <div className="absolute z-30 bottom-4 w-[95%]  p-2 ">
-                <div className='bg-gray-200 rounded-xl p-2'>
-                  <h1 className='text-md font-semibold text-center'>orem ipsum dolor sit amet, consectetur adipiscing elit, sed do</h1>
+              <div className="absolute z-30 bottom-4 w-[95%]  pr-2 ">
+                <div className='bg-gray-200 w-[95%] rounded-xl  mx-auto py-3'>
+                  <h1 className='text-md font-semibold text-center mb-2'>{event.title}</h1>
                   <div className='flex justify-around'>
-                    <p className='text-sm'>Date: 01-2-3030</p>
-                    <p className='text-sm'>Time: 9:30pm</p>
+                    <p className='text-sm'>Date: {event.date}</p>
+                    <p className='text-sm'>Time: {event.time}</p>
                   </div>
                 </div>
               </div>
 
               {/* arrow */}
-              <div className='absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full' onClick={handleClick}>
+              <div className='absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full' onClick={() => handleClick(index + 1)}>
                 <ArrowUpRight />
               </div>
             </div>
@@ -127,16 +131,16 @@ const EmblaCarousel = (props) => {
           Show more
         </a>
         {/* <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : ''
-              )}
-            />
-          ))}
-        </div> */}
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                onClick={() => onDotButtonClick(index)}
+                className={'embla__dot'.concat(
+                  index === selectedIndex ? ' embla__dot--selected' : ''
+                )}
+              />
+            ))}
+          </div> */}
       </div>
     </div>
   )

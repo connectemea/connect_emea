@@ -72,7 +72,7 @@
     color: #ffffff;
     border-radius: 50%;
     position: absolute;
-    top: 40%;
+    top: 35%;
     z-index: 999 !important;
 }
 
@@ -81,11 +81,11 @@
 }
 
 .embla__button--next{
-    right: 25%;
+    right: 275px;
 }
 
 .embla__button--prev {
-    left: 25%;
+    left: 250px;
 }
 
 .embla__button:disabled {
@@ -97,6 +97,16 @@
     height: 35%;
 }
 
+@media  (max-width: 1200px) {
+    .embla__button--next{
+        right: 105px;
+    }
+    
+    .embla__button--prev {
+        left: 90px;
+    }
+}
+
 @media (min-width: 451px) and (max-width: 668px) {
     .embla {
         max-width: 60rem;
@@ -105,12 +115,23 @@
     
     }
     .embla__button--next{
-        right: 15%;
+        right: 100px;
     }
     
     .embla__button--prev {
-        left: 15%;
+        left: 85px;
     }
+}
+
+@media (max-width:550px) {
+    .embla__button--next{
+        right: -10px;
+    }
+    
+    .embla__button--prev {
+        left: -20px;
+    }
+    
 }
 @media screen and (max-width: 450px) {
     .embla {
@@ -122,13 +143,7 @@
         position: relative;
     
     }
-    .embla__button--next{
-        right: 10%;
-    }
-    
-    .embla__button--prev {
-        left: 10%;
-    }
+   
     
 }
 
