@@ -13,7 +13,7 @@ function SingleEvent() {
     // Find the event with the matching id
     const event = allEvents.find((event) => event.id === eventId);
 
-    console.log(event);
+    // console.log(event);
 
     return (
         <div className=' w-limit px-2'>

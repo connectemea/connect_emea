@@ -52,9 +52,10 @@ const communities = [
 ];
 
 export function JoinForm() {
-    const [modalStatus, setModalStatus] = useState('error'); // 'success' | 'error' | null
-    const [isModalOpen, setModalOpen] = useState(true);
+    const [modalStatus, setModalStatus] = useState(null); // 'success' | 'error' | null
+    const [isModalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -77,30 +78,39 @@ export function JoinForm() {
     async function onSubmit(values) {
         try {
             setLoading(true);
-            console.log(values);
+            // console.log(values);
             await createRecord("interns_selection_2025", values, 1);
             setModalStatus('success');
         } catch (error) {
             console.error("Error submitting form:", error);
             setModalStatus('error');
         } finally {
+            setSearchQuery('');
             setLoading(false);
             form.reset();
             setModalOpen(true);
         }
     }
 
+
+
+
+    // Filter departments based on search query
+    const filteredDepartments = department.filter(dept =>
+        dept.value.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
             <Form {...form} className="min-w-full">
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
-                    <div className="space-y-4 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+                    <div className="space-y-4 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
                         <FormField
                             control={form.control}
                             name="Name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Name</FormLabel>
+                                    <FormLabel>Your Name</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Salman CC" {...field} />
                                     </FormControl>
@@ -126,7 +136,7 @@ export function JoinForm() {
                             name="department"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Department</FormLabel>
+                                    <FormLabel>Your Department</FormLabel>
                                     <FormControl>
                                         <Select
                                             onValueChange={field.onChange}
@@ -137,12 +147,29 @@ export function JoinForm() {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    <SelectLabel>Departments</SelectLabel>
-                                                    {department.map((dept, index) => (
+                                                    <SelectLabel>
+                                                        <input
+                                                            type="search"
+                                                            placeholder="Search departments"
+                                                            value={searchQuery}
+                                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                                            className="w-[90%] mx-auto py-2 outline-none" // Add your styling here
+                                                            clear
+                                                        />
+                                                    </SelectLabel>
+                                                    {/* Search Input */}
+
+                                                    {/* Filtered Department Options */}
+                                                    {filteredDepartments.map((dept, index) => (
                                                         <SelectItem key={index} value={dept.value}>
                                                             {dept.value}
                                                         </SelectItem>
                                                     ))}
+                                                    {filteredDepartments.length === 0 && (
+                                                        <SelectItem disabled>
+                                                            No departments found
+                                                        </SelectItem>
+                                                    )}
                                                 </SelectGroup>
                                             </SelectContent>
                                         </Select>
@@ -171,14 +198,14 @@ export function JoinForm() {
                                 <FormItem>
                                     <FormLabel>Phone number</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="123-456-7890" {...field} />
+                                        <Input placeholder="your number" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>
-                    <div className="space-y-4 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+                    <div className="space-y-4 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
                         <FormField
                             control={form.control}
                             name="how_did_you_hear"
@@ -225,7 +252,7 @@ export function JoinForm() {
                         />
 
                     </div>
-                    <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+                    <div className="space-y-8 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
 
                         <FormField
                             control={form.control}
@@ -242,7 +269,7 @@ export function JoinForm() {
                         />
 
                     </div>
-                    <div className="space-y-2 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+                    <div className="space-y-2 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
 
                         <FormField
                             control={form.control}

@@ -29,7 +29,7 @@ const formSchema = z.object({
 });
 
 export function QueriesForm() {
-  const [modalStatus, setModalStatus] = useState('error'); // 'success' | 'error' | null
+  const [modalStatus, setModalStatus] = useState(null); // 'success' | 'error' | null
   const [isModalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +44,7 @@ export function QueriesForm() {
   async function onSubmit(values) {
     try {
       setLoading(true);
-      console.log(values);
+      // console.log(values);
       await createRecord("Queries_table", values, 2);
       setModalStatus('success');
     } catch (error) {

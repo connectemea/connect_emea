@@ -83,7 +83,7 @@ const EmblaCarousel = (props) => {
 
 
   const handleClick = () => {
-    console.log('clicked')
+    // console.log('clicked')
   }
 
   return (

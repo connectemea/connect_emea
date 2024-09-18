@@ -3,7 +3,7 @@ import QouteUp from '@/assets/avatars/QouteUp.png';
 import QouteDown from '@/assets/avatars/QuoteDown.png';
 
 function Card({ item }) {
-  console.log(item.id)
+  // console.log(item.id)
   return (
     <div className={`bg-slate-200 relative rounded-xl  overflow-hidden flex items-center max-w-[500px] mx-auto ${item.id % 2 !== 0 ? ' ' : 'flex flex-row-reverse'}`}>
       <div className={`relative   items-end flex  h-full overflow-hidden `}>
