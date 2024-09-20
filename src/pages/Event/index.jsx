@@ -3,6 +3,7 @@ import { Normal, Special } from "./components/EventCard";
 import EmblaCarousel from "./components/Carousal/EmblaCarousel";
 import EmblaCarousel2 from "./components/Carousal/EmblaCarousel2";
 import NormalCard from "./components/EventCard/Normal";
+import SlickCarousel from "./components/Carousal/SlickCarousel";
 
 const OPTIONS = { loop: false, align: 'start' }
 
@@ -43,19 +44,21 @@ const Event = () => {
   return (
     <div>
       {UpcomingEvents.length !== 0 && (
-        <section className=" bg-black   text-white w-full overflow-hidden">
+        <section className=" bg-black   text-white w-full overflow-hidden ">
           <div className="w-limit w-full flex gap-4 p-4">
-            <div className="flex flex-col  items-start font-bold py-6 ">
+            <div className="flex flex-col  items-start font-bold py-6 pt-8">
               <h2 className="text-[12px] md:text-[20px]">Upcoming</h2>
               <h1 className="text-[18px] md:text-[36px]">Events</h1>
             </div>
-            <div className="flex-1 flex gap-4">
-              <EmblaCarousel slides={UpcomingEvents} options={OPTIONS} />
+            <div className="max-w-full overflow-hidden py-4">
+              {/* <EmblaCarousel slides={UpcomingEvents} options={OPTIONS} /> */}
+            <SlickCarousel slides={UpcomingEvents} color={'white'}/>
             </div>
           </div>
 
         </section>
       )}
+
       {RecentEvents.length !== 0 && (
         <section className="flex p-4  gap-4 w-limit overflow-hidden bg-white">
           <div className="flex flex-col
@@ -63,8 +66,9 @@ const Event = () => {
             <h2 className="text-[12px] md:text-[20px]">Recent</h2>
             <h1 className="text-[18px] md:text-[36px]">Events</h1>
           </div>
-          <div className="flex-1 items-start justify-start flex gap-4 ">
-            <EmblaCarousel slides={RecentEvents} options={OPTIONS} />
+          <div className="max-w-full overflow-hidden pb-4">
+            {/* <EmblaCarousel slides={RecentEvents} options={OPTIONS} /> */}
+            <SlickCarousel slides={UpcomingEvents} color={'black'}/>
           </div>
         </section>
       )}
