@@ -1,7 +1,9 @@
+
 {
   "name": "connect_emea",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://connectemea.in",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
