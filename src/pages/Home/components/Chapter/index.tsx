@@ -61,7 +61,7 @@ function Chapter() {
               />
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>
               <span className="relative text-white mx-auto text-center p-2">
-                <h1 className="text-3xl font-black">100+</h1>
+                <h1 className="text-3xl font-bold">100+</h1>
                 <p className="font-semibold text-xl">Members</p>
               </span>
             </div>
@@ -73,7 +73,7 @@ function Chapter() {
               />
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>
               <span className="relative text-white mx-auto text-center p-2">
-                <h1 className="text-3xl font-black">40+</h1>
+                <h1 className="text-3xl font-bold">40+</h1>
                 <p className="font-semibold text-xl">Events</p>
               </span>
             </div>
@@ -85,7 +85,7 @@ function Chapter() {
               />
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>
               <span className="relative text-white mx-auto text-center p-2">
-                <h1 className="text-3xl font-black">20+</h1>
+                <h1 className="text-3xl font-bold">20+</h1>
                 <p
                   className="font-semibold text-xl"
                   style={{ overflowWrap: "anywhere" }}
