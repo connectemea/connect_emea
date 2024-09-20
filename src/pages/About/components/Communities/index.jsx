@@ -10,7 +10,7 @@ function Communities() {
         <div className='flex items-center flex-col'>
           <img src={TinkerHubLogo} alt='about' className='w-auto h-auto max-w-[120px] mb-4' />
           <div className='flex flex-col items-center justify-start rounded-3xl p-4 border text-center max-w-[320px] h-full min-h-[300px] border-gray-500 shadow-xl shadow-black/25'>
-            <h1 className='text-2xl font-black text-orange-500 mb-4'>TinkerHub EMEA</h1>
+            <h1 className='text-2xl font-bold text-orange-500 mb-4'>TinkerHub EMEA</h1>
             <p className='text-lg '>TinkerHub EMEA is a Campus Community Initiative of TinkerHub Foundation, a non profit organization registered in 2016. TinkerHub aims to reduce the gap between technology and its effective employment in lives of tech enthusiasts.</p>
           </div>
         </div>
@@ -18,7 +18,7 @@ function Communities() {
         <div className='flex items-center flex-col'>
           <img src={SheHikeLogo} alt='about' className='w-auto h-auto max-w-[120px] mb-4' />
           <div className='flex flex-col items-center justify-start rounded-3xl p-4 border text-center max-w-[320px] h-full min-h-[300px] border-gray-500 shadow-xl shadow-black/2'>
-            <h1 className='text-2xl font-black text-orange-500 mb-4'>SheHike</h1>
+            <h1 className='text-2xl font-bold text-orange-500 mb-4'>SheHike</h1>
             <p className='text-lg'>‘SheHike’ is a women's wing under CONNECT EMEA which is open to all the girl students in the college.The purpose of this initiative is to empower women with relevant knowledge and skills, thereby encouraging peer-to-peer learning among them.</p>
           </div>
         </div>
