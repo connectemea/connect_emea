@@ -12,7 +12,7 @@ function Footer() {
         </h1>
         <div className="flex justify-between">
           <div className="flex flex-col">
-            <h1 className="font-bold text-2xl">ConnectEMEA</h1>
+            <h1 className="font-semibold text-2xl">ConnectEMEA</h1>
             {navLinks.map((link, index) => (
               <div key={index} className="flex items-start justify-start gap-4">
                 <a href={link.href}>{link.label}</a>
