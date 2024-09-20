@@ -55,7 +55,8 @@ function NavBar() {
   };
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-white/50 text-black w-limit sm:py-6  md:py-10 w-full z-50 fixed backdrop-blur-sm">
+    <nav className="flex justify-between items-center p-4 bg-white/50 text-black w-limit sm:py-6  md:py-10 w-full z-50 fixed backdrop-blur-sm right-0 left-0">
+
       <div onClick={handleHome}>
         <img src={Logo} alt="logo" className="h-8" />
       </div>
