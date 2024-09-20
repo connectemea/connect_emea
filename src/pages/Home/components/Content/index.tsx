@@ -53,7 +53,7 @@ function Content() {
         <h1 className="font-semibold  text-center mx-auto text-[26px] sm:text-[42px]">
           What is connect
         </h1>
-        <p className="text-center max-w-[900px] mx-auto text-[20px] sm:text-[25px] font-normal">
+        <p className="text-center max-w-[900px] mx-auto text-[18px] sm:text-[22px] font-normal">
           Connect is a vibrant, student-driven community that bridges the gap
           between academia and industry. Through collaborative learning,
           real-world experiences, and expert guidance, we provide the resources
@@ -96,7 +96,7 @@ function Content() {
                   {/* bullet */}
                   {item.title}
                 </h1>
-                <p className="text-lg md:text-xl">{item.content}</p>
+                <p className="text-md md:text-lg">{item.content}</p>
               </div>
             </div>
           ))}

@@ -1,7 +1,7 @@
 function Chapter() {
   return (
     <section className="flex flex-col gap-4 p-4 my-10">
-      <h1 className=" font-semibold text-center my-4 text-[26px] sm:text-[42px]">
+      <h1 className=" font-semibold text-center my-4 text-[28px] sm:text-[38px]">
         Why you should join{" "}
         <span className="text-orange-500 block">Connect</span>
       </h1>
@@ -10,7 +10,7 @@ function Chapter() {
           <ul className="space-y-4 list-disc list-inside px-4 ">
             <li className="">
               <strong className="font-semibold text-xl md:text-2xl">Work on Real Projects:</strong>
-              <span className="ml-5 block text-lg md:text-xl">
+              <span className="ml-5 block text-md md:text-lg">
                 Get hands-on experience with collaborative projects that solve
                 real-world problems. Perfect for rebels who want to make an
                 impact now.
@@ -18,7 +18,7 @@ function Chapter() {
             </li>
             <li>
               <strong className="font-semibold text-xl md:text-2xl">Free Skill Development:</strong>
-              <span className="ml-5 block text-lg md:text-xl">
+              <span className="ml-5 block text-md md:text-lg">
                 Access a wide range of resources to build new skills across
                 different fields—completely free. Because your passion shouldn't
                 come with a price tag.
@@ -26,14 +26,14 @@ function Chapter() {
             </li>
             <li>
               <strong className="font-semibold text-xl md:text-2xl">Network with Peers:</strong>{" "}
-              <span className="ml-5 block text-lg md:text-xl">
+              <span className="ml-5 block text-md md:text-lg">
                 Connect with supportive, like-minded friends who share your
                 drive and ambition. Build a community that fuels your passion.
               </span>
             </li>
             <li>
               <strong className="font-semibold text-xl md:text-2xl">Free Mentorship:</strong>
-              <span className="ml-5 block text-lg md:text-xl">
+              <span className="ml-5 block text-md md:text-lg">
                 {" "}
                 Learn directly from industry pros who’ve been where you want to
                 go. Gain insights, advice, and guidance without spending a dime.
@@ -41,7 +41,7 @@ function Chapter() {
             </li>
             <li>
               <strong className="font-semibold text-xl md:text-2xl">Leadership Opportunities:</strong>
-              <span className="ml-5 block text-lg md:text-xl">
+              <span className="ml-5 block text-md md:text-lg">
                 {" "}
                 Step up and take on leadership roles to sharpen your management
                 and organizational skills. Show the world what you’re capable
