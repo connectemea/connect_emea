@@ -20,13 +20,15 @@ function Welcome() {
                 </h1>
                 <p className='text-lg sm:text-xl font-semibold'>For Students, by Students</p>
             </div>
-
-            <button
-                className='px-6 sm:px-8 py-1 sm:py-1.5 bg-orange-600 text-white rounded-full w-fit mx-auto font-bold tracking-normal transition-all hover:bg-orange-500'
-                onClick={handleClick}
-            >
-                Intern registration
-            </button>
+            <div>
+                <button
+                    className='px-6 sm:px-8 py-1 sm:py-1.5 bg-orange-600 text-white rounded-full w-fit mx-auto font-bold tracking-normal transition-all hover:bg-orange-500'
+                    onClick={handleClick}
+                >
+                    Register now
+                </button>
+                <p className='text-sm text-gray-500 mt-1'>For interns selection</p>
+            </div>
 
             {!loaded && (
                 <div className='absolute inset-0 bg-white flex items-center justify-center'>
