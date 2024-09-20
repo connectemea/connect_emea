@@ -36,7 +36,7 @@ function SingleEvent() {
                 <Spinner />
             ) : (
                 event ? (
-                    <div className='flex flex-col mx-auto mt-10'>
+                    <div className='flex flex-col mx-auto '>
                         <div className='flex justify-between flex-col sm:flex-row'>
                             <div className='sm:w-1/2 mx-auto p-2 text-center sm:text-left'>
                                 <h2 className='font-semibold text-2xl'>{event.title}</h2>
