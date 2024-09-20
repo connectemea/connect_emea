@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Noto+Sans:wght@100;200;300;400;500;600;700&display=swap");
+
+@layer base {
+    html {
+        font-family: "Montserrat", system-ui, sans-serif;
+        overflow-x: hidden;
+    }
+}
+
 .w-limit {
     max-width: 1200px;
     margin: 0 auto;
@@ -34,26 +43,26 @@
     }
 }
 
-.pastEventsGrid{
+.pastEventsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
 }
 
 .customMinimumWidth {
-    min-width: 280px; 
+    min-width: 280px;
     max-width: 280px;
 }
 
 @media (max-width: 560px) {
     .customMinimumWidth {
-        min-width: 100%; 
-        width: 100%; 
+        min-width: 100%;
+        width: 100%;
     }
-    .pastEventsGrid{
+
+    .pastEventsGrid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.2rem;
     }
 }
-
