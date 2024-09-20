@@ -91,13 +91,13 @@ const EmblaCarousel = (props) => {
   }
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
+    <div className="embla2">
+      <div className="embla__viewport2" ref={emblaRef}>
+        <div className="embla__container2">
           {slides.map((event, index) => (
-            <div className="embla__slide relative overflow-hidden" key={index}>
+            <div className="embla__slide2 relative overflow-hidden" key={index}>
               <img
-                className="embla__slide__img"
+                className="embla__slide__img2"
                 src={`https://picsum.photos/600/350?v=${index}`}
                 alt="Your alt text"
               />
@@ -121,13 +121,13 @@ const EmblaCarousel = (props) => {
         </div>
       </div>
 
-      <div className="embla__controls">
-        <div className="embla__buttons">
+      <div className="embla__controls2">
+        <div className="embla__buttons2">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
 
-        <a href='/events' className='text-sm mx-auto font-semibold z-30 -mt-4 cursor-pointer hover:text-orange-500 transition-all ease-in-out'>
+        <a href='/events' className='text-md mx-auto font-semibold z-30 -mt-4 cursor-pointer hover:text-orange-500 transition-all ease-in-out'>
           Show more
         </a>
         {/* <div className="embla__dots">

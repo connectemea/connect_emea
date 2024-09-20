@@ -37,7 +37,7 @@ function About() {
           Your future, with friends by your side.
         </h2>
       </div>
-      <div className="flex gap-4 mx-auto m-4 flex-col xl:flex-row my-6 xl:p-2 w-full max-w-[600px] p-6 xl:max-w-full">
+      <div className="flex gap-4 mx-auto m-4 flex-col xl:flex-row my-6 xl:p-2 w-full max-w-[600px] p-6 xl:max-w-fit ">
         {cards.map((card, index) => (
           <div
             className={`border rounded-xl p-4 bg-stone-200  max-w-[360px] border-gray-700 min-h-[200px] xl:min-h-[250px] max-h-[260px] transition-all ease-in-out duration-300 hover:z-30 hover:shadow-xl 

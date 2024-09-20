@@ -14,7 +14,7 @@ function Welcome() {
     return (
         <section className='text-center flex flex-col gap-4 my-4'>
             <div className='text-center flex flex-col max-w-[600px] mx-auto'>
-                <h1 className='text-[22px] sm:text-[34px] font-semibold uppercase'>
+                <h1 className='text-[22px] sm:text-[34px] font-bold uppercase'>
                     WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; peers,&nbsp;
                     <br />purpose&nbsp;and&nbsp;passion&nbsp;
                 </h1>
@@ -27,7 +27,7 @@ function Welcome() {
                 >
                     Register now
                 </button>
-                <p className='text-sm text-gray-500 mt-1'>For interns selection</p>
+                <p className='text-sm text-black mt-1'>For interns selection</p>
             </div>
 
             {!loaded && (

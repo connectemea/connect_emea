@@ -80,7 +80,7 @@ function Content() {
             </div>
           </div>
         </div>
-        <div className="flex items-start flex-col gap-8 ">
+        <div className="flex items-start flex-col gap-6 ">
           <h1 className="font-bold   md:indent-10 mx-auto md:mx-0 my-4 md:my-0 text-[28px] sm:text-[42px]">
             Why we exist
           </h1>

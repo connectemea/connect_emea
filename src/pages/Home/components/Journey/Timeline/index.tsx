@@ -19,7 +19,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
         {events.map((event, index) => (
           <div
             key={index}
-            className={`relative mb-6 lg:mb-0 flex ${
+            className={`relative mb-6 lg:mb-0 flex  ${
               index % 2 === 0 ? "justify-start" : "justify-end"
             }`}
           >
@@ -32,11 +32,11 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
 
             {/* Event Title */}
             <div
-              className={`px-8 lg:px-0 rounded-lg absolute lg:relative lg:mt-10 `}
+              className={`px-8 lg:px-0 rounded-lg absolute lg:relative lg:mt-10 text-center`}
             >
               <h2
-                className={`text-lg font-semibold whitespace-nowrap ${
-                  index % 2 === 0 ? "lg:absolute lg:-top-20" : "relative"
+                className={`text-lg font-semibold whitespace-nowrap text-center ${
+                  index % 2 === 0 ? "lg:absolute lg:-top-20 -ml-4" : "relative -mr-3"
                 }`}
               >
                 {event.title}
