@@ -50,7 +50,7 @@ function Content() {
   return (
     <section className="flex flex-col gap-4 p-4">
       <div className="flex flex-col gap-4 my-8">
-        <h1 className="font-semibold  text-center mx-auto text-[26px] sm:text-[42px]">
+        <h1 className="font-semibold  text-center mx-auto text-[26px] sm:text-[38px]">
           What is connect
         </h1>
         <p className="text-center max-w-[900px] mx-auto text-[18px] sm:text-[22px] font-normal">
@@ -81,7 +81,7 @@ function Content() {
           </div>
         </div>
         <div className="flex items-start flex-col gap-6 ">
-          <h1 className="font-bold   md:indent-10 mx-auto md:mx-0 my-4 md:my-0 text-[28px] sm:text-[42px]">
+          <h1 className="font-bold   md:indent-10 mx-auto md:mx-0 my-4 md:my-0 text-[28px] sm:text-[38px]">
             Why we exist
           </h1>
           {points.map((item, index) => (
