@@ -22,7 +22,7 @@ const EmblaCarousel = (props) => {
 
   //   const { selectedIndex, scrollSnaps, onDotButtonClick } =
   //     useDotButton(emblaApi)
-  console.log('slides', slides)
+  // console.log('slides', slides)
 
   const {
     prevBtnDisabled,

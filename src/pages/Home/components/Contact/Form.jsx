@@ -81,7 +81,7 @@ export function QueriesForm() {
             name="queries"
             render={({ field }) => (
               <FormItem ref={parent}>
-                <FormLabel className="flex">Quesries</FormLabel>
+                <FormLabel className="flex">Queries</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter Your Queries" {...field} />
                 </FormControl>

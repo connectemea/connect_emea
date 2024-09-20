@@ -13,9 +13,9 @@ const Home = () => {
     <div className='w-limit bg-white'>
       <Welcome />
       <Content />
+      <EventSection />  
       <Testimonials />
       <Chapter />
-      <EventSection />
       <Journey />
       <About />
       <Contact />

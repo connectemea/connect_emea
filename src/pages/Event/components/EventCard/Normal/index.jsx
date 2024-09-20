@@ -21,7 +21,7 @@ function NormalCard({ data }) {
                     <p>Date: {data.date}</p>
                     <p>Time: {data.time}</p>
                 </div>
-                <h1 className='z-10'>{data.title}</h1>
+                <h1 className='z-10 font-semibold'>{data.title}</h1>
                 <div className="absolute inset-0 z-0 bg-gradient-to-t from-white/50 via-transparent to-transparent"></div>
             </div>
 

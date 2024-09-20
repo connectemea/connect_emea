@@ -298,7 +298,7 @@ export function JoinForm() {
                             <FormItem ref={parent}>
                                 <FormLabel>What is your hobby?</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Your hobby" {...field} />
+                                    <Textarea placeholder="Your hobby" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

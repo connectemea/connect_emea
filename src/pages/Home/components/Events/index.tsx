@@ -14,7 +14,7 @@ function EventSection() {
     return dateB.getTime() - dateA.getTime(); 
   });
 
-  console.log(sortedEvents);
+  // console.log(sortedEvents);
   const latestEvents = sortedEvents.slice(0, 5);
 
   const SLIDES = latestEvents.map((event) => ({
@@ -22,12 +22,12 @@ function EventSection() {
   }));
   
 
-  console.log(SLIDES);
+  // console.log(SLIDES);
 
   return (
     <div className="p-2">
-      <h1 className="mx-auto font-semibold text-2xl text-center my-10">
-        Upcoming Events
+      <h1 className="mx-auto font-semibold text-center my-10 text-[28px] sm:text-[38px]">
+        Recent Events
       </h1>
       <div>
         <EmblaCarousel slides={SLIDES} options={OPTIONS} />

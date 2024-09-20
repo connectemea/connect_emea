@@ -2,8 +2,8 @@ import React from 'react'
 
 function Content() {
     return (
-        <div className='flex flex-col md:flex-row justify-between w-limit gap-4 md:gap-0'>
-            <div className='my-6 md:my-0 md:w-1/2 flex items-center justify-center mx-auto'>
+        <div className='flex flex-col lg:flex-row justify-between w-limit gap-6 lg:gap-0'>
+            <div className='my-6 lg:my-0 lg:w-1/2 flex items-center justify-center mx-auto'>
                 <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
                     <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-white overflow-hidden" >
                         <img
@@ -21,7 +21,12 @@ function Content() {
                     </div>
                 </div>
             </div>
-            <div className='md:w-1/2 text-white mx-auto'>
+
+
+
+
+
+            <div className='lg:w-1/2 text-white mx-auto space-y-2 font-semibold text-lg md:text-xl'>
                 <p>
                     Four years ago, in the halls of EMEA College, four passionate students—Salman CC, Afeef, Aseel, and Nahyan—shared a common dream. They wanted to create something meaningful for their fellow students. Driven by their determination, they proposed developing a college software application to our college principal.
                 </p>

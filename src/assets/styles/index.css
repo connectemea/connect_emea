@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.w-limit{
+.w-limit {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -12,4 +12,24 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+}
+
+.heading-text {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.paragraph-text {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+@media (max-width: 620px) {
+    .heading-text {
+        font-size: 1.3rem;
+    }
+
+    .paragraph-text {
+        font-size: 0.6rem;
+    }
 }
