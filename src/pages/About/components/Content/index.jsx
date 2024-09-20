@@ -22,10 +22,6 @@ function Content() {
                 </div>
             </div>
 
-
-
-
-
             <div className='lg:w-1/2 text-white mx-auto space-y-4 lg:space-y-2  text-lg md:text-xl lg:text-left text-center'>
                 <p>
                     Four years ago, in the halls of EMEA College, four passionate students—Salman CC, Afeef, Aseel, and Nahyan—shared a common dream. They wanted to create something meaningful for their fellow students. Driven by their determination, they proposed developing a college software application to our college principal.
