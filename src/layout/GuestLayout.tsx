@@ -6,7 +6,7 @@ function GuestLayout() {
   return (
     <div className="relative flex flex-col w-full min-h-screen">
       <NavBar />
-      <main className="flex-grow">
+      <main className="flex-grow mt-20 sm:mt-28">
         <Outlet />
       </main>
       <Footer />
