@@ -292,18 +292,18 @@ export function JoinForm() {
 
                     </div>
                     <FormField
-                        control={form.control}
-                        name="hobby"
-                        render={({ field }) => (
-                            <FormItem ref={parent}>
-                                <FormLabel>What is your hobby?</FormLabel>
-                                <FormControl>
-                                    <Textarea placeholder="Your hobby" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                            control={form.control}
+                            name="interesting_fact"
+                            render={({ field }) => (
+                                <FormItem ref={parent}>
+                                    <FormLabel>Tell us something interesting about yourself</FormLabel>
+                                    <FormControl>
+                                        <Textarea placeholder="Interesting fact" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
                     <div className="space-y-2 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
 
@@ -336,21 +336,21 @@ export function JoinForm() {
 
                     </div>
                     <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
+                    <FormField
+                        control={form.control}
+                        name="hobby"
+                        render={({ field }) => (
+                            <FormItem ref={parent}>
+                                <FormLabel>What is your hobby?</FormLabel>
+                                <FormControl>
+                                    <Textarea placeholder="Your hobby" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-
-                        <FormField
-                            control={form.control}
-                            name="interesting_fact"
-                            render={({ field }) => (
-                                <FormItem ref={parent}>
-                                    <FormLabel>Tell us something interesting about yourself</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="Interesting fact" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                     
                         <FormField
                             control={form.control}
                             name="other_communities"
