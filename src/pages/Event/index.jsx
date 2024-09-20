@@ -69,18 +69,18 @@ const Event = () => {
         </section>
       )}
       {PastEvents.length !== 0 && (
-        <section className="flex p-4  gap-4 w-limit overflow-hidden">
-          <div className="flex flex-col items-start font-bold py-6">
-            <h2 className="text-[12px] md:text-[20px]">All</h2>
-            <h1 className="text-[18px] md:text-[36px]">Events</h1>
+        <section className="flex flex-col md:flex-row md:p-4  gap-4 w-limit overflow-hidden">
+          <div className="flex md:flex-col flex-row gap-2 items-center justify-center md:justify-start md:items-start font-bold py-6 ">
+            <h2 className="text-[36px] md:text-[20px]">All</h2>
+            <h1 className="text-[36px]">Events</h1>
           </div>
           {/* <div className="flex-1 flex gap-4 items-start">
           <EmblaCarousel2 slides={PastEvents} options={OPTIONS} />
         </div> */}
 
-          <div className="grid flex-gorw w-full mx-0 md:mx-auto overflow-auto" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+          <div className=" flex-grow w-full mx-0 md:mx-auto overflow-auto pastEventsGrid" >
             {PastEvents.map((event, index) => (
-              <div className="mx-0 md:mx-auto" key={index}>
+              <div className="mx-auto  w-full" key={index}>
                 <NormalCard data={event} />
               </div>
             ))}
