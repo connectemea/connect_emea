@@ -19,6 +19,7 @@ import { Rocket } from "lucide-react";
 import { createRecord } from "@/utils/airtableService";
 import StatusModal from "@/components/common/Modal";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -83,7 +84,7 @@ export function QueriesForm() {
               <FormItem ref={parent}>
                 <FormLabel className="flex">Queries</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter Your Queries" {...field} />
+                  <Textarea placeholder="Enter Your Queries" className="max-h-28" {...field} />
                 </FormControl>
                 <FormMessage className="flex" />
               </FormItem>
