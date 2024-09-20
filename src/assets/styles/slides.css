@@ -46,7 +46,7 @@
   max-width: 360px;
   flex: 0 0 360px;
   margin: auto;
-  padding-left: var(--slide-spacing);
+  /* padding-left: var(--slide-spacing); */
 }
 
 @media (min-width: 550px) {
