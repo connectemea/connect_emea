@@ -7,7 +7,7 @@ function Founders({}) {
   return (
     <div className='flex items-start justify-center md:p-2 flex-wrap'>
             {TeamsData.FoundersData.map((founder, index) => (
-                <TeamCard key={index} data={founder} id={founder.id} size={'big'} />
+                <TeamCard key={index} data={founder} id={founder.id} size={'small'} />
             ))}
     </div>
   )
