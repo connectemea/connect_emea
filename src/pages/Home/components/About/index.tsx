@@ -37,19 +37,24 @@ function About() {
           Your future, with friends by your side.
         </h2>
       </div>
-      <div className="flex gap-4 mx-auto m-4 flex-col xl:flex-row my-6 xl:p-2 w-full max-w-[600px] p-6 xl:max-w-fit ">
+      <div className="flex gap-4 mx-auto m-4 flex-col xl:flex-row my-6 xl:p-2 w-full max-w-[600px] p-6 xl:max-w-fit">
         {cards.map((card, index) => (
+          // <div
+          //   className={`border rounded-xl p-4 bg-stone-200  max-w-[360px] border-gray-700 min-h-[200px] xl:min-h-[250px] max-h-[260px] transition-all ease-in-out duration-300 hover:z-30 hover:shadow-xl
+          //   ${index % 2 === 0 ? "self-start xl:self-auto xl:rotate-0 -rotate-12" : "self-end rotate-12 xl:self-auto xl:rotate-0 z-10"}
+          //   ${index !== 0 ? "-mt-28 xl:mt-0" : ""}
+          //   ${index === 2 ? "xl:!rotate-0 !-rotate-6 xl:-ml-10 xl:mt-6" : ""}
+          //   ${index === 0 ? " xl:-mr-10 xl:-mt-4 xl:z-20" : ""}
+          //   `}
+          //   key={index}
+          // >
           <div
-            className={`border rounded-xl p-4 bg-stone-200  max-w-[360px] border-gray-700 min-h-[200px] xl:min-h-[250px] max-h-[260px] transition-all ease-in-out duration-300 hover:z-30 hover:shadow-xl 
-            ${index % 2 === 0 ? "self-start xl:self-auto xl:rotate-0 -rotate-12" : "self-end rotate-12 xl:self-auto xl:rotate-0 z-10"} 
-            ${index !== 0 ? "-mt-28 xl:mt-0" : ""}
-            ${index === 2 ? "xl:!rotate-0 !-rotate-6 xl:-ml-10 xl:mt-6" : ""}
-            ${index === 0 ? " xl:-mr-10 xl:-mt-4 xl:z-20" : ""}
-            `}
+            className={`border rounded-xl p-4 bg-stone-200  max-w-[360px] border-gray-700 min-h-[200px] xl:min-h-[260px] max-h-[280px] transition-all ease-in-out duration-300 hover:z-30 hover:shadow-xl  mx-auto`}
             key={index}
           >
-            
-            <h1 className="text-center font-semibold text-2xl md:text-3xl mb-4">{card.title}</h1>
+            <h1 className="text-center font-semibold text-2xl md:text-3xl mb-4">
+              {card.title}
+            </h1>
             <p className="text-md md:text-lg">{card.content}</p>
           </div>
         ))}
