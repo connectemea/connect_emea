@@ -10,6 +10,9 @@ const TeamCard = ({ data, id, size }) => {
         setIsLoading(false);
     };
 
+    // Adjust font size based on the length of the position text
+    const fontSize = data?.position.length > 15 ? 12 : 16;
+
     return (
         <section
             id={id}
@@ -48,19 +51,18 @@ const TeamCard = ({ data, id, size }) => {
             </div>
 
             {/* Curved Text */}
-            <div className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 !z-10  rounded-full overflow-hidden">
+            <div className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 !z-10 rounded-full overflow-hidden">
                 <svg width="150" height="80">
                     <defs>
                         <path id="curve" d="M 10,30 A 70,30 0 0,1 140,30" />
                     </defs>
-                    <text fill="orange" fontSize="16" fontFamily="Arial">
+                    <text fill="orange" fontSize={fontSize} fontFamily="Arial">
                         <textPath xlinkHref="#curve" startOffset="50%" textAnchor="middle">
                             {data?.position}
                         </textPath>
                     </text>
                 </svg>
             </div>
-
         </section>
     );
 };
