@@ -21,8 +21,8 @@ import {
 } from '@/assets/images/interns'
 
 const roles: { [key: number]: string } = {
-    0: 'Office Manager',
-    1: 'Software Engineer',
+    0: 'Community enthusiast',
+    1: 'Community enthusiast',
     2: 'Graphic Designer',
     3: 'Developer',
     4: 'Community Manager',
@@ -33,10 +33,14 @@ const roles: { [key: number]: string } = {
 const positions: { [key: number]: string } = {
     0: 'Co-creator',
     1: 'Intern',
-    2: 'CTO',
+    2: 'CTO & TinkerHub Lead',
     3: 'CEO',
     4: 'COO',
     5: 'Convener',
+    6: 'SheHike Lead',
+    7: 'TinkerHub Outreach Lead',
+    8: 'TinkerHub Co-Lead',
+
 };
 
 const FoundersData: Intern[] = [
@@ -120,8 +124,8 @@ const InternsData: Intern[] = [
     {
         id: 6,
         name: 'Shifna Shirin',
-        role: roles[4],
-        position: positions[1],
+        role: roles[5],
+        position: positions[6],
         image: Shifna,
         social: {
             linkedin: 'https://www.linkedin.com/in/shifna-shirin-9654b2255?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
@@ -220,7 +224,7 @@ const InternsData: Intern[] = [
         id: 11,
         name: 'Dayyan Ali',
         role: roles[2],
-        position: positions[1],
+        position: positions[7],
         image: Dayyan,
         social: {
             linkedin: 'https://www.linkedin.com/in/dayyan-ali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
