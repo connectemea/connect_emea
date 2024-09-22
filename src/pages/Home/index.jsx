@@ -14,7 +14,7 @@ const Home = () => {
       <Welcome />
       <Content />
       <EventSection />  
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Chapter />
       <Journey />
       <About />
