@@ -14,7 +14,7 @@ const Events: Event[] = [
   },
   {
     id: 2,
-    title: 'Connect EMEA Networking Event',
+    title: 'Connect EMEA Networking Event 123',
     date: '11/05/2024',
     time: '3:00 PM',
     location: 'University of Central Florida',
