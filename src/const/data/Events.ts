@@ -1,8 +1,7 @@
 import { Event } from '@/types/eventsTypes';
-import { LearningStation ,  } from '@/assets/images/Events';
+import { LearningStation , Demo } from '@/assets/images/Events';
 
 const Events: Event[] = [
-  // Upcoming events (future)
   {
     id: 1,
     title: 'Connect EMEA Workshop',
@@ -20,7 +19,7 @@ const Events: Event[] = [
     time: '3:00 PM',
     location: 'University of Central Florida',
     description: 'An event to connect with industry leaders and like-minded professionals.',
-    image: 'https://via.placeholder.com/150',
+    image: Demo,
     link: 'https://www.eventbrite.com/e/connect-emea-networking-event-tickets-1234567890',
   },
   {
@@ -54,7 +53,6 @@ const Events: Event[] = [
     link: 'https://www.eventbrite.com/e/connect-emea-coding-challenge-tickets-1234567890',
   },
 
-  // Recent events (past)
   {
     id: 6,
     title: 'Connect EMEA Hackathon',

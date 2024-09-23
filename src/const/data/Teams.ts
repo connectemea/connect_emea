@@ -52,7 +52,7 @@ const FoundersData: Intern[] = [
         image: Salman,
         social: {
             linkedin: 'https://www.linkedin.com/',
-            github: 'https://www.github.com/',
+            github: '',
             instagram: 'https://www.instagram.com/'
         },
 
