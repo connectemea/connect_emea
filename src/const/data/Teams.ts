@@ -27,7 +27,8 @@ const roles: { [key: number]: string } = {
     3: 'Developer',
     4: 'Community Manager',
     5: 'Content Writer',
-    6: 'Videographer'
+    6: 'Media'
+    
 };
 
 const positions: { [key: number]: string } = {
@@ -51,9 +52,9 @@ const FoundersData: Intern[] = [
         position: positions[0],
         image: Salman,
         social: {
-            linkedin: 'https://www.linkedin.com/',
+            linkedin: 'https://www.linkedin.com/in/salmanulfariscc/',
             github: '',
-            instagram: 'https://www.instagram.com/'
+            instagram: ''
         },
 
     },
@@ -64,9 +65,9 @@ const FoundersData: Intern[] = [
         position: positions[0],
         image: Afeef,
         social: {
-            linkedin: 'https://www.linkedin.com/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            linkedin: '',
+            github: '',
+            instagram: ''
         },
     },
     {
@@ -76,9 +77,9 @@ const FoundersData: Intern[] = [
         position: positions[0],
         image: Nahyan,
         social: {
-            linkedin: 'https://www.linkedin.com/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            linkedin: 'https://www.linkedin.com/in/nahyansharvin',
+            github: 'https://github.com/nahyansharvin',
+            instagram: 'https://www.instagram.com/_nhyn.__'
         },
     },
     {
@@ -88,9 +89,9 @@ const FoundersData: Intern[] = [
         position: positions[0],
         image: Aseel,
         social: {
-            linkedin: 'https://www.linkedin.com/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            linkedin: '',
+            github: '',
+            instagram: ''
         },
     }
 
@@ -105,8 +106,8 @@ const InternsData: Intern[] = [
         image: Saleel,
         social: {
             linkedin: 'https://www.linkedin.com/in/muhammed-saleel-cp-84064524b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/Saleel10',
+            instagram: 'https://www.instagram.com/saleel_gds?igsh=Z2EzYWRhenZqZnd0'
         },
     },
     {
@@ -117,7 +118,7 @@ const InternsData: Intern[] = [
         image: Shamil,
         social: {
             linkedin: 'https://www.linkedin.com/in/shamil-kp-65878227a',
-            github: 'https://www.github.com/',
+            github: 'https://github.com/muhammedshamil8',
             instagram: ''
         },
     },
@@ -129,8 +130,8 @@ const InternsData: Intern[] = [
         image: Shifna,
         social: {
             linkedin: 'https://www.linkedin.com/in/shifna-shirin-9654b2255?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/shifnashirin',
+            instagram: 'https://www.instagram.com/shifnafasil?igsh=bTVhZnB6Z2d1YjZt&utm_source=qr'
         },
     },
    
@@ -142,8 +143,8 @@ const InternsData: Intern[] = [
         image: Sibna,
         social: {
             linkedin: 'http://www.linkedin.com/in/sibna-sherin',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/Sibna-sherin',
+            instagram: 'https://www.instagram.com/_sibna_?igsh=Mjk1OWVkandmOGY4'
         },
     },
     {
@@ -153,9 +154,9 @@ const InternsData: Intern[] = [
         position: positions[3],
         image: Rashid,
         social: {
-            linkedin: 'https://www.linkedin.com/in/muhammed-rashid-1044a8221?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            linkedin: 'https://www.linkedin.com/in/muhammed-rashid-1044a8221/',
+            github: 'https://github.com/Muhammed-Rashid-07',
+            instagram: ''
         },
     },
     
@@ -167,8 +168,8 @@ const InternsData: Intern[] = [
         image: Fabin,
         social: {
             linkedin: 'https://www.linkedin.com/in/fabin-fasif-0554042b7/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/Abufabin',
+            instagram: 'https://www.instagram.com/abufabin?igsh=Z3diaGhrdWlqZWRv'
         },
     },
   
@@ -180,8 +181,8 @@ const InternsData: Intern[] = [
         image: Sunain,
         social: {
             linkedin: 'https://www.linkedin.com/in/muhammed-sunain-287674259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/MUHAMMED13690',
+            instagram: 'https://www.instagram.com/_sunain_x2?igsh=MWdpd3J5Z2djMmVlNQ=='
         },
     },
     {
@@ -192,8 +193,8 @@ const InternsData: Intern[] = [
         image: Amjad,
         social: {
             linkedin: 'https://www.linkedin.com/in/amjxd-aj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/amjxdaj',
+            instagram: 'https://www.instagram.com/amjxd_aj'
         },
     },
     {
@@ -204,8 +205,8 @@ const InternsData: Intern[] = [
         image: Jannah,
         social: {
             linkedin: 'http://linkedin.com/in/fathima-jannah-88533a25b',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/Jnnah11',
+            instagram: 'https://www.instagram.com/j.nnah__?igsh=MXYwODF1dzkwNGM5Yg=='
         },
     },
     {
@@ -216,8 +217,8 @@ const InternsData: Intern[] = [
         image: Rafeeda,
         social: {
             linkedin: 'https://www.linkedin.com/in/fathima-rafeeda-a-87079023b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/Rafeeda-rafee',
+            instagram: 'https://www.instagram.com/_ra_fee?igsh=MWppaDYza2N2NXQwYg=='
         },
     },
     {
@@ -228,8 +229,8 @@ const InternsData: Intern[] = [
         image: Dayyan,
         social: {
             linkedin: 'https://www.linkedin.com/in/dayyan-ali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/Dayyan404',
+            instagram: 'https://www.instagram.com/dayyan._ali?igsh=MXdvbmw2OHFkNjhmdw=='
         },
     },
 
@@ -241,8 +242,8 @@ const InternsData: Intern[] = [
         image: Athif,
         social: {
             linkedin: 'https://www.linkedin.com/in/athif-noor-ap-a879b4256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: '',
+            instagram: 'https://www.instagram.com/athif_noor_ap?igsh=OHQ0djI4d2Fwam1y'
         },
     },
     
@@ -254,8 +255,8 @@ const InternsData: Intern[] = [
         image: Hanana,
         social: {
             linkedin: 'https://www.linkedin.com/in/mariyam-hanana-v-526a032b6/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/MariyamHanana',
+            instagram: 'https://www.instagram.com/hanana_aa/'
         },
     },
     {
@@ -266,8 +267,8 @@ const InternsData: Intern[] = [
         image: Marva,
         social: {
             linkedin: 'https://www.linkedin.com/in/marva-kt-4378a925b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/marvakt',
+            instagram: 'https://instagram.com/fathima__marva__?igshid=NmQ2ZmYxZjA='
         },
     },
     {
@@ -278,8 +279,8 @@ const InternsData: Intern[] = [
         image: Rizwan,
         social: {
             linkedin: 'https://www.linkedin.com/in/mohammed-rizwan-70662a232/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: 'https://github.com/rizwnkt',
+            instagram: 'https://www.instagram.com/rizwnkt/'
         },
     },
     {
@@ -290,8 +291,8 @@ const InternsData: Intern[] = [
         image: Shahbana,
         social: {
             linkedin: 'https://www.linkedin.com/in/shahbana-backer-5537b5293/',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: '',
+            instagram: ''
         }
     },
     {
@@ -302,8 +303,8 @@ const InternsData: Intern[] = [
         image: Gayathri,
         social: {
             linkedin: 'https://www.linkedin.com/in/gayathri-p-95a63a261?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-            github: 'https://www.github.com/',
-            instagram: 'https://www.instagram.com/'
+            github: '',
+            instagram: 'https://www.instagram.com/h_.e_r._a?igsh=ZHlkYXdmOHhpbTNm'
         },
     },
    

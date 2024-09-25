@@ -12,7 +12,7 @@ function SpecialCard({ data }) {
     return (
         <div className='sm:p-4 min-w-[180px] max-w-[240px] sm:max-w-[280px] space-y-2 cursor-pointer mx-auto' onClick={handleClick}>
             <div className='h-60 w-full bg-gray-300'>
-                <img src={data.image} alt={data.title} className='w-full h-full object-cover' />
+                <img src={`https://picsum.photos/600/350?v=${data.id}`} alt={data.title} className='w-full h-full object-cover' />
             </div>
             <div className='text-[12px] flex justify-between flex-wrap'>
                 <p>Date: {data.date}</p>
