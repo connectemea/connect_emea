@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { inFront } from "@/assets/images/Us";
 function Content() {
     return (
         <div className='flex flex-col lg:flex-row justify-between w-limit gap-6 lg:gap-0'>
@@ -7,7 +7,7 @@ function Content() {
                 <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
                     <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-white overflow-hidden" >
                         <img
-                            src={`https://picsum.photos/600/350?v=2`}
+                            src={inFront}
                             alt=""
                             className="absolute inset-0 object-cover w-full h-full "
                         />

@@ -32,7 +32,7 @@ const Event = () => {
     const [month, day, year] = event.date.split("/").map(Number);
     const eventDate = new Date(year, month - 1, day);
     return eventDate < currentDate;
-  });
+  }); 
 
   // Select the latest 5 past events
   const RecentEvents = PastEvents.slice(0, 5);
@@ -72,7 +72,7 @@ const Event = () => {
           </div>
         </section>
       )}
-      {PastEvents.length !== 0 && (
+      {Events.length !== 0 && (
         <section className="flex flex-col md:flex-row md:p-4  gap-4 w-limit overflow-hidden">
           <div className="flex md:flex-col flex-row gap-2 items-center justify-center md:justify-start md:items-start font-bold py-6 ">
             <h2 className="text-[36px] md:text-[20px]">All</h2>
@@ -82,8 +82,8 @@ const Event = () => {
           <EmblaCarousel2 slides={PastEvents} options={OPTIONS} />
         </div> */}
 
-          <div className=" flex-grow w-full mx-0 md:mx-auto overflow-auto pastEventsGrid" >
-            {PastEvents.map((event, index) => (
+          <div className=" flex-grow w-full mx-0 md:mx-auto  pastEventsGrid" >
+            {Events.map((event, index) => (
               <div className="mx-auto  w-full" key={index}>
                 <NormalCard data={event} />
               </div>

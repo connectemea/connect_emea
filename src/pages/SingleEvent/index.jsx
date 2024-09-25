@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Events from '@/const/data/Events';
+import Events from '@/const/data/Events.tsx';
 import Tab from './components/tabs';
 
 
@@ -40,12 +40,12 @@ function SingleEvent() {
                         <div className='flex justify-between flex-col sm:flex-row'>
                             <div className='sm:w-1/2 mx-auto p-2 text-center sm:text-left'>
                                 <h2 className='font-semibold text-2xl'>{event.title}</h2>
-                                <p>{event.description}</p>
+                                <p>{event.big_description}</p>
                             </div>
                             <div className='sm:w-1/2 mx-auto my-4 sm:my-0'>
                                 <div className='bg-slate-300 w-80 h-80 rounded-lg mx-auto relative overflow-hidden'>
                                     <img
-                                        src={`https://picsum.photos/600/350?v=5`}
+                                        src={event.image}
                                         alt=""
                                         className="absolute inset-0 object-cover w-full h-full "
                                     />
@@ -54,7 +54,7 @@ function SingleEvent() {
                         </div>
                         <div>
                             <h2 className='font-semibold text-xl text-left pl-2'>About</h2>
-                            <Tab />
+                            <Tab about={event.about} />
                         </div>
                     </div>
                 ) : (

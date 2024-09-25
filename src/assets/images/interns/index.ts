@@ -16,5 +16,8 @@ export { default as Shamil } from "./Shamil.png";
 export { default as Shifna } from "./Shifna.png";
 export { default as Sibna } from "./Sibna.png";
 export { default as Sunain } from "./Sunain.png";
+export { default as Muhsina } from "./Muhsina.png";
+export { default as Nasrin } from "./Nasrin.png";
+export { default as Anshif } from "./Anshif.png";
 
 

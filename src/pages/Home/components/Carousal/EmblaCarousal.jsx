@@ -177,7 +177,7 @@ const EmblaCarousel = (props) => {
             >
               <img
                 className="embla__slide__img2"
-                src={`https://picsum.photos/600/350?v=${index}`}
+                src={event.image}
                 alt="Your alt text"
               />
               {/* card */}

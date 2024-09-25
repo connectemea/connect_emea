@@ -67,3 +67,10 @@
     content: none !important;
 }
 
+.highlights > ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+}
+.highlights > ul > li {
+    margin-bottom: 0.5rem;
+}

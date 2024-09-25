@@ -1,7 +1,11 @@
+import { BootCamp } from "@/assets/images/Us";
+
 interface Point {
   title: string;
   content: JSX.Element;
 }
+
+
 function Content() {
   const points: Point[] = [
     {
@@ -65,7 +69,7 @@ function Content() {
           <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
             <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-black overflow-hidden">
               <img
-                src={`https://picsum.photos/600/350?v=5`}
+                src={BootCamp}
                 alt=""
                 className="absolute inset-0 object-cover w-full h-full "
               />

@@ -17,7 +17,10 @@ import {
     Shamil,
     Shifna,
     Sibna,
-    Sunain
+    Sunain,
+    Nasrin,
+    Anshif,
+    Muhsina
 } from '@/assets/images/interns'
 
 const roles: { [key: number]: string } = {
@@ -41,7 +44,7 @@ const positions: { [key: number]: string } = {
     6: 'SheHike Lead',
     7: 'TinkerHub Outreach Lead',
     8: 'TinkerHub Co-Lead',
-
+    9: 'TinkerHub Wit-lead',
 };
 
 const FoundersData: Intern[] = [
@@ -305,6 +308,42 @@ const InternsData: Intern[] = [
             linkedin: 'https://www.linkedin.com/in/gayathri-p-95a63a261?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
             github: '',
             instagram: 'https://www.instagram.com/h_.e_r._a?igsh=ZHlkYXdmOHhpbTNm'
+        },
+    },
+    {
+        id: 15,
+        name: 'Muhsina',
+        role: roles[4],
+        position: positions[8],
+        image: Muhsina,
+        social: {
+            linkedin: '',
+            github: '',
+            instagram: ''
+        },
+    },
+    {
+        id: 15,
+        name: 'Anshif',
+        role: roles[4],
+        position: positions[8],
+        image: Anshif,
+        social: {
+            linkedin: '',
+            github: '',
+            instagram: ''
+        },
+    },
+    {
+        id: 15,
+        name: 'Fathima Nasrin',
+        role: roles[4],
+        position: positions[9],
+        image: Nasrin,
+        social: {
+            linkedin: '',
+            github: '',
+            instagram: ''
         },
     },
    

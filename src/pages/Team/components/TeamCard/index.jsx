@@ -19,7 +19,7 @@ const TeamCard = ({ data, id, size }) => {
             className={`p-2 m-2 w-fit select-none relative group transform transition-transform duration-300 hover:scale-105 max-w-[170px] sm:max-w-[200px]`}
         >
             <div className={`bg-gradient-to-r ${id % 2 === 0 ? 'from-orange-400 to-orange-500' : 'from-orange-500 to-orange-400'} rounded-full flex items-center justify-center overflow-hidden !pt-6 mx-auto shadow-lg !z-0 ${sizeClass}`}>
-                {isLoading && <UserRound className="w-20 h-20 text-white animate-spin" />}
+                {isLoading && <UserRound className="w-20 h-20 text-white" />}
                 <img
                     src={data?.image}
                     alt={data?.name}
