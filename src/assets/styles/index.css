@@ -58,8 +58,8 @@
 
 @media (max-width: 560px) {
     .customMinimumWidth {
-        min-width: 100%;
-        width: 100%;
+        min-width: 90%;
+        width: 90%;
     }
 }
 
