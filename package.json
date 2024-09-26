@@ -2,7 +2,7 @@
   "name": "connect_emea",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://connectemea.in",
+  "homepage": "https://connectemea.github.io/connect_emea",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
