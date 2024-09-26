@@ -8,7 +8,9 @@
     "dev": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
@@ -22,6 +24,7 @@
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.3.0",
     "embla-carousel-react": "^8.1.8",
+    "gh-pages": "^6.1.1",
     "lucide-react": "^0.424.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
