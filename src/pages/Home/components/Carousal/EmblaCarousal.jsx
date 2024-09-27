@@ -19,7 +19,7 @@ const numberWithinRange = (number, min, max) =>
 const EmblaCarousel = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    Autoplay({ playOnInit: true, delay: 2000 })
+    Autoplay({ playOnInit: true, delay: 3000 })
   ])
   const [isPlaying, setIsPlaying] = useState(true)
   const tweenFactor = useRef(0)
@@ -139,7 +139,7 @@ const EmblaCarousel = (props) => {
   }, [])
 
 
-   useEffect(() => {
+  useEffect(() => {
     if (!emblaApi) return
 
     setTweenFactor(emblaApi)
@@ -170,10 +170,11 @@ const EmblaCarousel = (props) => {
         <div className="embla__container2">
           {slides.map((event, index) => (
             <div className={classNames(
-              'embla__slide2 relative overflow-hidden',
+              'embla__slide2 relative overflow-hidden rounded-2xl border  !cursor-pointer',
               // 'lg:!opacity-100',
             )}
               key={index}
+              onClick={() => handleClick(event.id)}
             >
               <img
                 className="embla__slide__img2"
@@ -181,8 +182,8 @@ const EmblaCarousel = (props) => {
                 alt="Your alt text"
               />
               {/* card */}
-              <div className="absolute z-30 bottom-4 w-[95%]  pr-2 ">
-                <div className='bg-gray-200 w-[95%] rounded-xl  mx-auto py-3'>
+              <div className="absolute z-30 bottom-4 w-[100%] mx-auto" >
+                <div className='bg-white/70 w-[95%] rounded-xl  mx-auto py-3 backdrop-blur-sm border'>
                   <h1 className='text-md font-semibold text-center mb-2'>{event.title}</h1>
                   <div className='flex justify-around'>
                     <p className='text-sm'>Date: {event.date}</p>
@@ -192,7 +193,7 @@ const EmblaCarousel = (props) => {
               </div>
 
               {/* arrow */}
-              <div className='absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full' onClick={() => handleClick(index + 1)}>
+              <div className='absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full' onClick={() => handleClick(event.id)}>
                 <ArrowUpRight />
               </div>
             </div>

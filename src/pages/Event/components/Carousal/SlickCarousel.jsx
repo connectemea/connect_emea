@@ -97,7 +97,7 @@ function SlickCarousel(props) {
             <Slider {...settings} >
                 {slides.map((event, index) => (
                     <div className="rounded-xl  sm:mx-0" key={index}>
-                        <Special data={event} />
+                        <Special data={event} color={color} />
                     </div>
                 ))}
             </Slider>

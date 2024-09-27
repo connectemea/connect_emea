@@ -6,7 +6,6 @@ import Vision from "./components/Vision";
 const About = () => {
   return (
     <>
-      <h1 className='font-semibold pb-10 flex justify-center text-3xl w-full'>About Us</h1>
       <div className="bg-black p-6 py-10 my-4">
         <Content />
       </div>

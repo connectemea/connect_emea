@@ -11,9 +11,9 @@ function NormalCard({ data }) {
     }
     return (
 
-        <div className='p-1 md:p-4 customMinimumWidth mx-auto  max-w-[280px] space-y-2 flex-grow cursor-pointer' onClick={handleClick}>
-            <div className='h-80 w-full bg-gray-300 relative flex flex-col justify-end p-3'>
-                <img src={data.image} alt={data.title} className='w-full h-full object-cover absolute top-0 bottom-0 left-0 right-0' />
+        <div className='p-1 md:p-4  customMinimumWidth mx-auto  max-w-[280px] space-y-2 flex-grow cursor-pointer ' onClick={handleClick}>
+            <div className='customMinimumHeight w-full bg-gray-300 relative flex flex-col justify-end p-3 rounded-md shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out'>
+                <img src={data.image} alt={data.title} className='w-full h-full object-cover absolute top-0 bottom-0 left-0 right-0 rounded-md' />
                 <div className='absolute top-2 right-2 cursor-pointer z-10 text-white' onClick={handleClick}>
                     <ArrowUpRight className='w-6' />
                 </div>

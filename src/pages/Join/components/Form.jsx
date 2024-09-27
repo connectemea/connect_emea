@@ -126,7 +126,7 @@ export function JoinForm() {
                                 <FormItem ref={parent}>
                                     <FormLabel>Your Name</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Salman CC" {...field} />
+                                        <Input placeholder="Your sweet name" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -139,7 +139,7 @@ export function JoinForm() {
                                 <FormItem ref={parent}>
                                     <FormLabel>Your Admission No</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="23BSCA110" {...field} />
+                                        <Input placeholder="23BSCA110" className="uppercase" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -229,7 +229,7 @@ export function JoinForm() {
                                 <FormItem >
                                     <FormLabel>Phone number</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="your number" {...field} />
+                                        <Input placeholder="Your whatsapp number" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -292,18 +292,18 @@ export function JoinForm() {
 
                     </div>
                     <FormField
-                            control={form.control}
-                            name="interesting_fact"
-                            render={({ field }) => (
-                                <FormItem ref={parent}>
-                                    <FormLabel>Tell us something interesting about yourself</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="Interesting fact" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        control={form.control}
+                        name="interesting_fact"
+                        render={({ field }) => (
+                            <FormItem ref={parent}>
+                                <FormLabel>Tell us something interesting about yourself</FormLabel>
+                                <FormControl>
+                                    <Textarea placeholder="Interesting fact" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
                     <div className="space-y-2 md:space-y-0 md:gap-x-8 md:gap-y-4 grid md:grid-cols-2">
 
@@ -336,21 +336,21 @@ export function JoinForm() {
 
                     </div>
                     <div className="space-y-8 md:space-y-0 md:gap-8 grid md:grid-cols-2">
-                    <FormField
-                        control={form.control}
-                        name="hobby"
-                        render={({ field }) => (
-                            <FormItem ref={parent}>
-                                <FormLabel>What is your hobby?</FormLabel>
-                                <FormControl>
-                                    <Textarea placeholder="Your hobby" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                        <FormField
+                            control={form.control}
+                            name="hobby"
+                            render={({ field }) => (
+                                <FormItem ref={parent}>
+                                    <FormLabel>What is your hobby?</FormLabel>
+                                    <FormControl>
+                                        <Textarea placeholder="Your hobby" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                     
+
                         <FormField
                             control={form.control}
                             name="other_communities"
@@ -396,8 +396,8 @@ export function JoinForm() {
                 status={modalStatus}
                 title={modalStatus === 'success' ? 'Registration Successful' : 'Registration Error'}
                 description={modalStatus === 'success'
-                    ? 'Thank you for registering. We will review your application and get back to you soon. Join our WhatsApp community to stay updated on internship opportunities!'
-                    : 'There was an error submitting your registration. Please try again later.'}
+                    ? 'Thank you for your interest in registering our community as an intern! We’ll review your application and contact you soon. Join our Hiring WhatsApp group for updates!'
+                    : 'Error submitting your registration. Please try again.'}
                 formType="interns_hiring"
             />
 

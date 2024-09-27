@@ -1,20 +1,35 @@
-import React from 'react'
-import { inFront } from "@/assets/images/Us";
+import React, { useState } from 'react'
+import { inFront, BootCamp, Image3, Image4, Image5, Image6, Image7 } from "@/assets/images/Us";
 function Content() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const images = [
+        inFront,
+        Image3, 
+        Image7, 
+        Image6,
+        BootCamp,
+        Image4, 
+        Image5,
+
+    ];
+    const handleImageChange = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length); // Loop through the images
+    };
+
     return (
         <div className='flex flex-col lg:flex-row justify-between w-limit gap-6 lg:gap-0'>
             <div className='my-6 lg:my-0 lg:w-1/2 flex items-center justify-center mx-auto'>
                 <div className="relative  h-[300px] w-[300px] flex items-center justify-center">
-                    <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-white overflow-hidden" >
+                    <div className="bg-orange-500 rotate-6 rounded-xl absolute z-10  w-[300px] h-[300px] border-2 border-white overflow-hidden cursor-pointer" onClick={handleImageChange}>
                         <img
-                            src={inFront}
+                            src={images[currentIndex]}
                             alt=""
                             className="absolute inset-0 object-cover w-full h-full "
                         />
                     </div>
                     <div className="bg-slate-400 rounded-xl absolute w-[300px] h-[300px] border-2 border-white overflow-hidden" >
                         <img
-                            src={`https://picsum.photos/600/350?v=5`}
+                            src={images[currentIndex + 1]}
                             alt=""
                             className="absolute inset-0 object-cover w-full h-full "
                         />
