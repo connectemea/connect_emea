@@ -11,7 +11,7 @@ function About() {
     {
       title: "Involve",
       content:
-        "µLearn is a place for everyone. A place where one could involve and evolve the most. Be a part of our intriguing events like Inspiration Radio, Lets Chill and make the most out of it.",
+        "Connect is a place for everyone. A place where one could involve and evolve the most. Be a part of our intriguing events like Untold Stories , Lets Chill and make the most out of it.",
       icon: <Users className="text-orange-500 w-10 h-10 mb-4 mx-auto" />,
     },
     {
