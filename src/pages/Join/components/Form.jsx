@@ -304,8 +304,8 @@ export function JoinForm() {
 
                         {isOtherRole && (
                             <>
-                                <div className="hidden md:block w-full h-[1px]">
-                                </div>
+                                {/* <div className="hidden md:block w-full h-[1px]">
+                                </div> */}
                                 <FormField
                                     control={form.control}
                                     name="custom_role"
