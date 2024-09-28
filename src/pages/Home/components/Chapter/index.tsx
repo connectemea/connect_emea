@@ -1,3 +1,5 @@
+import { EventsBG, PlacementBG, MembersBG } from "@/assets/avatars";
+
 function Chapter() {
   return (
     <section className="flex flex-col gap-4 p-4 my-10">
@@ -9,7 +11,9 @@ function Chapter() {
         <div className="">
           <ul className="space-y-4 list-disc list-inside px-4 ">
             <li className="">
-              <strong className="font-semibold text-xl md:text-2xl">Work on Real Projects:</strong>
+              <strong className="font-semibold text-xl md:text-2xl">
+                Work on Real Projects:
+              </strong>
               <span className="ml-5 block text-md md:text-lg">
                 Get hands-on experience with collaborative projects that solve
                 real-world problems. Perfect for rebels who want to make an
@@ -17,7 +21,9 @@ function Chapter() {
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl md:text-2xl">Free Skill Development:</strong>
+              <strong className="font-semibold text-xl md:text-2xl">
+                Free Skill Development:
+              </strong>
               <span className="ml-5 block text-md md:text-lg">
                 Access a wide range of resources to build new skills across
                 different fields—completely free. Because your passion shouldn't
@@ -25,14 +31,18 @@ function Chapter() {
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl md:text-2xl">Network with Peers:</strong>{" "}
+              <strong className="font-semibold text-xl md:text-2xl">
+                Network with Peers:
+              </strong>{" "}
               <span className="ml-5 block text-md md:text-lg">
                 Connect with supportive, like-minded friends who share your
                 drive and ambition. Build a community that fuels your passion.
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl md:text-2xl">Free Mentorship:</strong>
+              <strong className="font-semibold text-xl md:text-2xl">
+                Free Mentorship:
+              </strong>
               <span className="ml-5 block text-md md:text-lg">
                 {" "}
                 Learn directly from industry pros who’ve been where you want to
@@ -40,7 +50,9 @@ function Chapter() {
               </span>
             </li>
             <li>
-              <strong className="font-semibold text-xl md:text-2xl">Leadership Opportunities:</strong>
+              <strong className="font-semibold text-xl md:text-2xl">
+                Leadership Opportunities:
+              </strong>
               <span className="ml-5 block text-md md:text-lg">
                 {" "}
                 Step up and take on leadership roles to sharpen your management
@@ -55,7 +67,7 @@ function Chapter() {
           <div className="flex relative items-end gap-6 md:-mt-20 mb-24 md:mb-0">
             <div className="min-h-64 w-40 bg-gray-400 border border-black rounded-full flex items-center justify-center overflow-hidden relative">
               <img
-                src={`https://picsum.photos/600/350?v=10`}
+                src={MembersBG}
                 alt=""
                 className="absolute inset-0 object-cover w-full h-full"
               />
@@ -67,7 +79,7 @@ function Chapter() {
             </div>
             <div className="min-h-52 w-36 bg-gray-400 border border-black rounded-full flex items-center justify-center overflow-hidden relative">
               <img
-                src={`https://picsum.photos/600/350?v=2`}
+                src={EventsBG}
                 alt=""
                 className="absolute inset-0 object-cover w-full h-full"
               />
@@ -79,7 +91,7 @@ function Chapter() {
             </div>
             <div className="min-h-52 w-36 bg-gray-400 border border-black rounded-full flex items-center justify-center absolute -bottom-32 left-24 overflow-hidden">
               <img
-                src={`https://picsum.photos/600/350?v=3`}
+                src={PlacementBG}
                 alt=""
                 className="absolute inset-0 object-cover w-full h-full"
               />
