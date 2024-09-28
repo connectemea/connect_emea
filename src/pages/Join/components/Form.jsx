@@ -33,6 +33,7 @@ const formSchema = z.object({
     Name: z.string().min(1, 'Name is required'),
     Phone_number: z.string().length(10, 'Phone number must be 10 digits'),
     department: z.string().min(1, 'Department is required'),
+    year: z.string().nonempty('Please select your year'),
     email: z.string().email('Invalid email format'),
     Admission_No: z.string().min(1, 'Admission number is required'),
     preferred_role: z.string().min(1, 'Preferred role is required'),
@@ -76,6 +77,7 @@ export function JoinForm() {
             Name: "",
             Admission_No: "",
             department: "",
+            year: "",
             Phone_number: "",
             email: "",
             how_did_you_hear: "",
@@ -230,6 +232,36 @@ export function JoinForm() {
                                     <FormLabel>Phone number</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Your whatsapp number" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="year"
+                            render={({ field }) => (
+                                <FormItem ref={parent}>
+                                    <FormLabel>Your Year</FormLabel>
+                                    <FormControl>
+                                        <Select
+                                            onValueChange={(value) => {
+                                                field.onChange(value);
+                                            }}
+                                            value={field.value}
+                                        >
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select your year" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    <SelectLabel>Year</SelectLabel>
+                                                    <SelectItem value="First">First</SelectItem>
+                                                    <SelectItem value="Second">Second</SelectItem>
+                                                    <SelectItem value="Third">Third</SelectItem>
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -397,7 +429,7 @@ export function JoinForm() {
                 title={modalStatus === 'success' ? 'Registration Successful' : 'Registration Error'}
                 description={modalStatus === 'success'
                     ? 'Thank you for your interest in registering our community as an intern! We’ll review your application and contact you soon. Join our Hiring WhatsApp group for updates!'
-                    : 'Error submitting your registration. Please try again.'}
+                    : 'Error submitting your registration. Please try again. If the problem persists, contact us at 8113860921.'}
                 formType="interns_hiring"
             />
 
