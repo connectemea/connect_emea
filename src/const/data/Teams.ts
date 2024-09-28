@@ -128,7 +128,7 @@ const InternsData: Intern[] = [
     {
         id: 6,
         name: 'Shifna Shirin',
-        role: roles[5],
+        role: roles[4],
         position: positions[6],
         image: Shifna,
         social: {
@@ -253,7 +253,7 @@ const InternsData: Intern[] = [
     {
         id: 13,
         name: 'Maryam Hanana',
-        role: roles[5],
+        role: roles[4],
         position: positions[1],
         image: Hanana,
         social: {
