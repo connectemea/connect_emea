@@ -41,6 +41,18 @@ function SingleEvent() {
                             <div className='sm:w-1/2 mx-auto p-2 text-center sm:text-left'>
                                 <h2 className='font-semibold text-2xl'>{event.title}</h2>
                                 <p>{event.big_description}</p>
+                                {event.link && (
+                                    <div className='my-4 flex items-center justify-center'>
+                                        <a
+                                            href={event.link}
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            className='rounded-md px-10 py-1.5 bg-orange-500 text-white font-semibold'
+                                        >
+                                           Join
+                                        </a>
+                                    </div>
+                                )}
                             </div>
                             <div className='sm:w-1/2 mx-auto my-4 sm:my-0'>
                                 <div className='bg-slate-300 w-80 h-80 rounded-lg mx-auto relative overflow-hidden'>

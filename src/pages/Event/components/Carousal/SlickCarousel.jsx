@@ -8,12 +8,13 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 function SampleNextArrow(props) {
     const { className, style, onClick, color } = props;
     const isDisabled = className && className.includes("slick-disabled");
+    console.log('color:', color);
     return (
         <div
-            className={classNames(className, `rounded-xl flex items-center justify-center text-${color}  absolute left-[20px] top-[310px] sm:top-[330px] z-10 custom-arrow`,
+            className={classNames(className, `rounded-xl flex items-center justify-center   absolute left-[20px] top-[310px] sm:top-[330px] z-10 custom-arrow `,
                 {
                     '!text-gray-500': isDisabled,
-                    [`!text-${color}`]: !isDisabled
+                    [`${color === 'black' ? '!text-black': '!text-white'}`]: !isDisabled
                 })}
             style={{
                 ...style,
@@ -34,10 +35,10 @@ function SamplePrevArrow(props) {
     const isDisabled = className && className.includes("slick-disabled");
     return (
         <div
-            className={classNames(className, `rounded-xl flex items-center justify-center text-${color}  absolute left-[-10px] top-[310px] sm:top-[330px] z-10 custom-arrow `,
+            className={classNames(className, `rounded-xl flex items-center justify-center  absolute left-[-10px] top-[310px] sm:top-[330px] z-10 custom-arrow  `,
                 {
                     '!text-gray-500': isDisabled,
-                    [`text-${color}`]: !isDisabled
+                    [`${color === 'black' ? '!text-black': '!text-white'}`]: !isDisabled
                 }
             )}
             style={{
