@@ -36,6 +36,15 @@ const Event = () => {
 
   // Select the latest 5 past events
   const RecentEvents = PastEvents.slice(0, 5);
+  
+  const neededEventsCount = 4 - UpcomingEvents.length;
+  // Check if there is only one upcoming event
+  if (neededEventsCount > 0 && RecentEvents.length > 0) {
+    // Add the most recent past events to UpcomingEvents until we have 4
+    for (let i = 0; i < neededEventsCount && i < RecentEvents.length; i++) {
+      UpcomingEvents.push(RecentEvents[i]);
+    }
+  }
 
   // Debugging logs
   console.log('Upcoming Events:', UpcomingEvents);

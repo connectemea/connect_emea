@@ -9,7 +9,7 @@ export { default as ResumeBuilding } from "./Resume_building.png";
 // Shehike
 export { default as Shehike01 } from "./sheHike01.jpeg";
 export { default as Shehike02 } from "./Shehike.png";
-
+export { default as OpenMic01 } from "./open_mic_01.jpeg";
 // bootcamp
 export { default as BootCamp2022 } from "./BootCamp2022.jpeg";
 export { default as BootCamp2023 } from "./BootCamp2023.jpeg";

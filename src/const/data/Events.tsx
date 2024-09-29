@@ -26,6 +26,7 @@ import {
   Reconnect,
   InternHiring,
   Intern_hiring05,
+  OpenMic01
 } from "@/assets/images/Events";
 
 const Events: Event[] = [
@@ -1045,7 +1046,7 @@ const Events: Event[] = [
     location: "Google Meet",
     description:
       "🌟 Calling all incredible women eager to share, connect, and inspire! 🌟\n\nTinkerHub invites you to **Open Mic** — a vibrant platform dedicated to celebrating women in tech and beyond. This weekly discussion series is designed for everyone, from beginners to seasoned professionals, to share their ideas, experiences, and stories in a supportive and uplifting environment.",
-    image: LevelUp01,
+    image: OpenMic01,
     link: "",
     big_description:
       "Join us for Open Mic, where we provide a welcoming space to express your thoughts and connect with like-minded women. Each session encourages open dialogue about the challenges and triumphs in our journeys through tech and other fields. Let's empower each other, share insights, and foster a community where every voice matters.",
