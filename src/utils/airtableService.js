@@ -4,7 +4,7 @@ const apiKey = import.meta.env.VITE_AIRTABLE_API_KEY;
 
 export const fetchRecords = async (tableName, filterParams, sortField, sortDirection, maxRecords) => {
     try {
-        const url = new URL(`${airtableApiUrl}/${tableName}`);
+        const url = new URL(`${airtableApiUrl_hiring}/${tableName}`);
 
         url.searchParams.append('filterByFormula', filterParams);
         url.searchParams.append('sort[0][field]', sortField);

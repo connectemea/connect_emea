@@ -61,6 +61,7 @@ const communities = [
     "NCC",
     "Union",
     "Other",
+    "None",
 ];
 
 export function JoinForm() {
