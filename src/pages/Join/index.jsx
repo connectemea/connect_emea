@@ -18,7 +18,7 @@ function Join() {
           className='w-full h-auto rounded-lg object-cover'
         />
         <div className='absolute top-0 left-0 bg-black bg-opacity-50 w-full h-full flex items-end justify-end rounded-md'>
-          <p className='text-white text-center text-md sm:text-xl p-4 '>
+          <p className='text-white text-center text-sm sm:text-xl p-2 sm:p-4 shadow'>
             The Connect intern hiring registration form is officially closed! ‼️ <br />
             All the registered candidates will be informed of further procedures, so stay tuned...👀 <br />
             Thank you for all the amazing responses. 🥰

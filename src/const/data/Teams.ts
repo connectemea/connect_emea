@@ -35,7 +35,7 @@ const roles: { [key: number]: string } = {
 };
 
 const positions: { [key: number]: string } = {
-    0: 'Co-creator',
+    0: '',
     1: 'Intern',
     2: 'CTO & TinkerHub Lead',
     3: 'COO',
@@ -144,9 +144,9 @@ const InternsData: Intern[] = [
         position: positions[2],
         image: Shamil,
         social: {
-            linkedin: 'https://www.linkedin.com/in/shamil-kp-65878227a',
+            linkedin: 'https://www.linkedin.com/in/muhammed-shamil-65878227a/',
             github: 'https://github.com/muhammedshamil8',
-            instagram: ''
+            instagram: 'https://zamil.me/'
         },
     },
     {
