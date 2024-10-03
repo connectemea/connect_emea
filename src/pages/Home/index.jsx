@@ -13,8 +13,8 @@ const Home = () => {
   return (
     <div className='w-limit bg-white'>
       <Welcome />
-      <WtConnect />
       <EventSection />
+      <WtConnect />
       <WhyWe />
       {/* <Testimonials /> */}
       <Chapter />

@@ -7,8 +7,8 @@ function Chapter() {
         Why you should join{" "}
         <span className="text-orange-500 block">Connect</span>
       </h1>
-      <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-20 md:gap-10 mx-auto">
-        <div className="">
+      <div className="flex flex-col-reverse md:grid md:grid-cols-3 gap-20 md:gap-10 mx-auto ">
+        <div className="col-span-2">
           <ul className="space-y-4 list-disc list-inside px-4 ">
             <li className="">
               <strong className="font-semibold text-xl md:text-2xl">
