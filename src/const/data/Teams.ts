@@ -24,8 +24,8 @@ import {
 } from '@/assets/images/interns'
 
 const roles: { [key: number]: string } = {
-    0: 'Community enthusiast',
-    1: 'Community enthusiast',
+    0: 'Co-founder',
+    1: 'Co-founder',
     2: 'Graphic Designer',
     3: 'Developer',
     4: 'Community Manager',
@@ -38,7 +38,7 @@ const positions: { [key: number]: string } = {
     0: 'Co-creator',
     1: 'Intern',
     2: 'CTO & TinkerHub Lead',
-    3: 'CEO',
+    3: 'COO',
     4: 'CMO',
     5: 'Convener',
     6: 'SheHike Lead',
@@ -102,8 +102,32 @@ const FoundersData: Intern[] = [
 
 const InternsData: Intern[] = [
     {
+        id: 4,
+        name: 'Sibna shirin',
+        role: roles[5],
+        position: positions[5],
+        image: Sibna,
+        social: {
+            linkedin: 'http://www.linkedin.com/in/sibna-sherin',
+            github: 'https://github.com/Sibna-sherin',
+            instagram: 'https://www.instagram.com/_sibna_?igsh=Mjk1OWVkandmOGY4'
+        },
+    },
+    {
+        id: 5,
+        name: 'Muhammed Rashid',
+        role: roles[4],
+        position: positions[3],
+        image: Rashid,
+        social: {
+            linkedin: 'https://www.linkedin.com/in/muhammed-rashid-1044a8221/',
+            github: 'https://github.com/Muhammed-Rashid-07',
+            instagram: ''
+        },
+    },
+    {
         id: 1,
-        name: 'Saleel',
+        name: 'Muhammed Saleel',
         role: roles[2],
         position: positions[4],
         image: Saleel,
@@ -137,32 +161,18 @@ const InternsData: Intern[] = [
             instagram: 'https://www.instagram.com/shifnafasil?igsh=bTVhZnB6Z2d1YjZt&utm_source=qr'
         },
     },
-   
     {
-        id: 4,
-        name: 'Sibna shirin',
-        role: roles[5],
-        position: positions[5],
-        image: Sibna,
+        id: 11,
+        name: 'Dayyan Ali',
+        role: roles[2],
+        position: positions[7],
+        image: Dayyan,
         social: {
-            linkedin: 'http://www.linkedin.com/in/sibna-sherin',
-            github: 'https://github.com/Sibna-sherin',
-            instagram: 'https://www.instagram.com/_sibna_?igsh=Mjk1OWVkandmOGY4'
+            linkedin: 'https://www.linkedin.com/in/dayyan-ali',
+            github: 'https://github.com/Dayyan404',
+            instagram: 'https://www.instagram.com/dayyan._ali?igsh=MXdvbmw2OHFkNjhmdw=='
         },
     },
-    {
-        id: 5,
-        name: 'Muhammed Rashid',
-        role: roles[4],
-        position: positions[3],
-        image: Rashid,
-        social: {
-            linkedin: 'https://www.linkedin.com/in/muhammed-rashid-1044a8221/',
-            github: 'https://github.com/Muhammed-Rashid-07',
-            instagram: ''
-        },
-    },
-    
     {
         id: 3,
         name: 'Fabin',
@@ -175,7 +185,6 @@ const InternsData: Intern[] = [
             instagram: 'https://www.instagram.com/abufabin?igsh=Z3diaGhrdWlqZWRv'
         },
     },
-  
     {
         id: 12,
         name: 'Muhammed Sunain',
@@ -224,18 +233,7 @@ const InternsData: Intern[] = [
             instagram: 'https://www.instagram.com/_ra_fee?igsh=MWppaDYza2N2NXQwYg=='
         },
     },
-    {
-        id: 11,
-        name: 'Dayyan Ali',
-        role: roles[2],
-        position: positions[7],
-        image: Dayyan,
-        social: {
-            linkedin: 'https://www.linkedin.com/in/dayyan-ali',
-            github: 'https://github.com/Dayyan404',
-            instagram: 'https://www.instagram.com/dayyan._ali?igsh=MXdvbmw2OHFkNjhmdw=='
-        },
-    },
+   
 
     {
         id: 8,

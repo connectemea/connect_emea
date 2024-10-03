@@ -15,12 +15,12 @@ function Welcome() {
         <section className='text-center flex flex-col gap-4 my-4'>
             <div className='text-center flex flex-col max-w-[600px] mx-auto'>
                 <h1 className='text-[22px] sm:text-[34px] font-bold uppercase'>
-                    WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; <span className='text-orange-500'>peers</span>,&nbsp;
+                    WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; <span className='text-orange-500'>peers</span>&nbsp;
                     <br /><span className='text-orange-500'>purpose</span>&nbsp;and&nbsp;<span className='text-orange-500'>passion</span>&nbsp;
                 </h1>
-                <p className='text-lg sm:text-xl font-semibold highlighted-text '>
+                <p className='text-lg sm:text-xl font-semibold highlighted-text'>
                     For Students,
-                    by Students
+                    By Students
                 </p>
             </div>
             <div>
