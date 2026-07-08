@@ -1,88 +1,92 @@
 "use client"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { motion, AnimatePresence } from "framer-motion"
-
-const Gallery = () => {
-    return (
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 bg-gray-100 rounded-lg ">
-            {[...Array(6)].map((_, index) => (
-                <div
-                    key={index}
-                    className="bg-gray-200 h-32 rounded-lg w-[200px] mx-auto flex items-center justify-center"
-                >
-                    <span className="text-gray-500 px-4">Image {index + 1}</span>
-                </div>
-            ))}
-        </div>
-    )
-}
+import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { motion, AnimatePresence } from "framer-motion";
+import { Target, Sparkles } from "lucide-react";
 
 const Highlights = ({ data }) => {
     return (
-        <div>
-            <h2 className="text-xl font-semibold mb-4">Highlights</h2>
-            {data}
+        <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-2 text-orange-600">
+                <Sparkles className="w-5 h-5 shrink-0" />
+                <h3 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900">Event Highlights</h3>
+            </div>
+            <div className="text-zinc-600 text-sm sm:text-base leading-relaxed font-light highlights-container">
+                {data}
+            </div>
         </div>
-    )
-}
+    );
+};
 
 const Objectives = ({ data }) => {
     return (
-        <div >
-            <h2 className="text-xl font-semibold mb-4">Objectives</h2>
-            {data}
+        <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-2 text-orange-600">
+                <Target className="w-5 h-5 shrink-0" />
+                <h3 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900">Objectives</h3>
+            </div>
+            <p className="text-zinc-600 text-sm sm:text-base leading-relaxed font-light">
+                {data}
+            </p>
         </div>
-    )
-}
+    );
+};
 
 const MotionWrapper = ({ children, tab }) => {
     return (
         <AnimatePresence mode="wait">
             <motion.div
                 key={tab}
-                initial={{ y: 10, opacity: 0 }}
+                initial={{ y: 12, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.25 }}
+                exit={{ y: -12, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="w-full"
             >
                 {children}
             </motion.div>
         </AnimatePresence>
-    )
-}
+    );
+};
 
 const Tab = ({ about }) => {
+    if (!about) return null;
+
     return (
-        <div className="p-4 bg-white w-full">
-            <Tabs defaultValue="objectives" className="p-2 w-full">
-                <TabsList className="max-w-[400px]">
-                    <TabsTrigger value="objectives" className="text-black">Objectives</TabsTrigger>
-                    <TabsTrigger value="highlights" className="text-black">Highlights</TabsTrigger>
-                    {/* <TabsTrigger value="gallery" className="text-black">Gallery</TabsTrigger> */}
+        <div className="w-full bg-white border border-zinc-200/80 rounded-3xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.015)]">
+            <Tabs defaultValue="objectives" className="w-full space-y-6">
+                <TabsList className="bg-zinc-100 border border-zinc-200/50 rounded-2xl p-1 inline-flex gap-1 h-auto">
+                    <TabsTrigger 
+                        value="objectives" 
+                        className="text-zinc-500 font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-transparent data-[state=active]:bg-orange-500 data-[state=active]:text-white data-[state=active]:border-orange-500/10 data-[state=active]:no-underline transition-all duration-200 cursor-pointer"
+                    >
+                        Objectives
+                    </TabsTrigger>
+                    <TabsTrigger 
+                        value="highlights" 
+                        className="text-zinc-500 font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-transparent data-[state=active]:bg-orange-500 data-[state=active]:text-white data-[state=active]:border-orange-500/10 data-[state=active]:no-underline transition-all duration-200 cursor-pointer"
+                    >
+                        Highlights
+                    </TabsTrigger>
                 </TabsList>
-                <div className="p-4 bg-gray-50 rounded-lg shadow-md overflow-auto h-[300px]">
-                    <TabsContent value="objectives">
+                
+                <div className="p-2 overflow-auto min-h-[180px]">
+                    <TabsContent value="objectives" className="mt-0 focus-visible:ring-0">
                         <MotionWrapper tab="objectives">
                             <Objectives data={about.objectives} />
                         </MotionWrapper>
                     </TabsContent>
 
-                    <TabsContent value="highlights">
+                    <TabsContent value="highlights" className="mt-0 focus-visible:ring-0">
                         <MotionWrapper tab="highlights">
                             <Highlights data={about.highlights} />
                         </MotionWrapper>
                     </TabsContent>
-                    {/* <TabsContent value="gallery">
-          <MotionWrapper tab="gallery">
-            <Gallery />
-          </MotionWrapper>
-        </TabsContent> */}
                 </div>
             </Tabs>
         </div>
-    )
-}
+    );
+};
 
-export default Tab
+export default Tab;

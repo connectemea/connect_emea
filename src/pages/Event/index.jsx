@@ -1,274 +1,396 @@
-import Events from "@/const/data/Events";
-import { Normal } from "./components/EventCard";
-import EmblaCarousel from "./components/Carousal/EmblaCarousel";
-import EmblaCarousel2 from "./components/Carousal/EmblaCarousel2";
+import React, { useState, useMemo } from "react";
+import Events from "@/const/data/Events.tsx";
 import NormalCard from "./components/EventCard/Normal";
-import SlickCarousel from "./components/Carousal/SlickCarousel";
+import SpecialCard from "./components/EventCard/Special";
 import SimpleGrid from "./components/Carousal/SimpleGrid";
+import SlickCarousel from "./components/Carousal/SlickCarousel";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ChevronsRight } from "lucide-react";
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '@/config/firebase';
+import { Search, Calendar, MapPin, X, ArrowRight, ExternalLink, SlidersHorizontal, Layers } from "lucide-react";
+import { parseDate, getEventCategory } from "./components/eventUtils";
 
-const OPTIONS = { loop: false, align: "start" };
+const EVENTS_PER_PAGE = 12;
 
-// Animation presets
-const sectionVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
-  },
-};
+function Event() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedStatus, setSelectedStatus] = useState("All"); // All, Upcoming, Past
+  const [visibleCount, setVisibleCount] = useState(EVENTS_PER_PAGE);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-const gridItemVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  show: (i) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.4, ease: "easeOut", delay: i * 0.05 },
-  }),
-};
+  // Normalize dates and filter events
+  const processedEvents = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-const Event = () => {
-  const [selected, setSelected] = useState(null);
-  const currentDate = new Date();
-  const navigate = useNavigate();
-  // const [Events, setEvents] = useState([]);
-  // const [loading, setLoading] = useState(false);
+    return Events.map((event) => {
+      const parsedDate = parseDate(event.date);
+      const isUpcoming = parsedDate >= today;
+      const categoryInfo = getEventCategory(event);
+      return {
+        ...event,
+        parsedDate,
+        isUpcoming,
+        categoryName: categoryInfo.name,
+        categoryBg: categoryInfo.bg,
+      };
+    }).sort((a, b) => b.parsedDate.getTime() - a.parsedDate.getTime()); // Sort newest first
+  }, []);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // Filter logic
+  const filteredEvents = useMemo(() => {
+    return processedEvents.filter((event) => {
+      const matchesSearch =
+        event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (event.location && event.location.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  // Sort events (latest first)
-  const sortedEvents = Events.sort((a, b) => {
-    const [dayA, monthA, yearA] = a.date.split("/").map(Number);
-    const [dayB, monthB, yearB] = b.date.split("/").map(Number);
-    return new Date(yearB, monthB - 1, dayB) - new Date(yearA, monthA - 1, dayA);
-  });
+      const matchesCategory =
+        selectedCategory === "All" || event.categoryName === selectedCategory;
 
-  // Upcoming Events = today or future
-  const UpcomingEvents = sortedEvents.filter((e) => {
-    const [d, m, y] = e.date.split("/").map(Number);
-    const eventDate = new Date(y, m - 1, d);
-    eventDate.setHours(0, 0, 0, 0); // normalize event date
-    return eventDate >= today;
-  });
+      const matchesStatus =
+        selectedStatus === "All" ||
+        (selectedStatus === "Upcoming" && event.isUpcoming) ||
+        (selectedStatus === "Past" && !event.isUpcoming);
 
-  // 3. Past Events = strictly before today
-  let PastEvents = sortedEvents.filter((e) => {
-    const [d, m, y] = e.date.split("/").map(Number);
-    return new Date(y, m - 1, d) < currentDate;
-  });
+      return matchesSearch && matchesCategory && matchesStatus;
+    });
+  }, [processedEvents, searchQuery, selectedCategory, selectedStatus]);
 
-  // 4. Recent Events = latest 4 past events
-  const RecentEvents = PastEvents.slice(0, 4);
+  // Spotlight Event: Next upcoming event, or most recent past event if none are upcoming
+  const spotlightEvent = useMemo(() => {
+    const upcoming = processedEvents
+      .filter((e) => e.isUpcoming)
+      .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime()); // nearest upcoming
 
-  // 5. Balance Past Events (excluding recent ones)
-  const OtherPastEvents = PastEvents.slice(4);
+    if (upcoming.length > 0) return upcoming[0];
 
+    const past = processedEvents.filter((e) => !e.isUpcoming);
+    return past.length > 0 ? past[0] : null; // latest past event
+  }, [processedEvents]);
 
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
+  // Get dynamic counts for categories
+  const categoryCounts = useMemo(() => {
+    const counts = { All: processedEvents.length };
+    processedEvents.forEach((event) => {
+      counts[event.categoryName] = (counts[event.categoryName] || 0) + 1;
+    });
+    return counts;
+  }, [processedEvents]);
 
-  // // Fetch events from Firebase
-  // const fetchEvents = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const querySnapshot = await getDocs(collection(db, "events"));
-  //     const eventsData = [];
-  //     querySnapshot.forEach((doc) => {
-  //       eventsData.push({ id: doc.id, ...doc.data() });
-  //     });
-  //     // Sort events by date (newest first)
-  //     eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-  //     setEvents(eventsData);
-  //     console.log(eventsData)
-  //   } catch (error) {
-  //     console.error("Error fetching events: ", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + EVENTS_PER_PAGE);
+  };
 
-  const handleClickAction = (id) => {
-    navigate('/event/' + id);
-  }
+  const handleOpenModal = (event) => {
+    setSelectedEvent(event);
+  };
 
-  const isMobile = window.innerWidth < 768;
+  const handleCloseModal = () => {
+    setSelectedEvent(null);
+  };
+
+  const categories = ["All", "Workshop", "Talk / Panel", "Hackathon / Tech", "Career / Hiring", "Community"];
 
   return (
-    <div>
+    <div className="min-h-screen bg-zinc-50/50 text-zinc-900 pb-16 relative overflow-hidden">
+      {/* Background Graphic Patterns & Accent Glows */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 left-10 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Upcoming Events */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: isMobile ? 0.05 : 0.2 }}
-        className="bg-black text-white w-full overflow-hidden"
-      >
-        <div className="w-limit w-full flex gap-4 p-4 min-h-60">
-          <div className="flex flex-col items-start font-bold py-6 pt-8">
-            <h2 className="text-[12px] md:text-[20px]">Upcoming</h2>
-            <h1 className="text-[18px] md:text-[36px]">Events</h1>
+      {/* Hero Header Section */}
+      <div className="relative bg-gradient-to-b from-orange-50/40 via-white to-transparent py-16 border-b border-zinc-100">
+        <div className="w-limit px-4 text-center space-y-6">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-100 text-xs font-bold text-orange-600">
+            <Layers className="w-3.5 h-3.5" />
+            Connect EMEA Hub
           </div>
-
-          {UpcomingEvents.length !== 0 ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="max-w-full overflow-hidden py-4"
-            >
-              {UpcomingEvents.length > 3 ? (
-                <SlickCarousel slides={UpcomingEvents} color="white" />
-              ) : (
-                <SimpleGrid slides={UpcomingEvents} color="white" />
-              )}
-            </motion.div>
-          ) : (
-            <div className="flex justify-center items-center my-10 w-full">
-              <h1 className="text-2xl font-bold">No upcoming events</h1>
-            </div>
-          )}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none text-zinc-950">
+            Our{" "}
+            <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
+              Events
+            </span>
+          </h1>
+          <p className="text-zinc-650 text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
+            Explore workshops, tech hackathons, and interactive panel talks engineered to bridge the gap between academic theories and tech careers.
+          </p>
         </div>
-      </motion.section>
+      </div>
 
-      {/* Recent Events */}
-      {RecentEvents.length !== 0 && (
-        <motion.section
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: isMobile ? 0.05 : 0.2 }}
-          className="flex p-4 gap-4 w-limit overflow-hidden bg-white"
-        >
-          <div className="flex flex-col items-start font-bold py-6">
-            <h2 className="text-[12px] md:text-[20px]">Recent</h2>
-            <h1 className="text-[18px] md:text-[36px]">Events</h1>
-          </div>
-
+      <div className="w-limit px-4 mt-10 space-y-10 relative z-10">
+        
+        {/* Spotlight Featured Card */}
+        {spotlightEvent && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-full overflow-hidden pb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full bg-white border border-zinc-200/80 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center gap-6 sm:gap-8 shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition-all duration-300 relative overflow-hidden"
           >
-            {RecentEvents.length > 3 ? (
-              <SlickCarousel slides={RecentEvents} color="black" />
-            ) : (
-              <SimpleGrid slides={RecentEvents} color="black" />
-            )}
+            {/* Corner Spotlight Badge */}
+            <div className="absolute top-4 right-4 bg-orange-500 text-white font-extrabold text-[9px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm z-10">
+              Spotlight
+            </div>
+
+            {/* Spotlight Card Poster */}
+            <div className="w-full lg:w-2/5 aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-50 shrink-0 shadow-inner">
+              <img
+                src={spotlightEvent.image}
+                alt={spotlightEvent.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Spotlight Card Info */}
+            <div className="w-full lg:w-3/5 flex flex-col justify-between h-full space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${spotlightEvent.categoryBg}`}>
+                    {spotlightEvent.categoryName}
+                  </span>
+                  <span className="text-[9px] uppercase font-bold text-zinc-500 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded-full">
+                    {spotlightEvent.isUpcoming ? "Upcoming Event" : "Concluded Event"}
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 leading-tight">
+                  {spotlightEvent.title}
+                </h2>
+                <p className="text-zinc-650 text-xs sm:text-sm font-light leading-relaxed line-clamp-3">
+                  {spotlightEvent.big_description || spotlightEvent.description}
+                </p>
+              </div>
+
+              {/* Metadata Info Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-3 border-y border-zinc-100">
+                <div className="flex items-center gap-2 text-xs text-zinc-600 font-semibold">
+                  <Calendar className="w-4 h-4 text-orange-500 shrink-0" />
+                  <span>{spotlightEvent.date} {spotlightEvent.time && `at ${spotlightEvent.time}`}</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-zinc-600 truncate font-semibold">
+                  <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
+                  <span className="truncate">{spotlightEvent.location || "Online"}</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <button
+                  onClick={() => handleOpenModal(spotlightEvent)}
+                  className="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl text-xs transition-all shadow-md shadow-orange-500/10 flex items-center justify-center gap-2"
+                >
+                  Quick Details
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+                {spotlightEvent.link && (
+                  <a
+                    href={spotlightEvent.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-2.5 border border-zinc-200 hover:bg-zinc-50 text-zinc-700 font-bold rounded-2xl text-xs transition-all flex items-center justify-center gap-1.5"
+                  >
+                    Join Register
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
           </motion.div>
-        </motion.section>
-      )}
-
-
-      {/* All Events Grid */}
-
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: isMobile ? 0.05 : 0.1 }}
-        className="flex flex-col md:flex-row p-1 md:p-4 gap-4 w-limit overflow-hidden"
-      >
-        <div className="flex md:flex-col flex-row gap-2 items-center justify-center md:justify-start md:items-start font-bold py-6">
-          <h2 className="text-[36px] md:text-[20px]">All</h2>
-          <h1 className="text-[36px]">Events</h1>
-        </div>
-        {OtherPastEvents.length !== 0 ? (
-          <div className="flex-grow w-full mx-0 md:mx-auto pastEventsGrid grid grid-cols-2 ">
-            {OtherPastEvents.map((event, index) => (
-              <motion.div
-                key={event.id}
-                className="mx-auto w-full "
-                variants={gridItemVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: isMobile ? 0.05 : 0.2 }}
-                custom={index}
-              >
-                <NormalCard
-                  data={event}
-                  layoutId={`card-${event.id}`}
-                  onClick={() => setSelected(event)}
-                />
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="flex justify-center items-center my-10 w-full">
-            <h1 className="text-2xl font-bold">No past events</h1>
-          </div>
         )}
 
-      </motion.section>
-
-      {/* No Events */}
-      {Events.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center items-center my-10"
-        >
-          <h1 className="text-2xl font-bold">No events to show</h1>
-        </motion.div>
-      )}
-
-      {/* Expanded Event Modal */}
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            className="fixed inset-0 bg-black/60 z-40 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelected(null)}
-          >
-            <motion.div
-              layoutId={`card-${selected.id}`}
-              className="w-full max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-              transition={{ layout: { duration: 0.5, ease: "easeInOut" } }}
-            >
-              <motion.img
-                loading="lazy"
-                layoutId={`image1-${selected.id}`}
-                src={selected.image}
-                alt={selected.title}
-                className="w-full max-h-[300px] object-contain bg-black"
+        {/* Filter Controls Row */}
+        <div className="flex flex-col gap-4 bg-white border border-zinc-200/80 rounded-3xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
+          {/* Top Row: Search and Timeline Tabs */}
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            
+            {/* Search Input Container */}
+            <div className="relative w-full md:flex-grow">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 w-4 h-4" />
+              <input
+                type="text"
+                placeholder="Search events by title, topics, location..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 bg-zinc-50 border border-zinc-200/60 rounded-2xl text-xs text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-orange-500 focus:bg-white transition-all duration-200"
               />
-              <div className="p-5">
-                <p className="text-xs uppercase text-gray-500">
-                  {selected.category}
-                </p>
-                <h2 className="text-xl font-bold mb-2">{selected.title}</h2>
-                <p className="text-gray-600">{selected.description}</p>
-                <div className="flex items-center justify-between mt-4">
+            </div>
+
+            {/* Timeline Tabs */}
+            <div className="flex bg-zinc-100/85 border border-zinc-200/40 p-1 rounded-2xl shrink-0 w-full md:w-auto">
+              {["All", "Upcoming", "Past"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setSelectedStatus(tab)}
+                  className={`flex-1 md:flex-initial px-5 py-2 rounded-xl text-xs font-bold transition-all duration-250 cursor-pointer ${
+                    selectedStatus === tab
+                      ? "bg-white text-orange-600 shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-800"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Row: Category Pill Buttons */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none pt-2 border-t border-zinc-100">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-zinc-400 shrink-0 hidden sm:block mr-2" />
+            <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+              {categories.map((category) => {
+                const count = categoryCounts[category] || 0;
+                const isSelected = selectedCategory === category;
+                return (
                   <button
-                    className="px-4 py-1 bg-black text-white rounded-lg"
-                    onClick={() => setSelected(null)}
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? "bg-orange-500 text-white shadow-md shadow-orange-500/10"
+                        : "bg-zinc-50 border border-zinc-200/60 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900"
+                    }`}
                   >
-                    Close
+                    {category} <span className={`text-[10px] ml-1 opacity-70`}>({count})</span>
                   </button>
-                  <div className='flex justify-end w-full'>
-                    <button onClick={() => handleClickAction(selected.id)} className=' bg-orange-500 rounded-md px-4 py-1 uppercase flex gap-2 items-center text-[12px] justify-center font-semibold text-white transition-all ease-in-out hover:bg-orange-400 '>open<ChevronsRight className='w-4' /></button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Dynamic Section Header */}
+        <div className="flex items-center justify-between pt-2">
+          <h2 className="text-xl sm:text-2xl font-black text-zinc-950">
+            {selectedStatus} {selectedCategory === "All" ? "Events" : selectedCategory} Catalog
+          </h2>
+          <span className="text-xs text-zinc-500">
+            Showing {Math.min(filteredEvents.length, visibleCount)} of {filteredEvents.length} events
+          </span>
+        </div>
+
+        {/* Unified Event Cards Grid */}
+        {filteredEvents.length > 0 ? (
+          <div className="space-y-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {filteredEvents.slice(0, visibleCount).map((event) => (
+                <NormalCard
+                  key={event.id}
+                  data={event}
+                  onClick={() => handleOpenModal(event)}
+                  layoutId={`event-card-${event.id}`}
+                />
+              ))}
+            </div>
+
+            {/* Load More Pagination Trigger */}
+            {filteredEvents.length > visibleCount && (
+              <div className="flex justify-center pt-4">
+                <button
+                  onClick={handleLoadMore}
+                  className="px-8 py-3 bg-white border border-zinc-200/80 hover:bg-zinc-50 text-zinc-700 hover:text-orange-600 font-bold rounded-2xl text-xs transition-all shadow-[0_4px_12px_rgba(0,0,0,0.01)]"
+                >
+                  Load More Events
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-white border border-zinc-200/60 rounded-3xl space-y-4">
+            <Layers className="w-12 h-12 text-zinc-300 mx-auto" />
+            <h3 className="text-lg font-bold text-zinc-800">No Events Found</h3>
+            <p className="text-zinc-500 text-xs sm:text-sm font-light max-w-xs mx-auto leading-relaxed">
+              No matching events found for the query or filter combination. Adjust filters or search criteria and try again.
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Glassmorphic Event Preview Modal */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/40 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white border border-zinc-200 text-zinc-900 rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl relative flex flex-col md:flex-row gap-6 p-6 sm:p-8"
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleCloseModal}
+                className="absolute top-4 right-4 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-500 hover:text-zinc-800 transition-colors z-30"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              {/* Left Column: Image Poster */}
+              <div className="w-full md:w-[45%] aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-50 shrink-0">
+                <img
+                  src={selectedEvent.image}
+                  alt={selectedEvent.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Right Column: Key Details */}
+              <div className="flex-grow flex flex-col justify-between space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${selectedEvent.categoryBg}`}>
+                      {selectedEvent.categoryName}
+                    </span>
+                    <span className="text-[9px] uppercase font-bold text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded-full">
+                      {selectedEvent.isUpcoming ? "Upcoming" : "Concluded"}
+                    </span>
                   </div>
+
+                  <h3 className="text-xl sm:text-2xl font-black text-zinc-950 leading-tight">
+                    {selectedEvent.title}
+                  </h3>
+
+                  <p className="text-zinc-650 text-xs sm:text-sm font-light leading-relaxed">
+                    {selectedEvent.big_description || selectedEvent.description}
+                  </p>
+                </div>
+
+                {/* Info row */}
+                <div className="space-y-3 pt-4 border-t border-zinc-100">
+                  <div className="flex items-center gap-2.5 text-xs text-zinc-700 font-semibold">
+                    <Calendar className="w-4 h-4 text-orange-500 shrink-0" />
+                    <span>{selectedEvent.date} {selectedEvent.time && `| ${selectedEvent.time}`}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-zinc-700 font-semibold truncate">
+                    <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
+                    <span className="truncate">{selectedEvent.location || "Online"}</span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <a
+                    href={`/event/${selectedEvent.id}`}
+                    className="flex-1 px-5 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl text-xs text-center transition-all flex items-center justify-center gap-1.5 shadow-md shadow-orange-500/10"
+                  >
+                    Open Single Event Page
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                  {selectedEvent.link && (
+                    <a
+                      href={selectedEvent.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-3 border border-zinc-200 hover:bg-zinc-50 text-zinc-700 font-bold rounded-2xl text-xs text-center transition-all flex items-center justify-center gap-1.5"
+                    >
+                      Register Now
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
   );
-};
+}
 
 export default Event;
