@@ -15,6 +15,10 @@ const navLinks = [
     label: "About",
     href: "/about"
   },
+  {
+    label: "Join",
+    href: "/join"
+  }
 ];
 
 export default navLinks;

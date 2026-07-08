@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta
-      name="description"
-      content="Connect is students community in EMEA College kondotty"
-    />
-    <meta
-      name="keywords"
-      content="connect, student community, community, emea, connectemea, tinkerhubemea, tinkerhub, hackclubemea, hackclub"
-    />
-    <meta name="author" content="connectemea" />
-    <link rel="apple-touch-icon" href="/logo.svg" />
-    <link rel="manifest" href="/manifest.json" />
-    <title>connectemea</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preload" as="image" href="/src/assets/avatars/welcome.webp" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/logo.svg" />
+
+  <!-- SEO Meta Info -->
+  <title>Connect EMEA – Student Community of EMEA College Kondotty</title>
+  <meta name="description"
+    content="Connect EMEA is the official student-led community of EMEA College Kondotty. We empower students through technology, hackathons, TinkerHub, HackClub, and more." />
+  <meta name="keywords"
+    content="connect, connect emea, connectemea, emea college, student community, tinkerhubemea, hackclubemea, tinkerhub, hackclub, kondotty, emea college kondotty" />
+  <meta name="author" content="Connect EMEA" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Connect EMEA – Student Community of EMEA College Kondotty" />
+  <meta property="og:description"
+    content="Join Connect EMEA, the student-led community at EMEA College Kondotty. Explore technology, hackathons, and innovation with TinkerHub and HackClub." />
+  <meta property="og:image" content="/logo.svg" />
+  <meta property="og:url" content="https://connectemea.in" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Connect EMEA – Student Community of EMEA College Kondotty" />
+  <meta name="twitter:description"
+    content="Connect EMEA is the student-led community of EMEA College Kondotty. Learn, build, and grow with TinkerHub, HackClub, and peers." />
+  <meta name="twitter:image" content="/logo.svg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://connectemea.in" />
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

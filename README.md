@@ -1,16 +1,15 @@
 # Connect Community
 
-A platform to showcase the vision, mission, and activities of the Connect Community at EMEA College.
+## ConnectEMEA Webpage
 
-## Features
+The ConnectEMEA webpage serves as a comprehensive platform to showcase the vision, mission, and activities of the Connect Community at EMEA College. It aims to engage students, faculty, and the wider community, fostering collaboration and connection.
 
-- **About Connect Community:** Overview of mission, vision, and aims.
-- **Events:** Details on upcoming, recent, and all past events.
-- **Teams:** List of team members and their roles.
-- **Community Joy:** Features on Tinkerhub and Shehike.
-- **Social Media:** Links to community social media profiles.
+### Features
 
-## To Do
-
-- **Membership Registration:** Integration with Airtable API.
-- **Query Management:** Integration with Airtable API for handling queries.
+- **About Connect Community:** An overview of our mission, vision, and core objectives.
+- **Events:** Detailed information on upcoming, recent, and past events.
+- **Teams:** A comprehensive list of team members along with their roles and contributions.
+- **Community Highlights:** Features showcasing Tinkerhub and Shehike initiatives.
+- **Social Media Links:** Direct access to our community's social media profiles for updates and engagement.
+- **Membership Registration:** Seamless integration with Airtable API for easy membership registration.
+- **Query Management:** Efficient handling of queries through Airtable API integration.
