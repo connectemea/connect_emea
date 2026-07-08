@@ -163,7 +163,7 @@ const InternsData = [
         image: Shamil,
         email: 'shamil@example.com',
         phone: '+91-9876543211',
-        status: 'Active',
+        status: 'Alumni',
         place: 'Kerala',
         social: {
             linkedin: 'https://www.linkedin.com/in/muhammed-shamil-65878227a/',
