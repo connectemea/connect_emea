@@ -1,14 +1,15 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline.jsx";
+import { CheckCircle2 } from "lucide-react";
 
 export function TimelineDemo() {
     const data = [
         {
             title: "Welcome",
             content: (
-                <div>
-                    <p className="mb-8 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-                        New members are <span className="text-orange-500 font-semibold">welcomed</span> into our
+                <div className="text-left">
+                    <p className="mb-6 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
+                        New members are <span className="text-orange-650 font-bold">welcomed</span> into our
                         student community, guided through onboarding, and begin forming connections
                         with peers across diverse departments.
                     </p>
@@ -18,12 +19,12 @@ export function TimelineDemo() {
         {
             title: "Explore",
             content: (
-                <div>
-                    <p className="mb-8 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-                        Students <span className="text-orange-500 font-semibold">discover</span> clubs, hackathons,
+                <div className="text-left">
+                    <p className="mb-6 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
+                        Students <span className="text-orange-650 font-bold">discover</span> clubs, hackathons,
                         events, and workshops that align with their passions — from{" "}
-                        <span className="italic">technology</span> to{" "}
-                        <span className="italic">arts and entrepreneurship</span>.
+                        <span className="italic font-normal text-zinc-800">technology</span> to{" "}
+                        <span className="italic font-normal text-zinc-800">arts and entrepreneurship</span>.
                     </p>
                 </div>
             ),
@@ -31,12 +32,12 @@ export function TimelineDemo() {
         {
             title: "Build",
             content: (
-                <div>
-                    <p className="mb-8 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-                        Members <span className="text-orange-500 font-semibold">collaborate</span> on projects,
+                <div className="text-left">
+                    <p className="mb-6 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
+                        Members <span className="text-orange-650 font-bold">collaborate</span> on projects,
                         competitions, and research, strengthening both{" "}
-                        <span className="font-semibold">technical expertise</span> and{" "}
-                        <span className="font-semibold">leadership skills</span>.
+                        <span className="font-semibold text-zinc-800">technical expertise</span> and{" "}
+                        <span className="font-semibold text-zinc-800">leadership skills</span>.
                     </p>
                 </div>
             ),
@@ -44,9 +45,9 @@ export function TimelineDemo() {
         {
             title: "Learn",
             content: (
-                <div>
-                    <p className="mb-8 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-                        Through <span className="text-orange-500 font-semibold">workshops</span>, peer-to-peer
+                <div className="text-left">
+                    <p className="mb-6 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
+                        Through <span className="text-orange-650 font-bold">workshops</span>, peer-to-peer
                         sessions, and mentorship, students continuously expand their academic
                         knowledge and professional growth.
                     </p>
@@ -56,15 +57,22 @@ export function TimelineDemo() {
         {
             title: "Refine",
             content: (
-                <div>
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                <div className="text-left">
+                    <p className="mb-4 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
                         Students polish their portfolios and sharpen their skills by engaging in:
                     </p>
-                    <div className="mb-8 space-y-2 text-neutral-700 dark:text-neutral-300">
-                        <div className="flex items-center gap-2 text-sm">✅ Contributing to open-source</div>
-                        <div className="flex items-center gap-2 text-sm">✅ Presenting research papers</div>
-                        <div className="flex items-center gap-2 text-sm">✅ Attending mock interviews</div>
-                        <div className="flex items-center gap-2 text-sm">✅ Hosting community events</div>
+                    <div className="mb-6 space-y-2.5 max-w-xl">
+                        {[
+                            "Contributing to open-source",
+                            "Presenting research papers",
+                            "Attending mock interviews",
+                            "Hosting community events"
+                        ].map((text, idx) => (
+                            <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-zinc-650 font-light">
+                                <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
+                                <span>{text}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             ),
@@ -72,9 +80,9 @@ export function TimelineDemo() {
         {
             title: "Lead",
             content: (
-                <div>
-                    <p className="mb-8 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-                        Senior members step into <span className="text-orange-500 font-semibold">leadership roles</span>,
+                <div className="text-left">
+                    <p className="mb-6 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
+                        Senior members step into <span className="text-orange-650 font-bold">leadership roles</span>,
                         mentoring juniors, organizing campus-wide events, and driving initiatives
                         that shape the student community.
                     </p>
@@ -84,10 +92,10 @@ export function TimelineDemo() {
         {
             title: "Graduate",
             content: (
-                <div>
-                    <p className="mb-8 text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
+                <div className="text-left">
+                    <p className="mb-6 text-xs sm:text-sm leading-relaxed text-zinc-650 font-light max-w-xl">
                         Students graduate not only with{" "}
-                        <span className="text-orange-500 font-semibold">degrees</span>, but also with lifelong
+                        <span className="text-orange-650 font-bold">degrees</span>, but also with lifelong
                         networks, real-world experiences, and unforgettable community-driven
                         memories.
                     </p>
