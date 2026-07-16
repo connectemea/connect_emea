@@ -17,7 +17,8 @@ function EventSection() {
         const { data, error } = await supabase
           .from('events')
           .select('*')
-          .eq('status', 'published');
+          .eq('status', 'published')
+          .order('date', { ascending: false });
         if (error) throw error;
         if (data && data.length > 0) {
           const mapped = data.map(item => ({
