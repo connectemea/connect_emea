@@ -33,8 +33,51 @@ const gridItemVariants = {
   }),
 };
 
-const numberWithinRange = (number, min, max) =>
-  Math.min(Math.max(number, min), max)
+const SlideItem = ({ event, index, activeIndex, handleClick, handleClickAction }) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <motion.div
+      layoutId={`card-${event._id}`}
+      className="embla__slide2 relative overflow-hidden rounded-2xl border cursor-pointer"
+      onClick={() => handleClick(event._id, index)}
+    >
+      {!loaded && (
+        <div className="absolute top-0 left-0 w-full h-[300px] bg-gray-200 animate-pulse rounded-2xl" />
+      )}
+      <motion.img
+        layoutId={`image-${event._id}`}
+        className={classNames(
+          "embla__slide__img2 transition-opacity duration-500",
+          loaded ? "opacity-100" : "opacity-0"
+        )}
+        src={event.image}
+        alt={event.title}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+      />
+      <div className="absolute z-30 bottom-4 w-full mx-auto">
+        <div className="bg-white/70 w-[95%] rounded-xl mx-auto py-3 backdrop-blur-sm border">
+          <h1 className="text-md font-semibold text-center mb-2">
+            {event.title}
+          </h1>
+          <div className="flex justify-around">
+            <p className="text-sm">Date: {event.date}</p>
+            <p className="text-sm">Time: {event.time}</p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClickAction(event.id);
+        }}
+      >
+        <ArrowUpRight />
+      </div>
+    </motion.div>
+  );
+};
 
 const EmblaCarousel = (props) => {
   const { slides, options } = props
@@ -47,7 +90,6 @@ const EmblaCarousel = (props) => {
   const navigate = useNavigate();
   const tweenNodes = useRef([])
   const [loading, setLoading] = useState(true);
-  const [imgLoaded, setImgLoaded] = useState(false);
   //   const { selectedIndex, scrollSnaps, onDotButtonClick } =
   //     useDotButton(emblaApi)
   // console.log('slides', slides)
@@ -160,6 +202,11 @@ const EmblaCarousel = (props) => {
     setActiveIndex(emblaApi.selectedScrollSnap())
   }, [])
 
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.reInit()
+    }
+  }, [emblaApi, slides])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -183,14 +230,11 @@ const EmblaCarousel = (props) => {
 
 
   const handleClick = (id, index) => {
-    // console.log('clicked')
     if (activeIndex === index) {
       setSelected(slides.find(slide => slide._id === id));
     }
-    // navigate('/event/' + id)
   }
   const handleClickAction = (id) => {
-    // console.log('clicked')
     navigate('/event/' + id)
   }
 
@@ -200,51 +244,14 @@ const EmblaCarousel = (props) => {
         <div className="embla__container2">
 
           {slides.map((event, index) => (
-            <motion.div
+            <SlideItem
               key={event._id}
-              layoutId={`card-${event._id}`}
-              className="embla__slide2 relative overflow-hidden rounded-2xl border cursor-pointer"
-              onClick={() => handleClick(event._id, index)}
-            >
-              {/* Skeleton Loader */}
-              {!imgLoaded && (
-                <div className="absolute top-0 left-0 w-full h-[300px] bg-gray-200 animate-pulse rounded-2xl" />
-              )}
-
-              {/* Image */}
-              <motion.img
-                layoutId={`image-${event._id}`}
-                className={classNames(
-                  "embla__slide__img2 transition-opacity duration-500",
-                  imgLoaded ? "opacity-100" : "opacity-0"
-                )}
-                src={event.image}
-                alt={event.title}
-                loading="lazy"
-                onLoad={() => setImgLoaded(true)}
-              />
-
-              {/* Card content */}
-              <div className="absolute z-30 bottom-4 w-full mx-auto">
-                <div className="bg-white/70 w-[95%] rounded-xl mx-auto py-3 backdrop-blur-sm border">
-                  <h1 className="text-md font-semibold text-center mb-2">
-                    {event.title}
-                  </h1>
-                  <div className="flex justify-around">
-                    <p className="text-sm">Date: {event.date}</p>
-                    <p className="text-sm">Time: {event.time}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div
-                className="absolute top-2 right-2 z-30 cursor-pointer text-white bg-black/10 rounded-full"
-                onClick={() => handleClick(event._id)}
-              >
-                <ArrowUpRight />
-              </div>
-            </motion.div>
+              event={event}
+              index={index}
+              activeIndex={activeIndex}
+              handleClick={handleClick}
+              handleClickAction={handleClickAction}
+            />
           ))}
         </div>
       </div>
