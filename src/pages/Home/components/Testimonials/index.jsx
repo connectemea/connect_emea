@@ -31,10 +31,10 @@ function Points() {
         >
             {/* Heading */}
             <div className="flex flex-col items-center justify-center text-center space-y-2 mb-10">
-                <div className="flex items-center gap-1.5 text-orange-600">
+                {/* <div className="flex items-center gap-1.5 text-orange-600">
                     <MessageSquareQuote className="w-4 h-4" />
                     <span className="text-[10px] font-bold uppercase tracking-wider">Testimonials</span>
-                </div>
+                </div> */}
                 <motion.h1
                     className="font-black text-2xl sm:text-3xl text-zinc-950"
                     initial={{ opacity: 0, y: 15 }}

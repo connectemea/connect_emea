@@ -53,10 +53,10 @@ function About() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="text-center space-y-2 max-w-2xl mx-auto px-4"
       >
-        <div className="flex items-center gap-1.5 text-orange-600 justify-center">
+        {/* <div className="flex items-center gap-1.5 text-orange-600 justify-center">
           <Compass className="w-4 h-4" />
           <span className="text-[10px] font-bold uppercase tracking-wider">Get Involved</span>
-        </div>
+        </div> */}
         <h1 className="font-black text-2xl sm:text-3xl text-zinc-950">
           One Step Away From Joining <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">Our Community</span>
         </h1>

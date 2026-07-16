@@ -116,7 +116,7 @@ const Team = () => {
               Community Visionaries
             </h2>
           </div>
-          <div className="bg-white border border-zinc-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.01)]">
+          <div className="rounded-3xl p-6 sm:p-8 ">
             <Founders FoundersData={founders} />
           </div>
         </motion.div>
@@ -138,7 +138,7 @@ const Team = () => {
               The Engine Room
             </h2>
           </div>
-          <div className="bg-white border border-zinc-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.01)]">
+          <div className=" rounded-3xl p-6 sm:p-8 ">
             <Interns InternsData={interns} />
           </div>
         </motion.div>
@@ -160,7 +160,7 @@ const Team = () => {
             </h2>
           </div>
 
-          <div className="bg-white border border-zinc-200/80 rounded-3xl p-8 sm:p-10 shadow-[0_4px_16px_rgba(0,0,0,0.01)] max-w-2xl mx-auto">
+          <div className="rounded-3xl p-8 sm:p-10  max-w-2xl mx-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
