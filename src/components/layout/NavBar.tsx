@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import navLinks from "@/const/navLinks";
 import Logo from "@/assets/icons/connect.svg";
 import { LayoutPanelTop, X } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -15,8 +14,6 @@ import {
 function NavBar() {
   const [navOpen, setNavOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [showNav, setShowNav] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,28 +37,8 @@ function NavBar() {
     }
   };
 
-  // 🔥 Hide on scroll down, show on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setShowNav(false); // scrolling down
-      } else {
-        setShowNav(true); // scrolling up
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
   return (
-    <motion.nav
-      initial={{ y: 0 }}
-      animate={{ y: showNav ? 0 : -100 }} // slide up / down
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="p-4 bg-white/50 text-black sm:py-6 w-full z-50 fixed backdrop-blur-sm right-0 left-0"
-    >
+    <nav className="p-4 bg-white/50 text-black sm:py-6 w-full z-50 fixed backdrop-blur-sm right-0 left-0">
       <div className="w-limit flex justify-between items-center mx-auto">
         {/* Logo */}
         <div onClick={handleHome} className="cursor-pointer">
@@ -169,7 +146,7 @@ function NavBar() {
           </DialogContent>
         </Dialog>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
 
