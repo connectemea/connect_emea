@@ -1,4 +1,4 @@
-import { Lightbulb, Users, Code, Compass } from "lucide-react";
+import { Lightbulb, Users, Code } from "lucide-react";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
