@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Share2, Calendar, Clock, MapPin, ArrowLeft, ExternalLink } from "lucide-react";
-import Events from "@/const/data/Events.tsx";
+import staticEvents from "@/const/data/Events.tsx";
 import Tab from "./components/tabs";
 import { getEventCategory } from "../Event/components/eventUtils";
+import { supabase } from "@/config/supabase";
 
 const Spinner = () => {
   return (
@@ -21,14 +22,41 @@ function SingleEvent() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const eventId = Number(id);
-  const event = Events.find((e) => e.id === eventId);
+    async function loadEvent() {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('events')
+          .select('*')
+          .eq('id', id)
+          .single();
+        
+        if (data) {
+          setEvent({
+            ...data,
+            image: data.thumbnail || data.image,
+            about: {
+              objectives: data.objectives,
+              highlights: data.highlights
+            }
+          });
+        } else {
+          const staticEv = staticEvents.find(e => String(e.id) === String(id));
+          setEvent(staticEv || null);
+        }
+      } catch (err) {
+        console.error("Failed to load event from Supabase, falling back:", err);
+        const staticEv = staticEvents.find(e => String(e.id) === String(id));
+        setEvent(staticEv || null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadEvent();
+  }, [id]);
 
   // Helper to save blob as file
   const saveBlobAsFile = (blob, fileName) => {

@@ -7,13 +7,13 @@ import {
   Image6,
   Image7,
 } from "@/assets/images/Us";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
   Variants,
 } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { supabase } from "@/config/supabase";
 
 interface Point {
   title: string;
@@ -74,14 +74,33 @@ const pointVariants: Variants = {
 };
 
 const WhyWe: React.FC = () => {
+  const staticImages = [BootCamp, Image5, Image6, Image7, inFront, Image4, Image3];
+  const [images, setImages] = useState<string[]>(staticImages);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = [BootCamp, Image5, Image6, Image7, inFront, Image4, Image3];
+  useEffect(() => {
+    async function fetchGallery() {
+      try {
+        const { data, error } = await supabase
+          .from('gallery')
+          .select('url')
+          .eq('type', 'why-we-exist');
+        if (error) throw error;
+        if (data && data.length > 0) {
+          setImages(data.map(item => item.url));
+        }
+      } catch (err) {
+        console.error("Failed to load why-we-exist gallery:", err);
+      }
+    }
+    fetchGallery();
+  }, []);
 
   const handleImageChange = () => {
+    if (images.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
-  const isMobile = window.innerWidth < 768;
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
   return (
     <section className="flex flex-col gap-6 p-4 py-8 relative z-10">
       <div className="grid md:grid-cols-2 w-full gap-12 items-center">
@@ -106,10 +125,10 @@ const WhyWe: React.FC = () => {
                   alt="Connect rotating showcase"
                   className="absolute inset-0 object-cover w-full h-full"
                 />
-                <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-orange-600 flex items-center gap-1 border border-zinc-150 shadow-sm">
+                {/* <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-orange-600 flex items-center gap-1 border border-zinc-150 shadow-sm">
                   <Sparkles className="w-3 h-3 animate-pulse" />
                   Next Image
-                </div>
+                </div> */}
               </motion.div>
             </AnimatePresence>
 

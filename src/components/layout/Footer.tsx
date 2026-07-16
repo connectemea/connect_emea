@@ -1,7 +1,7 @@
 import Logo from "@/assets/icons/FooterLogo.png";
 import socialLink from "@/const/socialLinks";
 import navLinks from "@/const/navLinks";
-import { Compass, Sparkles } from "lucide-react";
+import { Compass } from "lucide-react";
 
 function Footer() {
   return (
@@ -14,7 +14,6 @@ function Footer() {
         {/* Call to Action Badge Header */}
         <div className="flex flex-col items-center text-center space-y-3 py-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-orange-500 uppercase tracking-widest">
-            <Sparkles className="w-3 h-3" />
             Connect Community
           </div>
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white leading-tight">
@@ -29,7 +28,7 @@ function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Compass className="w-5 h-5 text-orange-500" />
-              <h3 className="font-extrabold text-lg tracking-tight text-white">ConnectEMEA</h3>
+              <h3 className="font-extrabold text-lg tracking-tight text-white">Connect</h3>
             </div>
             
             <div className="flex flex-wrap gap-x-6 gap-y-2 items-center">

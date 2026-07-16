@@ -34,22 +34,15 @@ function Welcome() {
             {/* Ambient Background Glows */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-orange-500/10 rounded-full blur-[80px] pointer-events-none" />
 
-            <div className='text-center flex flex-col max-w-2xl mx-auto space-y-4 px-4 relative z-10'>
-                {/* Tech Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-xs font-bold text-orange-600 mx-auto">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    EMEA College Campus Initiative
-                </div>
-
-                <h1 className='text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-zinc-950 uppercase'>
-                    WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>MEET&nbsp; <span className='text-orange-500'>PEERS</span>,
-                    <br />
-                    <span className='text-orange-500'>PURPOSE</span>&nbsp;AND&nbsp;<span className='text-orange-500'>PASSION</span>
+              <div className='text-center flex flex-col max-w-[600px] mx-auto'>
+                <h1 className='text-[22px] sm:text-[34px] font-bold uppercase'>
+                    WHERE&nbsp; <span className='text-orange-500'>STUDENTS&nbsp; </span>meet&nbsp; <span className='text-orange-500'>peers</span>&nbsp;
+                    <br /><span className='text-orange-500'>purpose</span>&nbsp;and&nbsp;<span className='text-orange-500'>passion</span>&nbsp;
                 </h1>
 
                 {/* Animated Typing Text */}
                 <motion.p
-                    className='text-base sm:text-lg md:text-xl font-bold text-zinc-700 tracking-wide inline-block'
+                    className='text-lg sm:text-xl font-semibold highlighted-text overflow-hidden inline-block'
                     variants={container}
                     initial="hidden"
                     animate="show"
@@ -62,31 +55,29 @@ function Welcome() {
                 </motion.p>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[280px] sm:max-w-md mx-auto px-4 relative z-10">
+            <div className="flex flex-col gap-3 w-full max-w-[240px] sm:max-w-[280px] mx-auto">
+
+
                 <button
                     onClick={handleClick}
-                    className="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-bold transition-all duration-200 text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-500/10 hover:shadow-orange-500/25"
+                    className="w-full px-4 sm:px-6 py-2 bg-orange-600 text-white rounded-full font-bold tracking-normal transition-all hover:bg-orange-500 text-sm sm:text-[16px]"
                 >
                     Register Now
-                    <ArrowRight className="w-4 h-4 shrink-0" />
                 </button>
 
                 <a
                     href="https://chat.whatsapp.com/HWUMSzHQWkyLv3VwWgnRFu"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1"
                 >
                     <button
-                        className="w-full px-6 py-3 border border-orange-500 text-orange-600 rounded-2xl font-bold transition-all duration-200 hover:bg-orange-50 text-xs sm:text-sm flex items-center justify-center gap-2"
+                        className="w-full px-4 sm:px-6 py-1.5 border-2 border-orange-600 text-orange-600 rounded-full font-bold tracking-normal transition-all hover:bg-orange-50 hover:border-orange-500 text-sm sm:text-[16px]"
                     >
-                        <MessageCircle className="w-4 h-4 shrink-0" />
-                        Join Community
+                        Join Our Community
                     </button>
                 </a>
             </div>
-
+            
             {/* Content Image Container */}
             <div className='relative mt-8 px-4 max-w-4xl mx-auto w-full group'>
                 {!loaded && (
@@ -98,7 +89,7 @@ function Welcome() {
                 {/* Ambient glow behind image */}
                 <div className="absolute inset-6 bg-orange-500/10 rounded-[32px] blur-2xl group-hover:bg-orange-500/15 transition-colors duration-500 pointer-events-none" />
 
-                <div className="relative rounded-[32px] overflow-hidden transform hover:-translate-y-1 transition-transform duration-500 shadow-[0_8px_30px_rgba(0,0,0,0.035)]">
+                <div className="relative rounded-[32px] overflow-hidden transform hover:-translate-y-1 transition-transform duration-500 ">
                     <img
                         draggable={false}
                         onDragStart={(e) => e.preventDefault()}

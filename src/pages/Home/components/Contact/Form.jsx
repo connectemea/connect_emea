@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Rocket } from "lucide-react";
-import { createRecord } from "@/utils/airtableService";
+import { createRecord } from "@/utils/supabaseService";
 import StatusModal from "@/components/common/Modal";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Textarea } from "@/components/ui/textarea";

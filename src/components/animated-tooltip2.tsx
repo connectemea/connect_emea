@@ -131,7 +131,7 @@ export const AnimatedTooltip = ({
               onDragStart={(e) => e.preventDefault()}
               src={`${item.image}`}
               alt={item.name}
-              className="object-cover cursor-pointer !m-0 !p-0 object-top rounded-full h-16 w-16 md:h-20 md:w-20 border-4 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500 bg-orange-500 select-none pointer-events-auto"
+              className="object-cover cursor-pointer !m-0 !p-0 object-top rounded-full h-16 w-16 md:h-20 md:w-20 border-4 group-hover:scale-105 group-hover:z-30 border-white relative transition duration-500 bg-orange-500 select-none pointer-events-auto grayscale group-hover:grayscale-0"
             />
           ) : (
             <div

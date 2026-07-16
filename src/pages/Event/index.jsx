@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import Events from "@/const/data/Events.tsx";
+import React, { useState, useMemo, useEffect } from "react";
+import staticEvents from "@/const/data/Events.tsx";
 import NormalCard from "./components/EventCard/Normal";
 import SpecialCard from "./components/EventCard/Special";
 import SimpleGrid from "./components/Carousal/SimpleGrid";
@@ -7,6 +7,7 @@ import SlickCarousel from "./components/Carousal/SlickCarousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Calendar, MapPin, X, ArrowRight, ExternalLink, SlidersHorizontal, Layers } from "lucide-react";
 import { parseDate, getEventCategory } from "./components/eventUtils";
+import { supabase } from "@/config/supabase";
 
 const EVENTS_PER_PAGE = 12;
 
@@ -16,13 +17,42 @@ function Event() {
   const [selectedStatus, setSelectedStatus] = useState("All"); // All, Upcoming, Past
   const [visibleCount, setVisibleCount] = useState(EVENTS_PER_PAGE);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [dbEvents, setDbEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const { data, error } = await supabase
+          .from('events')
+          .select('*')
+          .eq('status', 'published');
+        if (error) throw error;
+        if (data && data.length > 0) {
+          const mapped = data.map(item => ({
+            ...item,
+            image: item.thumbnail || item.image
+          }));
+          setDbEvents(mapped);
+        } else {
+          setDbEvents(staticEvents);
+        }
+      } catch (err) {
+        console.error("Failed to load events from Supabase:", err);
+        setDbEvents(staticEvents);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadEvents();
+  }, []);
 
   // Normalize dates and filter events
   const processedEvents = useMemo(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    return Events.map((event) => {
+    return dbEvents.map((event) => {
       const parsedDate = parseDate(event.date);
       const isUpcoming = parsedDate >= today;
       const categoryInfo = getEventCategory(event);
@@ -34,7 +64,7 @@ function Event() {
         categoryBg: categoryInfo.bg,
       };
     }).sort((a, b) => b.parsedDate.getTime() - a.parsedDate.getTime()); // Sort newest first
-  }, []);
+  }, [dbEvents]);
 
   // Filter logic
   const filteredEvents = useMemo(() => {
@@ -101,10 +131,10 @@ function Event() {
       {/* Hero Header Section */}
       <div className="relative bg-gradient-to-b from-orange-50/40 via-white to-transparent py-16 border-b border-zinc-100">
         <div className="w-limit px-4 text-center space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-100 text-xs font-bold text-orange-600">
+          {/* <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-100 text-xs font-bold text-orange-600">
             <Layers className="w-3.5 h-3.5" />
-            Connect EMEA Hub
-          </div>
+            Connect  Hub
+          </div> */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none text-zinc-950">
             Our{" "}
             <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
@@ -125,7 +155,7 @@ function Event() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-full bg-white border border-zinc-200/80 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-center gap-6 sm:gap-8 shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition-all duration-300 relative overflow-hidden"
+            className="w-full bg-white border border-zinc-200/80 rounded-3xl p-5 sm:p-6 flex flex-col lg:flex-row items-center gap-6 sm:gap-8 shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition-all duration-300 relative overflow-hidden"
           >
             {/* Corner Spotlight Badge */}
             <div className="absolute top-4 right-4 bg-orange-500 text-white font-extrabold text-[9px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm z-10">
@@ -133,7 +163,7 @@ function Event() {
             </div>
 
             {/* Spotlight Card Poster */}
-            <div className="w-full lg:w-2/5 aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-50 shrink-0 shadow-inner">
+            <div className="w-full lg:w-[28%] aspect-[3/4] rounded-2xl overflow-hidden bg-zinc-50 shrink-0 shadow-inner">
               <img
                 src={spotlightEvent.image}
                 alt={spotlightEvent.title}
@@ -142,7 +172,7 @@ function Event() {
             </div>
 
             {/* Spotlight Card Info */}
-            <div className="w-full lg:w-3/5 flex flex-col justify-between h-full space-y-4">
+            <div className="w-full lg:w-[72%] flex flex-col justify-between h-full space-y-4 py-1">
               <div className="space-y-3">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${spotlightEvent.categoryBg}`}>
@@ -152,7 +182,7 @@ function Event() {
                     {spotlightEvent.isUpcoming ? "Upcoming Event" : "Concluded Event"}
                   </span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 leading-tight">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 leading-tight">
                   {spotlightEvent.title}
                 </h2>
                 <p className="text-zinc-650 text-xs sm:text-sm font-light leading-relaxed line-clamp-3">

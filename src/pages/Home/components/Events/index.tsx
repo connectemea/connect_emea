@@ -1,24 +1,55 @@
+import { useState, useEffect } from "react";
 import EmblaCarousel from "../Carousal/EmblaCarousal";
 import "@/assets/styles/embla.css";
-import Events from "@/const/data/Events";
+import staticEvents from "@/const/data/Events";
 import { parseDate } from "@/pages/Event/components/eventUtils";
+import { supabase } from "@/config/supabase";
 
 const OPTIONS = { loop: true };
 
 function EventSection() {
+  const [events, setEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        const { data, error } = await supabase
+          .from('events')
+          .select('*')
+          .eq('status', 'published');
+        if (error) throw error;
+        if (data && data.length > 0) {
+          const mapped = data.map(item => ({
+            ...item,
+            image: item.thumbnail || item.image
+          }));
+          setEvents(mapped);
+        } else {
+          setEvents(staticEvents);
+        }
+      } catch (err) {
+        console.error("Failed to load events from Supabase:", err);
+        setEvents(staticEvents);
+      }
+    }
+    loadEvents();
+  }, []);
+
   // Sort events newest first using the robust parseDate utility
-  const sortedEvents = [...Events].sort((a, b) => {
+  const sortedEvents = [...events].sort((a, b) => {
     return parseDate(b.date).getTime() - parseDate(a.date).getTime();
   });
 
   const latestEvents = sortedEvents.slice(0, 5);
 
-  const SLIDES = [...latestEvents, ...latestEvents, ...latestEvents].map(
-    (event, index) => ({
-      ...event,
-      _id: `${event.id}-${index}`,
-    })
-  );
+  const SLIDES = latestEvents.length > 0 
+    ? [...latestEvents, ...latestEvents, ...latestEvents].map(
+        (event, index) => ({
+          ...event,
+          _id: `${event.id}-${index}`,
+        })
+      )
+    : [];
 
   return (
     <div className="p-2 relative z-10">
@@ -29,7 +60,7 @@ function EventSection() {
         </span>
       </h1>
       <div>
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        {SLIDES.length > 0 && <EmblaCarousel slides={SLIDES} options={OPTIONS} />}
       </div>
     </div>
   );

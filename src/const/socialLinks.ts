@@ -4,12 +4,12 @@ const socialLink = [
   {
     label: "instagram",
     Icon: Instagram,
-    href:"https://www.instagram.com/connectemea/" 
+    href:"https://www.instagram.com/connectfoundation/" 
   },
   {
     label: "linkedin",
     Icon: Linkedin,
-    href:"https://www.linkedin.com/company/connectemea/"
+    href:"https://www.linkedin.com/company/connectoffcial/"
   },
   {
     label: "github",

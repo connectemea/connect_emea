@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchRecordsQueries } from "@/utils/airtableService";
+import { fetchRecordsQueries } from "@/utils/supabaseService";
 
 function Queries() {
   const [records, setRecords] = useState([]);

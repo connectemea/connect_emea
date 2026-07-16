@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { auth } from "@/config/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-// import { toast } from "sonner";
+import { supabase } from "@/config/supabase";
 import { Loader } from "lucide-react";
 
 interface AuthRoleRequireProps {
@@ -11,27 +9,31 @@ interface AuthRoleRequireProps {
 }
 
 const AuthRoleRequire: React.FC<AuthRoleRequireProps> = ({ children }) => {
-  const [user, setUser] = useState(auth.currentUser);
+  const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
       setLoading(false);
-      if (!user) {
-        await signOut(auth);
+      if (!session) {
         navigate("/signin");
-        // const idTokenResult = await user.getIdTokenResult();
-        // const authRole = idTokenResult.claims.role;
-        // } else {
-        //     await signOut(auth);
-        //     navigate('/signin');
       }
     });
 
-    return () => unsubscribe();
-  }, []);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, currentSession) => {
+      setSession(currentSession);
+      setLoading(false);
+      if (!currentSession) {
+        navigate("/signin");
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [navigate]);
 
   if (loading) {
     return (
@@ -44,7 +46,7 @@ const AuthRoleRequire: React.FC<AuthRoleRequireProps> = ({ children }) => {
     );
   }
 
-  return user ? children : <Navigate to="/signin" replace />;
+  return session ? children : <Navigate to="/signin" replace />;
 };
 
 export default AuthRoleRequire;

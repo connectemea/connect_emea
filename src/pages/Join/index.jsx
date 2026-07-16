@@ -15,10 +15,10 @@ function Join() {
           
           {/* Header Section */}
           <div className="text-center space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-xs font-bold text-orange-600">
+            {/* <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-xs font-bold text-orange-600">
               <Calendar className="w-3.5 h-3.5" />
               Recruitment 2026
-            </div>
+            </div> */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-zinc-950">
               Intern Hiring{" "}
               <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">

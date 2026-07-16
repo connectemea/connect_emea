@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LogOut, Home, Users, Menu, X, Spade } from "lucide-react";
-import { auth } from "@/config/firebase";
-import { signOut } from "firebase/auth";
+import { supabase } from "@/config/supabase";
 import { toast } from "sonner";
 import AuthRoleRequire from "@/components/router/AuthRoleRequire";
 import {
@@ -97,19 +96,9 @@ function AdminLayout() {
       route: "/dashboard",
     },
     {
-      name: "Interns",
-      icon: <Users className="h-5 w-5" />,
-      route: "/dashboard/interns",
-    },
-    {
       name: "Events",
       icon: <Spade className="h-5 w-5" />,
       route: "/dashboard/events",
-    },
-    {
-      name: "Form Data",
-      icon: <Users className="h-5 w-5" />,
-      route: "/dashboard/responses",
     },
     {
       name: "Queries",
@@ -128,9 +117,9 @@ function AdminLayout() {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await supabase.auth.signOut();
       toast.success("You have successfully signed out");
-      navigate("/admin/login");
+      navigate("/signin");
     } catch (error) {
       toast.error(error.message);
     }

@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/select";
 import MultipleSelector from "@/components/ui/multiple-selector";
 import department from "@/const/departmentList";
-import { createRecord } from "@/utils/airtableService";
+import { createRecord } from "@/utils/supabaseService";
 import StatusModal from "@/components/common/Modal";
 import { Loader } from "lucide-react";
 import { useState } from "react";

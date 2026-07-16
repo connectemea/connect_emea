@@ -38,7 +38,7 @@ const TeamCard = ({ data, id, size }) => {
                             alt={data?.name}
                             onLoad={handleImageLoad}
                             onError={() => setIsLoading(false)}
-                            className={`w-full h-full object-cover ${isLoading ? "opacity-0" : "opacity-100"} transition-opacity duration-300 select-none`}
+                            className={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ${isLoading ? "opacity-0" : "opacity-100"} select-none`}
                             draggable={false}
                             onDragStart={(e) => e.preventDefault()}
                         />

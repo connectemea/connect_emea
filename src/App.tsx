@@ -12,12 +12,8 @@ import { GuestLayout } from "@/layout";
 
 import AdminLayout from "@/layout/adminLayout";
 import Dashboard from "@/pages/admin/dashboard";
-import Interns from "./pages/admin/interns";
 import Events from "./pages/admin/events";
 import Queries from "./pages/admin/queries";
-import FormRes from "./pages/admin/FormRes";
-
-// import FormData from "@/pages/admin/formdata";
 
 
 import Login from "./pages/admin/login";
@@ -51,20 +47,12 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "interns",
-        element: <Interns />,
-      },
-      {
         path: "events",
         element: <Events />,
       },
       {
         path: "queries",
         element: <Queries />,
-      },
-      {
-        path: "responses",
-        element: <FormRes />,
       }
     ],
   },

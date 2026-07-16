@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, User, Plus, Trash2, Image as ImageIcon, FileText, Target, Edit, X, Eye, EyeOff, Link, CheckCircle, XCircle } from 'lucide-react';
-import { addDoc, collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { supabase } from '../../config/supabase';
 import handleImageUpload from '../../components/uploadimage';
 import {
     AlertDialog,
@@ -107,19 +106,16 @@ function Events() {
         { value: 'closed', label: 'Closed' }
     ];
 
-    // Fetch events from Firebase
+    // Fetch events from Supabase
     const fetchEvents = async () => {
         setLoading(true);
         try {
-            const querySnapshot = await getDocs(collection(db, "events"));
-            const eventsData = [];
-            querySnapshot.forEach((doc) => {
-                eventsData.push({ id: doc.id, ...doc.data() });
-            });
-            // Sort events by date (newest first)
-            eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-            setEvents(eventsData);
-            // console.log(eventsData)
+            const { data, error } = await supabase
+                .from('events')
+                .select('*')
+                .order('date', { ascending: false });
+            if (error) throw error;
+            setEvents(data || []);
         } catch (error) {
             console.error("Error fetching events: ", error);
         } finally {
@@ -286,20 +282,28 @@ function Events() {
                 ...formData,
                 thumbnail: thumbnailUrl,
                 gallery: galleryUrls,
-                updatedAt: new Date(),
+                updated_at: new Date(),
             };
 
             if (editingEvent) {
-                await updateDoc(doc(db, "events", editingEvent.id), eventData);
+                const { error } = await supabase
+                    .from('events')
+                    .update(eventData)
+                    .eq('id', editingEvent.id);
+                if (error) throw error;
                 setEvents((prev) =>
                     prev.map((ev) =>
                         ev.id === editingEvent.id ? { ...eventData, id: editingEvent.id } : ev
                     )
                 );
             } else {
-                eventData.createdAt = new Date();
-                const docRef = await addDoc(collection(db, "events"), eventData);
-                setEvents((prev) => [...prev, { ...eventData, id: docRef.id }]);
+                eventData.created_at = new Date();
+                const { data, error } = await supabase
+                    .from('events')
+                    .insert([eventData])
+                    .select();
+                if (error) throw error;
+                setEvents((prev) => [...prev, data[0]]);
             }
 
             // Reset
@@ -319,7 +323,11 @@ function Events() {
 
     const handleDelete = async () => {
         try {
-            await deleteDoc(doc(db, "events", eventToAction.id));
+            const { error } = await supabase
+                .from('events')
+                .delete()
+                .eq('id', eventToAction.id);
+            if (error) throw error;
             setDeleteDialogOpen(false);
             fetchEvents(); // Refresh the events list
         } catch (error) {
@@ -333,10 +341,14 @@ function Events() {
 
     const handleStatusUpdate = async () => {
         try {
-            await updateDoc(doc(db, "events", eventToAction.id), {
-                [actionType]: eventToAction.newValue,
-                updatedAt: new Date()
-            });
+            const { error } = await supabase
+                .from('events')
+                .update({
+                    [actionType]: eventToAction.newValue,
+                    updated_at: new Date()
+                })
+                .eq('id', eventToAction.id);
+            if (error) throw error;
 
             if (actionType === 'status') {
                 setStatusDialogOpen(false);

@@ -13,7 +13,15 @@ const Highlights = ({ data }) => {
                 <h3 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900">Event Highlights</h3>
             </div>
             <div className="text-zinc-600 text-sm sm:text-base leading-relaxed font-light highlights-container">
-                {data}
+                {Array.isArray(data) ? (
+                    <ul className="list-disc list-inside space-y-1 p-2">
+                        {data.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                ) : (
+                    data
+                )}
             </div>
         </div>
     );

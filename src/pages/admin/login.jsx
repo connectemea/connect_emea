@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "@/config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { supabase } from "@/config/supabase";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { EyeOff, Eye, Sparkles } from "lucide-react";
@@ -48,12 +47,11 @@ const Login = () => {
   async function onSubmit(values) {
     try {
       setLoading(true);
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
-      const user = userCredential.user;
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+      });
+      if (error) throw error;
       toast("You have successfully signed in");
       navigate("/dashboard");
     } catch (error) {

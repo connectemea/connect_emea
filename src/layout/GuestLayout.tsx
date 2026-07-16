@@ -62,7 +62,7 @@ function GuestLayout() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex-grow mt-20 sm:mt-28"
+        className="flex-grow mt-16 sm:mt-20"
       >
         <Outlet />
       </motion.main>
