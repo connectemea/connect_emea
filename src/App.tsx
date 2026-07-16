@@ -14,6 +14,8 @@ import AdminLayout from "@/layout/adminLayout";
 import Dashboard from "@/pages/admin/dashboard";
 import Events from "./pages/admin/events";
 import Queries from "./pages/admin/queries";
+import TeamAdmin from "./pages/admin/team";
+import Projects from "./pages/admin/projects";
 
 
 import Login from "./pages/admin/login";
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: "queries",
         element: <Queries />,
+      },
+      {
+        path: "team",
+        element: <TeamAdmin />,
+      },
+      {
+        path: "projects",
+        element: <Projects />,
       }
     ],
   },

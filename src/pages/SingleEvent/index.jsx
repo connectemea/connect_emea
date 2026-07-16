@@ -6,6 +6,7 @@ import staticEvents from "@/const/data/Events.tsx";
 import Tab from "./components/tabs";
 import { getEventCategory } from "../Event/components/eventUtils";
 import { supabase } from "@/config/supabase";
+import { resolveAsset } from "@/utils/resolveAsset";
 
 const Spinner = () => {
   return (
@@ -37,7 +38,7 @@ function SingleEvent() {
         if (data) {
           setEvent({
             ...data,
-            image: data.thumbnail || data.image,
+            image: resolveAsset(data.thumbnail || data.image),
             about: {
               objectives: data.objectives,
               highlights: data.highlights

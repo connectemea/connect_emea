@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { inFront, BootCamp, Image3, Image4, Image5, Image6, Image7 } from "@/assets/images/Us";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/config/supabase";
+import { resolveAsset } from "@/utils/resolveAsset";
 
 function Content() {
     const staticImages = [
@@ -25,7 +26,7 @@ function Content() {
                     .eq('type', 'about');
                 if (error) throw error;
                 if (data && data.length > 0) {
-                    setImages(data.map(item => item.url));
+                    setImages(data.map(item => resolveAsset(item.url)));
                 }
             } catch (err) {
                 console.error("Failed to load about gallery:", err);

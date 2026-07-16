@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { LogOut, Home, Users, Menu, X, Spade } from "lucide-react";
+import { LogOut, Home, Users, Menu, X, Spade, MessageSquare, FolderGit2 } from "lucide-react";
 import { supabase } from "@/config/supabase";
 import { toast } from "sonner";
 import AuthRoleRequire from "@/components/router/AuthRoleRequire";
@@ -101,10 +101,20 @@ function AdminLayout() {
       route: "/dashboard/events",
     },
     {
-      name: "Queries",
+      name: "Team",
       icon: <Users className="h-5 w-5" />,
+      route: "/dashboard/team",
+    },
+    {
+      name: "Projects",
+      icon: <FolderGit2 className="h-5 w-5" />,
+      route: "/dashboard/projects",
+    },
+    {
+      name: "Queries",
+      icon: <MessageSquare className="h-5 w-5" />,
       route: "/dashboard/queries",
-    }
+    },
   ];
 
   const handleNavigate = useCallback(
@@ -151,7 +161,7 @@ function AdminLayout() {
               initial={false}
               transition={{ duration: 0.2 }}
             >
-              CMS Admin
+              Dashboard
             </motion.h1>
             <Button
               variant="ghost"
@@ -279,7 +289,7 @@ function AdminLayout() {
               >
                 <div className="flex h-16 items-center px-4 ">
                   <h1 className="text-xl font-semibold text-primary">
-                    CMS Admin
+                    Dashboard
                   </h1>
                   <Button
                     variant="ghost"

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { compressImage } from '@/utils/imageCompressor';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
@@ -6,20 +7,35 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 /**
- * Uploads a file to a specified public storage bucket and returns its public URL.
- * @param {string} bucket - The name of the Supabase storage bucket.
- * @param {File} file - The file object to upload.
- * @returns {Promise<string>} The public URL of the uploaded file.
+ * Uploads a file to a specified public storage bucket, compressing images if needed,
+ * and returns its public URL.
  */
-export const uploadFile = async (bucket, file) => {
+export const uploadFile = async (
+  bucket: string,
+  file: File,
+  folder: string = ''
+): Promise<string | null> => {
   if (!file) return null;
-  const fileExt = file.name.split('.').pop();
-  const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
-  const filePath = `${fileName}`;
 
-  const { data, error } = await supabase.storage
+  // Compress the file if it's an image
+  let uploadFile = file;
+  if (file.type.startsWith('image/')) {
+    try {
+      uploadFile = await compressImage(file);
+      console.log(`Image compressed: original size ${file.size} bytes, new size ${uploadFile.size} bytes`);
+    } catch (err) {
+      console.error("Image compression failed, using original file:", err);
+    }
+  }
+
+  const fileExt = uploadFile.name.split('.').pop();
+  const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+  const prefix = folder ? `${folder.replace(/\/$/, '')}/` : '';
+  const filePath = `${prefix}${fileName}`;
+
+  const { error } = await supabase.storage
     .from(bucket)
-    .upload(filePath, file);
+    .upload(filePath, uploadFile);
 
   if (error) throw error;
 
@@ -32,10 +48,8 @@ export const uploadFile = async (bucket, file) => {
 
 /**
  * Deletes a file from a specified storage bucket using its public URL.
- * @param {string} bucket - The name of the Supabase storage bucket.
- * @param {string} url - The public URL of the file to delete.
  */
-export const deleteFile = async (bucket, url) => {
+export const deleteFile = async (bucket: string, url: string): Promise<void> => {
   if (!url) return;
   try {
     const parts = url.split(`/storage/v1/object/public/${bucket}/`);

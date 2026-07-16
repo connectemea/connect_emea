@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Calendar, MapPin, X, ArrowRight, ExternalLink, SlidersHorizontal, Layers } from "lucide-react";
 import { parseDate, getEventCategory } from "./components/eventUtils";
 import { supabase } from "@/config/supabase";
+import { resolveAsset } from "@/utils/resolveAsset";
 
 const EVENTS_PER_PAGE = 12;
 
@@ -31,7 +32,7 @@ function Event() {
         if (data && data.length > 0) {
           const mapped = data.map(item => ({
             ...item,
-            image: item.thumbnail || item.image
+            image: resolveAsset(item.thumbnail || item.image)
           }));
           setDbEvents(mapped);
         } else {

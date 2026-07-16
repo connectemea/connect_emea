@@ -4,6 +4,7 @@ import "@/assets/styles/embla.css";
 import staticEvents from "@/const/data/Events";
 import { parseDate } from "@/pages/Event/components/eventUtils";
 import { supabase } from "@/config/supabase";
+import { resolveAsset } from "@/utils/resolveAsset";
 
 const OPTIONS = { loop: true };
 
@@ -21,7 +22,7 @@ function EventSection() {
         if (data && data.length > 0) {
           const mapped = data.map(item => ({
             ...item,
-            image: item.thumbnail || item.image
+            image: resolveAsset(item.thumbnail || item.image)
           }));
           setEvents(mapped);
         } else {

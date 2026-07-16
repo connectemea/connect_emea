@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Founders from "./components/Founders";
 import Interns from "./components/Interns";
 import TeamsData from "@/const/data/Teams";
 import { AnimatedTooltip } from "@/components/animated-tooltip2";
 import { motion } from "framer-motion";
 import { Users, Shield, Heart } from "lucide-react";
+import { supabase } from "@/config/supabase";
+import { resolveAsset } from "@/utils/resolveAsset";
 
 // Animation settings
 const sectionVariants = {
@@ -20,9 +22,53 @@ const sectionVariants = {
 };
 
 const Team = () => {
-  const allMembers = [...TeamsData.InternsData, ...TeamsData.FoundersData];
-  const alumni = allMembers.filter((member) => member.status === "Alumni");
-  const interns = allMembers.filter((member) => member.status === "Active");
+  const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadTeam() {
+      try {
+        const { data, error } = await supabase
+          .from("teams")
+          .select("*")
+          .order("order_index", { ascending: true });
+        if (data && data.length > 0) {
+          const mapped = data.map(m => ({
+            id: m.id,
+            name: m.name,
+            role: m.role,
+            position: m.position,
+            image: resolveAsset(m.image),
+            email: m.email,
+            phone: m.phone,
+            status: m.status,
+            place: m.place,
+            social: typeof m.social === "string" ? JSON.parse(m.social) : (m.social || {}),
+            is_founder: m.role === 'Co-founder'
+          }));
+          setMembers(mapped);
+        } else {
+          setMembers([
+            ...TeamsData.FoundersData.map(f => ({ ...f, is_founder: true })),
+            ...TeamsData.InternsData.map(i => ({ ...i, is_founder: false }))
+          ]);
+        }
+      } catch (err) {
+        console.error("Failed to load team from Supabase, falling back:", err);
+        setMembers([
+          ...TeamsData.FoundersData.map(f => ({ ...f, is_founder: true })),
+          ...TeamsData.InternsData.map(i => ({ ...i, is_founder: false }))
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadTeam();
+  }, []);
+
+  const founders = members.filter((member) => member.is_founder);
+  const alumni = members.filter((member) => !member.is_founder && member.status === "Alumni");
+  const interns = members.filter((member) => !member.is_founder && member.status === "Active");
   const isMobile = window.innerWidth < 768;
 
   return (
@@ -71,7 +117,7 @@ const Team = () => {
             </h2>
           </div>
           <div className="bg-white border border-zinc-200/80 rounded-3xl p-6 sm:p-8 shadow-[0_4px_16px_rgba(0,0,0,0.01)]">
-            <Founders FoundersData={TeamsData.FoundersData} />
+            <Founders FoundersData={founders} />
           </div>
         </motion.div>
 

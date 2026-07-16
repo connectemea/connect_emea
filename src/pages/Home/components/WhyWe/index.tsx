@@ -14,6 +14,7 @@ import {
   Variants,
 } from "framer-motion";
 import { supabase } from "@/config/supabase";
+import { resolveAsset } from "@/utils/resolveAsset";
 
 interface Point {
   title: string;
@@ -87,7 +88,7 @@ const WhyWe: React.FC = () => {
           .eq('type', 'why-we-exist');
         if (error) throw error;
         if (data && data.length > 0) {
-          setImages(data.map(item => item.url));
+          setImages(data.map(item => resolveAsset(item.url)).filter((url): url is string => !!url));
         }
       } catch (err) {
         console.error("Failed to load why-we-exist gallery:", err);
