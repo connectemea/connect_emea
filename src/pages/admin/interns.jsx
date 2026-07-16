@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   User, MapPin, Mail, Phone, Linkedin, Github, Instagram,
   Search, Filter, X, ChevronDown, Loader2, Users, GraduationCap, Activity
@@ -95,7 +95,8 @@ export default function Interns() {
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
+  const pageRef = useRef(0);
+  const loaderRef = useRef(null);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [roleOptions, setRoleOptions] = useState([]);
@@ -117,7 +118,7 @@ export default function Interns() {
 
   const fetchMembers = useCallback(async (reset = false) => {
     setLoading(true);
-    const from = reset ? 0 : page * PAGE_SIZE;
+    const from = reset ? 0 : pageRef.current * PAGE_SIZE;
     let query = supabase.from('teams').select('*')
       .neq('role', 'Co-founder')
       .order('order_index', { ascending: true })
@@ -129,19 +130,30 @@ export default function Interns() {
     if (error) { console.error(error); setLoading(false); return; }
     if (reset) {
       setMembers(data || []);
-      setPage(1);
+      pageRef.current = 1;
     } else {
-      setMembers(prev => [...prev, ...(data || [])]);
-      setPage(p => p + 1);
+      setMembers(prev => [...prev, ...((data || []).filter(item => !prev.some(p => p.id === item.id)))]);
+      pageRef.current += 1;
     }
     setHasMore((data || []).length === PAGE_SIZE);
     setLoading(false);
-  }, [page, search, statusFilter, roleFilter]);
+  }, [search, statusFilter, roleFilter]);
 
   useEffect(() => {
     fetchStats();
     fetchMembers(true);
   }, [search, statusFilter, roleFilter]);
+
+  useEffect(() => {
+    if (!loaderRef.current) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore && !loading) {
+        fetchMembers(false);
+      }
+    }, { threshold: 0.1 });
+    observer.observe(loaderRef.current);
+    return () => observer.disconnect();
+  }, [hasMore, loading, fetchMembers]);
 
   return (
     <div className="space-y-6">
@@ -222,19 +234,15 @@ export default function Interns() {
         </div>
       )}
 
-      {/* Load More */}
-      {(hasMore || loading) && (
-        <div className="flex justify-center pt-2">
-          <button
-            onClick={() => fetchMembers(false)}
-            disabled={loading}
-            className="flex items-center gap-2 px-6 py-2.5 border border-zinc-200 rounded-xl text-sm font-medium text-zinc-700 hover:bg-zinc-50 transition-colors disabled:opacity-50"
-          >
-            {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-            {loading ? 'Loading...' : 'Load More'}
-          </button>
-        </div>
-      )}
+      {/* Load More Observer Trigger */}
+      <div ref={loaderRef} className="h-16 flex items-center justify-center mt-4">
+        {loading && (
+          <div className="flex items-center gap-2 text-zinc-500 text-sm font-medium">
+            <Loader2 className="w-4 h-4 animate-spin text-orange-500" />
+            Loading more...
+          </div>
+        )}
+      </div>
     </div>
   );
 }

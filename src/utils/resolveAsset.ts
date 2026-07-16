@@ -1,5 +1,3 @@
-import * as foundersImages from '@/assets/images/founders';
-import * as internsImages from '@/assets/images/interns';
 import * as eventImages from '@/assets/images/Events';
 import * as usImages from '@/assets/images/Us';
 
@@ -7,16 +5,6 @@ import * as usImages from '@/assets/images/Us';
 const cleanKey = (name: string): string => name ? name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() : '';
 
 const allAssets: Record<string, string> = {};
-
-// Register founders
-(Object.keys(foundersImages) as Array<keyof typeof foundersImages>).forEach(key => {
-  allAssets[cleanKey(key as string)] = foundersImages[key] as string;
-});
-
-// Register interns
-(Object.keys(internsImages) as Array<keyof typeof internsImages>).forEach(key => {
-  allAssets[cleanKey(key as string)] = internsImages[key] as string;
-});
 
 // Register events
 (Object.keys(eventImages) as Array<keyof typeof eventImages>).forEach(key => {

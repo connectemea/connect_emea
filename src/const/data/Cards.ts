@@ -1,5 +1,4 @@
 import { Riyad, Rasheed, Haulath } from '@/assets/images/faculties';
-import { Rashid } from '@/assets/images/interns';
 
 interface Card {
     id: number,
@@ -41,7 +40,7 @@ const Cards: Card[] = [
         name: 'Rashid ',
         role: 'Alumni & Senior Intern',
         office: 'Department of Computer Science',
-        image: Rashid,
+        image: 'https://rdvjeanrdorptlubbyev.supabase.co/storage/v1/object/public/connect_assets/interns/Rashid.png',
         content: `Connect has made a huge impact on my life, both professionally and personally. 
         It was like running a small startup in college. Every minute I spent in the community taught me more about the real world and industry than any classroom ever could. It kept me updated, opened doors to real opportunities, and gave me experiences I’ll never forget.`
     }

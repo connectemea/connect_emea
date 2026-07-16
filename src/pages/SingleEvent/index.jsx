@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Share2, Calendar, Clock, MapPin, ArrowLeft, ExternalLink } from "lucide-react";
-import staticEvents from "@/const/data/Events.tsx";
 import Tab from "./components/tabs";
 import { formatDate, getEventCategory } from "../Event/components/eventUtils";
 import { supabase } from "@/config/supabase";
@@ -34,7 +33,7 @@ function SingleEvent() {
           .select('*')
           .eq('id', id)
           .single();
-        
+        if (error) throw error;
         if (data) {
           setEvent({
             ...data,
@@ -44,14 +43,9 @@ function SingleEvent() {
               highlights: data.highlights
             }
           });
-        } else {
-          const staticEv = staticEvents.find(e => String(e.id) === String(id));
-          setEvent(staticEv || null);
         }
       } catch (err) {
-        console.error("Failed to load event from Supabase, falling back:", err);
-        const staticEv = staticEvents.find(e => String(e.id) === String(id));
-        setEvent(staticEv || null);
+        console.error("Failed to load event from Supabase:", err);
       } finally {
         setLoading(false);
       }

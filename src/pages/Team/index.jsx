@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Founders from "./components/Founders";
 import Interns from "./components/Interns";
-import TeamsData from "@/const/data/Teams";
 import { AnimatedTooltip } from "@/components/animated-tooltip2";
 import { motion } from "framer-motion";
 import { Users, Shield, Heart } from "lucide-react";
@@ -32,7 +31,8 @@ const Team = () => {
           .from("teams")
           .select("*")
           .order("order_index", { ascending: true });
-        if (data && data.length > 0) {
+        if (error) throw error;
+        if (data) {
           const mapped = data.map(m => ({
             id: m.id,
             name: m.name,
@@ -47,18 +47,9 @@ const Team = () => {
             is_founder: m.role === 'Co-founder'
           }));
           setMembers(mapped);
-        } else {
-          setMembers([
-            ...TeamsData.FoundersData.map(f => ({ ...f, is_founder: true })),
-            ...TeamsData.InternsData.map(i => ({ ...i, is_founder: false }))
-          ]);
         }
       } catch (err) {
-        console.error("Failed to load team from Supabase, falling back:", err);
-        setMembers([
-          ...TeamsData.FoundersData.map(f => ({ ...f, is_founder: true })),
-          ...TeamsData.InternsData.map(i => ({ ...i, is_founder: false }))
-        ]);
+        console.error("Failed to load team from Supabase:", err);
       } finally {
         setLoading(false);
       }

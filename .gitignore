@@ -24,3 +24,6 @@ src/pages/Protected
 *.njsproj
 *.sln
 *.sw?
+
+# Backup folder for local team images and static data
+/old_images/

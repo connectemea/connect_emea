@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect } from "react";
-import staticEvents from "@/const/data/Events.tsx";
 import NormalCard from "./components/EventCard/Normal";
 import SpecialCard from "./components/EventCard/Special";
 import SimpleGrid from "./components/Carousal/SimpleGrid";
@@ -30,18 +29,15 @@ function Event() {
           .eq('status', 'published')
           .order('date', { ascending: false });
         if (error) throw error;
-        if (data && data.length > 0) {
+        if (data) {
           const mapped = data.map(item => ({
             ...item,
             image: resolveAsset(item.thumbnail || item.image)
           }));
           setDbEvents(mapped);
-        } else {
-          setDbEvents(staticEvents);
         }
       } catch (err) {
         console.error("Failed to load events from Supabase:", err);
-        setDbEvents(staticEvents);
       } finally {
         setLoading(false);
       }

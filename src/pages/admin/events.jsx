@@ -99,6 +99,7 @@ export default function Events() {
   const [regStatusFilter, setRegStatusFilter] = useState('All');
   const [hasMore, setHasMore] = useState(true);
   const pageRef = useRef(0);
+  const loaderRef = useRef(null);
 
   const [formData, setFormData] = useState({ ...initialFormData });
   const [highlightInput, setHighlightInput] = useState('');
@@ -167,6 +168,17 @@ export default function Events() {
     fetchEvents(true);
     fetchStats();
   }, [searchQuery, statusFilter, typeFilter, regStatusFilter]);
+
+  useEffect(() => {
+    if (!loaderRef.current) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore && !loading) {
+        fetchEvents(false);
+      }
+    }, { threshold: 0.1 });
+    observer.observe(loaderRef.current);
+    return () => observer.disconnect();
+  }, [hasMore, loading, fetchEvents]);
 
   // Set form data when editing an event
   useEffect(() => {
@@ -832,19 +844,15 @@ export default function Events() {
             </div>
           )}
 
-          {/* Load More */}
-          {hasMore && (
-            <div className="flex justify-center pt-4">
-              <button
-                onClick={() => fetchEvents(false)}
-                disabled={loading}
-                className="flex items-center gap-2 px-6 py-2.5 border border-zinc-200 rounded-xl text-sm font-semibold text-zinc-700 hover:bg-zinc-50 transition-colors disabled:opacity-50"
-              >
-                {loading ? <Loader2 className="w-4 h-4 animate-spin text-orange-500" /> : null}
-                {loading ? 'Loading...' : 'Load More'}
-              </button>
-            </div>
-          )}
+          {/* Load More Observer Trigger */}
+          <div ref={loaderRef} className="h-16 flex items-center justify-center mt-4">
+            {loading && (
+              <div className="flex items-center gap-2 text-zinc-500 text-sm font-medium">
+                <Loader2 className="w-4 h-4 animate-spin text-orange-500" />
+                Loading more...
+              </div>
+            )}
+          </div>
         </TabsContent>
 
         {/* ADD / EDIT FORM TAB */}

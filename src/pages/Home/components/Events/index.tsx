@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import EmblaCarousel from "../Carousal/EmblaCarousal";
 import "@/assets/styles/embla.css";
-import staticEvents from "@/const/data/Events";
 import { parseDate } from "@/pages/Event/components/eventUtils";
 import { supabase } from "@/config/supabase";
 import { resolveAsset } from "@/utils/resolveAsset";
@@ -20,18 +19,15 @@ function EventSection() {
           .eq('status', 'published')
           .order('date', { ascending: false });
         if (error) throw error;
-        if (data && data.length > 0) {
+        if (data) {
           const mapped = data.map(item => ({
             ...item,
             image: resolveAsset(item.thumbnail || item.image)
           }));
           setEvents(mapped);
-        } else {
-          setEvents(staticEvents);
         }
       } catch (err) {
         console.error("Failed to load events from Supabase:", err);
-        setEvents(staticEvents);
       }
     }
     loadEvents();
