@@ -6,7 +6,7 @@ import SimpleGrid from "./components/Carousal/SimpleGrid";
 import SlickCarousel from "./components/Carousal/SlickCarousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Calendar, MapPin, X, ArrowRight, ExternalLink, SlidersHorizontal, Layers } from "lucide-react";
-import { parseDate, getEventCategory } from "./components/eventUtils";
+import { parseDate, formatDate, getEventCategory } from "./components/eventUtils";
 import { supabase } from "@/config/supabase";
 import { resolveAsset } from "@/utils/resolveAsset";
 
@@ -196,7 +196,7 @@ function Event() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-3 border-y border-zinc-100">
                 <div className="flex items-center gap-2 text-xs text-zinc-600 font-semibold">
                   <Calendar className="w-4 h-4 text-orange-500 shrink-0" />
-                  <span>{spotlightEvent.date} {spotlightEvent.time && `at ${spotlightEvent.time}`}</span>
+                  <span>{formatDate(spotlightEvent.date)} {spotlightEvent.time && `at ${spotlightEvent.time}`}</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-zinc-600 truncate font-semibold">
                   <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
@@ -387,7 +387,7 @@ function Event() {
                 <div className="space-y-3 pt-4 border-t border-zinc-100">
                   <div className="flex items-center gap-2.5 text-xs text-zinc-700 font-semibold">
                     <Calendar className="w-4 h-4 text-orange-500 shrink-0" />
-                    <span>{selectedEvent.date} {selectedEvent.time && `| ${selectedEvent.time}`}</span>
+                    <span>{formatDate(selectedEvent.date)} {selectedEvent.time && `| ${selectedEvent.time}`}</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-xs text-zinc-700 font-semibold truncate">
                     <MapPin className="w-4 h-4 text-orange-500 shrink-0" />

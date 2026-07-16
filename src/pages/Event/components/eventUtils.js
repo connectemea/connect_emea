@@ -1,5 +1,5 @@
 /**
- * Utility to parse dates in DD/MM/YYYY or DD-MM-YYYY formats.
+ * Utility to parse dates in YYYY-MM-DD (Supabase) or DD/MM/YYYY (legacy) formats.
  * Falls back to native parsing if needed.
  */
 export function parseDate(dateStr) {
@@ -7,14 +7,36 @@ export function parseDate(dateStr) {
   const cleanStr = dateStr.trim();
   const parts = cleanStr.split(/[-/]/);
   if (parts.length === 3) {
-    const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10);
-    const year = parseInt(parts[2], 10);
-    if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
-      return new Date(year, month - 1, day);
+    const p0 = parseInt(parts[0], 10);
+    const p1 = parseInt(parts[1], 10);
+    const p2 = parseInt(parts[2], 10);
+    if (!isNaN(p0) && !isNaN(p1) && !isNaN(p2)) {
+      // Detect format: if first part is 4 digits → YYYY-MM-DD (ISO)
+      // otherwise → DD/MM/YYYY or DD-MM-YYYY
+      if (parts[0].length === 4) {
+        return new Date(p0, p1 - 1, p2); // YYYY-MM-DD
+      } else {
+        const year = parts[2].length === 2 ? 2000 + p2 : p2;
+        return new Date(year, p1 - 1, p0); // DD/MM/YYYY
+      }
     }
   }
   return new Date(dateStr);
+}
+
+/**
+ * Format a date string into a human-readable format (e.g. "Aug 7, 2025").
+ * Handles both YYYY-MM-DD and DD/MM/YYYY inputs.
+ */
+export function formatDate(dateStr) {
+  if (!dateStr) return '—';
+  const date = parseDate(dateStr);
+  if (isNaN(date.getTime())) return dateStr;
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 }
 
 /**

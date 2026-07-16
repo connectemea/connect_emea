@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Clock, MapPin, ArrowRight } from 'lucide-react';
 import { motion } from "framer-motion";
-import { getEventCategory } from '../../eventUtils';
+import { formatDate, getEventCategory } from '../../eventUtils';
 
 function NormalCard({ data, onClick, layoutId }) {
     const navigate = useNavigate();
@@ -59,7 +59,7 @@ function NormalCard({ data, onClick, layoutId }) {
                 <div className="pt-3 border-t border-zinc-100 space-y-2">
                     <div className="flex items-center text-[11px] text-zinc-600">
                         <Calendar className="w-3.5 h-3.5 mr-2 text-orange-500 shrink-0" />
-                        <span className="font-semibold">{data.date}</span>
+                        <span className="font-semibold">{formatDate(data.date)}</span>
                         {data.time && (
                             <>
                                 <span className="mx-2 text-zinc-200">|</span>

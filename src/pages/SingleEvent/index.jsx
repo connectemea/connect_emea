@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Share2, Calendar, Clock, MapPin, ArrowLeft, ExternalLink } from "lucide-react";
 import staticEvents from "@/const/data/Events.tsx";
 import Tab from "./components/tabs";
-import { getEventCategory } from "../Event/components/eventUtils";
+import { formatDate, getEventCategory } from "../Event/components/eventUtils";
 import { supabase } from "@/config/supabase";
 import { resolveAsset } from "@/utils/resolveAsset";
 
@@ -230,7 +230,7 @@ function SingleEvent() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase font-bold text-zinc-400">Date</p>
-                  <p className="text-xs sm:text-sm font-bold text-zinc-800">{event.date}</p>
+                  <p className="text-xs sm:text-sm font-bold text-zinc-800">{formatDate(event.date)}</p>
                 </div>
               </div>
 

@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import Autoplay from 'embla-carousel-autoplay'
 // import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 import classNames from 'classnames'
-import { set } from 'react-hook-form';
+import { formatDate } from '@/pages/Event/components/eventUtils'
 const TWEEN_FACTOR_BASE = 0.84
 
 // Animation presets
@@ -64,7 +64,7 @@ const SlideItem = ({ event, index, activeIndex, handleClick, handleClickAction }
             {event.title}
           </h1>
           <div className="flex justify-around">
-            <p className="text-sm">Date: {event.date}</p>
+            <p className="text-sm">Date: {formatDate(event.date)}</p>
             <p className="text-sm">Time: {event.time}</p>
           </div>
         </div>

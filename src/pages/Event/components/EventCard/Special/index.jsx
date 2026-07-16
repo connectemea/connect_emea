@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { motion } from "framer-motion";
-import { getEventCategory } from '../../eventUtils';
+import { formatDate, getEventCategory } from '../../eventUtils';
 
 function SpecialCard({ data, onClick }) {
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ function SpecialCard({ data, onClick }) {
                     {/* Date/Time Row */}
                     <div className="flex items-center gap-1.5 text-[10px] mb-2 font-semibold text-zinc-500">
                         <Calendar className="w-3.5 h-3.5 text-orange-500 shrink-0" />
-                        <span>{data.date}</span>
+                        <span>{formatDate(data.date)}</span>
                         <span className="opacity-30">•</span>
                         <Clock className="w-3.5 h-3.5 text-orange-500 shrink-0" />
                         <span className="truncate">{data.time}</span>
