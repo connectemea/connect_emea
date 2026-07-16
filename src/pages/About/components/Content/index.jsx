@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { inFront, BootCamp, Image3, Image4, Image5, Image6, Image7 } from "@/assets/images/Us";
-import { Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/config/supabase";
 
@@ -62,11 +61,7 @@ function Content() {
                                 alt="Connect community"
                                 className="absolute inset-0 object-cover w-full h-full"
                             />
-                            {/* Tap Indicator Badge */}
-                            {/* <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-orange-600 flex items-center gap-1.5 border border-zinc-150 shadow-sm">
-                                <Sparkles className="w-3 h-3 animate-pulse" />
-                                Next Image
-                            </div> */}
+                            
                         </motion.div>
                     </AnimatePresence>
 

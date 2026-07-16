@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Icon from '@/assets/avatars/welcome.webp';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, MessageCircle, ArrowRight } from 'lucide-react';
+import {  MessageCircle, ArrowRight } from 'lucide-react';
 
 function Welcome() {
     const [loaded, setLoaded] = useState(false);

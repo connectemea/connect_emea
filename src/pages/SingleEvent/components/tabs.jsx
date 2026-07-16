@@ -3,13 +3,12 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import { Target, Sparkles } from "lucide-react";
+import { Target } from "lucide-react";
 
 const Highlights = ({ data }) => {
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-2 mb-2 text-orange-600">
-                <Sparkles className="w-5 h-5 shrink-0" />
                 <h3 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900">Event Highlights</h3>
             </div>
             <div className="text-zinc-600 text-sm sm:text-base leading-relaxed font-light highlights-container">
@@ -31,7 +30,6 @@ const Objectives = ({ data }) => {
     return (
         <div className="space-y-4">
             <div className="flex items-center gap-2 mb-2 text-orange-600">
-                <Target className="w-5 h-5 shrink-0" />
                 <h3 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900">Objectives</h3>
             </div>
             <p className="text-zinc-600 text-sm sm:text-base leading-relaxed font-light">

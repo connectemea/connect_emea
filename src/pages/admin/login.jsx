@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { supabase } from "@/config/supabase";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { EyeOff, Eye, Sparkles } from "lucide-react";
+import { EyeOff, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -87,7 +87,6 @@ const Login = () => {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             className="flex items-center justify-center mb-4"
           >
-            <Sparkles className="h-8 w-8 mr-2" />
             <h1 className="text-3xl font-bold">Connect</h1>
           </motion.div>
           <p className="text-orange-100">Admin Portal</p>

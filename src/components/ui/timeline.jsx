@@ -1,7 +1,6 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { Sparkles } from "lucide-react";
 
 export const Timeline = ({ data }) => {
   const ref = useRef(null);
@@ -30,10 +29,6 @@ export const Timeline = ({ data }) => {
     >
       <div className="max-w-7xl mx-auto pt-10 px-4 md:px-8 lg:px-10">
         <div className="flex flex-col items-center justify-center text-center space-y-2 mb-4">
-          <div className="flex items-center gap-1.5 text-orange-600 justify-center">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-[10px] font-bold uppercase tracking-wider">Journey</span>
-          </div>
           <h2 className="max-w-[600px] font-black text-2xl sm:text-3xl text-center mx-auto text-zinc-950">
             Your Future, With Friends By <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">Your Side</span>
           </h2>
