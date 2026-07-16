@@ -42,6 +42,10 @@ function MouseGlow() {
 function GuestLayout() {
   const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="relative flex flex-col w-full min-h-screen bg-zinc-50/20">
       {/* Global Interactive Mouse Spot Glow */}
