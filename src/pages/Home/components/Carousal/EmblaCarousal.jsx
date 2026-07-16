@@ -33,6 +33,9 @@ const gridItemVariants = {
   }),
 };
 
+const numberWithinRange = (number, min, max) =>
+  Math.min(Math.max(number, min), max);
+
 const SlideItem = ({ event, index, activeIndex, handleClick, handleClickAction }) => {
   const [loaded, setLoaded] = useState(false);
   return (
