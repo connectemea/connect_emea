@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, User, Plus, Trash2, Image as ImageIcon, FileText, Target, Edit, X, Eye, EyeOff, Link, CheckCircle, XCircle } from 'lucide-react';
 import { supabase } from '../../config/supabase';
-import handleImageUpload from '../../components/uploadimage';
 import {
     AlertDialog,
     AlertDialogAction,

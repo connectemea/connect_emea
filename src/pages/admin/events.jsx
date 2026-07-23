@@ -5,7 +5,7 @@ import {
   Search, ChevronDown, Loader2, Filter, Grid, List, Phone, ExternalLink,
   Info, Check, Sparkles
 } from 'lucide-react';
-import { supabase } from '../../config/supabase';
+import { supabase , deleteFile} from '../../config/supabase';
 import handleImageUpload from '../../components/uploadimage';
 import { resolveAsset } from '../../utils/resolveAsset';
 import {
@@ -314,12 +314,12 @@ export default function Events() {
     try {
       let thumbnailUrl = formData.thumbnail;
       if (thumbnail_img) {
-        thumbnailUrl = await handleImageUpload(thumbnail_img);
+        thumbnailUrl = await handleImageUpload(thumbnail_img, `${formData.title}_${Date.now()}`);
       }
 
       const newGalleryUrls = [];
       for (const image of images) {
-        const url = await handleImageUpload(image);
+        const url = await handleImageUpload(image, `${formData.title}_${Date.now()}`);
         if (url) newGalleryUrls.push(url);
       }
 
@@ -367,17 +367,34 @@ export default function Events() {
 
   const handleDelete = async () => {
     try {
+      // Delete thumbnail
+      if (eventToAction.thumbnail) {
+        await deleteFile("connect_assets", eventToAction.thumbnail);
+      }
+
+      // Delete gallery images
+      if (eventToAction.gallery?.length) {
+        await Promise.all(
+          eventToAction.gallery.map((image) =>
+            deleteFile("connect_assets", image)
+          )
+        );
+      }
+
+      // Delete database record
       const { error } = await supabase
-        .from('events')
+        .from("events")
         .delete()
-        .eq('id', eventToAction.id);
+        .eq("id", eventToAction.id);
+
       if (error) throw error;
+
       toast.success("Event deleted");
       setDeleteDialogOpen(false);
       fetchEvents(true);
       fetchStats();
     } catch (error) {
-      console.error("Error deleting event: ", error);
+      console.error("Error deleting event:", error);
       toast.error("Failed to delete event");
     }
   };
@@ -398,7 +415,7 @@ export default function Events() {
       if (error) throw error;
 
       toast.success(`Event ${actionType.replace('_', ' ')} updated`);
-      
+
       if (actionType === 'status') {
         setStatusDialogOpen(false);
       } else {
@@ -589,7 +606,7 @@ export default function Events() {
                 </div>
               </div>
             </div>
-            
+
             {(searchQuery || statusFilter !== 'All' || typeFilter !== 'All' || regStatusFilter !== 'All') && (
               <div className="flex items-center justify-between pt-1">
                 <p className="text-xs text-zinc-500">
@@ -647,19 +664,17 @@ export default function Events() {
                         )}
                         {/* Overlay status tags */}
                         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border shadow-sm ${
-                            event.status === 'published' ? 'bg-emerald-500 text-white border-emerald-500' :
-                            event.status === 'draft' ? 'bg-amber-500 text-white border-amber-500' :
-                            'bg-zinc-500 text-white border-zinc-500'
-                          }`}>
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border shadow-sm ${event.status === 'published' ? 'bg-emerald-500 text-white border-emerald-500' :
+                              event.status === 'draft' ? 'bg-amber-500 text-white border-amber-500' :
+                                'bg-zinc-500 text-white border-zinc-500'
+                            }`}>
                             {event.status === 'published' ? 'Published' : event.status === 'draft' ? 'Draft' : 'Archived'}
                           </span>
                         </div>
 
                         <div className="absolute top-3 right-3">
-                          <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold border shadow-sm bg-white ${
-                            event.reg_status === 'open' ? 'text-emerald-600 border-emerald-100' : 'text-red-600 border-red-100'
-                          }`}>
+                          <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold border shadow-sm bg-white ${event.reg_status === 'open' ? 'text-emerald-600 border-emerald-100' : 'text-red-600 border-red-100'
+                            }`}>
                             {event.reg_status === 'open' ? 'Reg Open' : 'Reg Closed'}
                           </span>
                         </div>
@@ -715,7 +730,7 @@ export default function Events() {
                         >
                           <Edit className="w-4 h-4" />
                         </button>
-                        
+
                         {/* Quick switch status */}
                         <button
                           onClick={() => openStatusDialog(
@@ -794,18 +809,16 @@ export default function Events() {
                             </div>
                           </td>
                           <td className="px-5 py-3.5">
-                            <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${
-                              event.status === 'published' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                              event.status === 'draft' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                              'bg-zinc-100 text-zinc-700 border-zinc-200'
-                            }`}>
+                            <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${event.status === 'published' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                                event.status === 'draft' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                                  'bg-zinc-100 text-zinc-700 border-zinc-200'
+                              }`}>
                               {event.status === 'published' ? 'Published' : event.status === 'draft' ? 'Draft' : 'Archived'}
                             </span>
                           </td>
                           <td className="px-5 py-3.5">
-                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold border ${
-                              event.reg_status === 'open' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-red-50 text-red-700 border-red-200'
-                            }`}>
+                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold border ${event.reg_status === 'open' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-red-50 text-red-700 border-red-200'
+                              }`}>
                               {event.reg_status === 'open' ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
                               {event.reg_status === 'open' ? 'Open' : 'Closed'}
                             </span>
@@ -859,10 +872,10 @@ export default function Events() {
         <TabsContent value="add" className="outline-none mt-4">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              
+
               {/* LEFT TWO COLUMNS: Info & Descriptions */}
               <div className="lg:col-span-2 space-y-6">
-                
+
                 {/* General Details Card */}
                 <div className="bg-white rounded-2xl border border-zinc-100 p-6 space-y-4 shadow-sm">
                   <div className="border-b border-zinc-100 pb-3 flex items-center justify-between">
@@ -1006,7 +1019,7 @@ export default function Events() {
 
               {/* RIGHT ONE COLUMN: Media, Meta, Highlights */}
               <div className="space-y-6">
-                
+
                 {/* Settings Card */}
                 <div className="bg-white rounded-2xl border border-zinc-100 p-6 space-y-4 shadow-sm">
                   <div className="border-b border-zinc-100 pb-3">
@@ -1110,7 +1123,7 @@ export default function Events() {
                   </div>
 
                   {/* Gallery Images Zone */}
-                  <div>
+                  {/* <div>
                     <label className="block text-xs font-semibold text-zinc-700 mb-1.5 flex justify-between">
                       <span>Gallery Images (Max 2, 2MB each)</span>
                       <span className="text-zinc-400 text-[10px] font-bold">{formData.gallery.length} / 2</span>
@@ -1138,7 +1151,7 @@ export default function Events() {
                         <input type="file" accept="image/*" multiple className="hidden" onChange={handleFileChange2} />
                       </label>
                     )}
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Highlights Card */}
@@ -1239,9 +1252,8 @@ export default function Events() {
                   <span className="px-2.5 py-1 rounded bg-orange-500 text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
                     {viewEvent.type}
                   </span>
-                  <span className={`px-2.5 py-1 rounded text-[10px] font-bold shadow-sm ${
-                    viewEvent.reg_status === 'open' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'
-                  }`}>
+                  <span className={`px-2.5 py-1 rounded text-[10px] font-bold shadow-sm ${viewEvent.reg_status === 'open' ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'
+                    }`}>
                     {viewEvent.reg_status === 'open' ? 'Registration Open' : 'Registration Closed'}
                   </span>
                 </div>

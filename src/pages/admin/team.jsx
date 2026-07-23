@@ -4,18 +4,18 @@ import {
   Mail, Phone, MapPin, Linkedin, Github, Instagram,
   X, Check, Upload, ChevronDown, Loader2, Users, Crown, GraduationCap
 } from 'lucide-react';
-import { supabase, uploadFile } from '@/config/supabase';
+import { supabase, uploadFile , deleteFile } from '@/config/supabase';
 import { resolveAsset } from '@/utils/resolveAsset';
 import { toast } from 'sonner';
 
 const PAGE_SIZE = 12;
 
-const ROLES = ['Developer', 'Designer', 'Content Writer', 'Marketing', 'Operations', 'Co-founder', 'Other'];
+const ROLES = ['Technical member', 'Designer', 'Content Writer', 'Marketing', 'Operations', 'Co-founder', 'Community Manager', 'Other'];
 const STATUSES = ['Active', 'Alumni'];
 
 const emptyForm = {
   name: '',
-  role: 'Developer',
+  role: 'Community Manager',
   position: '',
   email: '',
   phone: '',
@@ -30,8 +30,8 @@ function StatusBadge({ status }) {
   const cls = status === 'Active'
     ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
     : status === 'Alumni'
-    ? 'bg-sky-50 text-sky-700 border-sky-200'
-    : 'bg-zinc-100 text-zinc-600 border-zinc-200';
+      ? 'bg-sky-50 text-sky-700 border-sky-200'
+      : 'bg-zinc-100 text-zinc-600 border-zinc-200';
   return (
     <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border ${cls}`}>
       {status}
@@ -153,10 +153,20 @@ function MemberModal({ member, onClose, onSaved }) {
     e.preventDefault();
     if (!form.name.trim()) { toast.error('Name is required'); return; }
     setSaving(true);
+    const fileName = form.name
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
     try {
       let imageUrl = form.image || '';
       if (imageFile) {
-        const publicUrl = await uploadFile('connect_assets', imageFile, 'teams');
+        const publicUrl = await uploadFile(
+          "connect_assets",
+          imageFile,
+          "interns",
+          fileName
+        );
         if (!publicUrl) throw new Error('Failed to upload image');
         imageUrl = publicUrl;
       }
@@ -291,12 +301,30 @@ function MemberModal({ member, onClose, onSaved }) {
 function DeleteConfirm({ member, onClose, onDeleted }) {
   const [deleting, setDeleting] = useState(false);
   const handleDelete = async () => {
-    setDeleting(true);
-    const { error } = await supabase.from('teams').delete().eq('id', member.id);
-    setDeleting(false);
-    if (error) { toast.error(error.message); return; }
-    toast.success('Member removed');
-    onDeleted();
+    try {
+      setDeleting(true);
+
+      // Delete image from Storage
+      if (member.image) {
+        await deleteFile("connect_assets", member.image);
+      }
+
+      // Delete member from database
+      const { error } = await supabase
+        .from("teams")
+        .delete()
+        .eq("id", member.id);
+
+      if (error) throw error;
+
+      toast.success("Member removed");
+      onDeleted();
+    } catch (err) {
+      console.error(err);
+      toast.error(err.message || "Failed to remove member");
+    } finally {
+      setDeleting(false);
+    }
   };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">

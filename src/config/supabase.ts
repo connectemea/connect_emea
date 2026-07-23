@@ -13,35 +13,41 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 export const uploadFile = async (
   bucket: string,
   file: File,
-  folder: string = ''
+  folder: string = '',
+  customFileName?: string
 ): Promise<string | null> => {
   if (!file) return null;
 
-  // Compress the file if it's an image
   let uploadFile = file;
+
   if (file.type.startsWith('image/')) {
     try {
       uploadFile = await compressImage(file);
-      console.log(`Image compressed: original size ${file.size} bytes, new size ${uploadFile.size} bytes`);
     } catch (err) {
-      console.error("Image compression failed, using original file:", err);
+      console.error("Image compression failed:", err);
     }
   }
 
   const fileExt = uploadFile.name.split('.').pop();
-  const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+
+  const fileName = customFileName
+    ? `${customFileName}.${fileExt}`
+    : `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+
   const prefix = folder ? `${folder.replace(/\/$/, '')}/` : '';
   const filePath = `${prefix}${fileName}`;
 
   const { error } = await supabase.storage
     .from(bucket)
-    .upload(filePath, uploadFile);
+    .upload(filePath, uploadFile, {
+      upsert: true, // Optional: overwrite if the same filename exists
+    });
 
   if (error) throw error;
 
-  const { data: { publicUrl } } = supabase.storage
-    .from(bucket)
-    .getPublicUrl(filePath);
+  const {
+    data: { publicUrl },
+  } = supabase.storage.from(bucket).getPublicUrl(filePath);
 
   return publicUrl;
 };
